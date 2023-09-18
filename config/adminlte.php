@@ -254,11 +254,11 @@ return [
 
     'use_route_url' => false,
     'dashboard_url' => 'home',
-    'logout_url' => 'logout',
-    'login_url' => 'login',
-    'register_url' => 'register',
-    'password_reset_url' => 'password/reset',
-    'password_email_url' => 'password/email',
+    'logout_url' => 'admin/logout',
+    'login_url' => 'admin/login',
+    'register_url' => 'admin/register',
+    'password_reset_url' => 'admin/password/reset',
+    'password_email_url' => 'admin/password/email',
     'profile_url' => false,
 
     /*
@@ -302,86 +302,111 @@ return [
         ],
 
         // Sidebar items:
+
+
+        ['header' => 'settings'],
         [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'global_settings',
+            'icon'    => 'fas fa-cogs',
+            'can' => ['site_setting_manage'],
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'site_setting',
+                    'can' => 'site_setting_manage',
+                    'url' => ''
+                ],
+            ]
+        ],
+        [
+            'text'    => 'commands',
+            'icon'    => 'fas fa-thumbs-up',
+            'can'  => 'commands_manage',
+            'submenu' => [
+                [
+                    'text' => 'clear_cache',
+                    'can'  => 'command_cache_clear',
+                    'url' => 'command/clear-cache'
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text' => 'clear_config',
+                    'can'  => 'command_config_clear',
+                    'url' => 'command/clear-config'
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'clear_route',
+                    'can'  => 'command_route_clear',
+                    'url' => 'command/clear-route'
                 ],
+                [
+                    'text' => 'optimize',
+                    'can'  => 'command_optimize',
+                    'url' => 'command/optimize'
+                ],
+                [
+                    'text' => 'migrate',
+                    'can'  => 'command_migrate',
+                    'url' => 'command/migrate'
+                ],
+                [
+                    'text' => 'fresh_migrate',
+                    'can'  => 'command_migrate_fresh',
+                    'url' => 'command/migrate-fresh'
+                ],
+                [
+                    'text' => 'fresh_migrate_seed',
+                    'can'  => 'command_migrate_fresh_seed',
+                    'url' => 'command/migrate-fresh-seed'
+                ],
+
+
+
             ],
+
         ],
-        ['header' => 'labels'],
         [
-            'text'       => 'important',
+            'text' => 'secure_area',
+            'url'  => '',
             'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'icon' => 'fas fa-lock',
+            'can'  => ['role_manage','permission_manage','user_manage','admin_manage'],
+            'submenu'=>[
+                ['header' => 'roles_permissions'],
+                [
+                    'text'        => 'roles',
+                    'url'         => 'admin/roles',
+                    'icon'        => 'fas fa-lock',
+                    'can'         =>  'role_manage',
+                ],
+                [
+                    'text'        => 'permissions',
+                    'url'         => 'admin/permissions',
+                    'icon'        => 'fas fa-key',
+                    'can'         => 'permission_manage',
+                ],
+                ['header' => 'users_admins'],
+                [
+                    'text'        => 'users',
+                    'url'         => 'admin/users',
+                    'icon'        => 'fas fa-users',
+                    'can'         => 'user_manage',
+                ],
+                [
+                    'text'        => 'admins',
+                    'url'         => 'admin/admins',
+                    'icon'        => 'fas fa-user-lock',
+                    'can'         => 'admin_manage',
+                ],
+                [
+                    'text' => 'profile',
+                    'url'  => 'admin/profile',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'change_password',
+                    'url'  => 'admin/change-password',
+                    'icon' => 'fas fa-fw fa-lock',
+                ],
+            ]
         ],
     ],
 
