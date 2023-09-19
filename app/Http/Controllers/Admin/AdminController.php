@@ -102,16 +102,26 @@ class AdminController extends Controller
                 @unlink($old_image_path);
             }
         }
-        $admin->name = $request->name;
-        $admin->email = $request->email;
-        $admin->status = $request->status;
-        $admin->photo = $imagePath;
-        $admin->update();
         toastr()->success($admin->name.__('global.updated_success'),__('global.admin').__('global.updated'));
         if(!$admin->hasAnyRole([ 'super_admin'])){
+            $admin->name = $request->name;
+            $admin->email = $request->email;
+            $admin->status = $request->status;
+            $admin->photo = $imagePath;
+            $admin->update();
             $admin->syncRoles([$request->roles]);
             toastr()->success($admin->name.__('global.updated_success'),__('global.admin').__('global.updated'));
-        }else{
+        }elseif(auth()->user()->id === $admin->id){
+
+            $admin->name = $request->name;
+            $admin->email = $request->email;
+            $admin->status = $request->status;
+            $admin->photo = $imagePath;
+            $admin->update();
+            $admin->syncRoles([$request->roles]);
+            toastr()->success($admin->name.__('global.updated_success'),__('global.admin').__('global.updated'));
+        }
+        else{
             toastr()->error(__('global.permission_denied_msg'),__('global.permission_denied'));
         }
         return redirect()->route('admin.admins.index');

@@ -301,7 +301,7 @@ return [
             'topnav_right' => true,
         ],
         [
-            'text' => 'visit',
+            'text' => '',
             'url' => '/',
             'icon'    => 'fas fa-home',
             'topnav' => true,
@@ -310,6 +310,7 @@ return [
             'text' => 'optimize',
             'can'  => 'command_optimize',
             'url' => 'command/optimize',
+            'icon'    => 'fas fa-trash',
             'topnav' => true,
         ],
 
@@ -454,16 +455,16 @@ return [
                     'icon'        => 'fas fa-user-lock',
                     'can'         => 'admin_manage',
                 ],
-                [
-                    'text' => 'profile',
-                    'url'  => 'admin/profile',
-                    'icon' => 'fas fa-fw fa-user',
-                ],
-                [
-                    'text' => 'change_password',
-                    'url'  => 'admin/change-password',
-                    'icon' => 'fas fa-fw fa-lock',
-                ],
+//                [
+//                    'text' => 'profile',
+//                    'url'  => 'admin/profile',
+//                    'icon' => 'fas fa-fw fa-user',
+//                ],
+//                [
+//                    'text' => 'change_password',
+//                    'url'  => 'admin/change-password',
+//                    'icon' => 'fas fa-fw fa-lock',
+//                ],
             ]
         ],
     ],

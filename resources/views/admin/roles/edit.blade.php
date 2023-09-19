@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <label for="guard_name">{{__('global.guard')}} {{__('global.name')}}</label>
-                            <input name="guard_name" type="text" value="web" required class="form-control" id="guard_name" placeholder="{{__('global.enter_guard_name')}}">
+                            <input name="guard_name" type="text" value="{{$role->guard_name}}" required class="form-control" id="guard_name" placeholder="{{__('global.enter_guard_name')}}">
                         </div>
                         <h4>{{__('menu.permissions')}}</h4>
                         <div class="custom-control custom-checkbox">
