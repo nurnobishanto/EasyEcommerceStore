@@ -13,6 +13,7 @@ class Slider extends Model
         'title',
         'url',
         'target',
+        'order',
         'image',
         'background',
         'description',

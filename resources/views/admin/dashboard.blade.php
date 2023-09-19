@@ -8,43 +8,98 @@
 @section('content')
     <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-shopping-cart"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">CPU Traffic</span>
-                    <span class="info-box-number">10<small>%</small></span>
+                    <span class="info-box-text">Pending Orders</span>
+                    <span class="info-box-number">{{$orders->where('status','pending')->count()}}</span>
                 </div>
             </div>
         </div>
         <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-shopping-cart"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Likes</span>
-                    <span class="info-box-number">41,410</span>
+                    <span class="info-box-text">Received Orders</span>
+                    <span class="info-box-number">{{$orders->where('status','received')->count()}}</span>
                 </div>
-
             </div>
-
         </div>
         <div class="clearfix hidden-md-up"></div>
         <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
+                <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Delivered Orders</span>
+                    <span class="info-box-number">{{$orders->where('status','delivered')->count()}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
                 <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Sales</span>
-                    <span class="info-box-number">760</span>
+                    <span class="info-box-text">Complete Orders</span>
+                    <span class="info-box-number">{{$orders->where('status','completed')->count()}}</span>
                 </div>
+            </div>
+        </div>
+        <div class="clearfix hidden-md-up"></div>
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Canceled Orders</span>
+                    <span class="info-box-number">{{$orders->where('status','canceled')->count()}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-red elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Rejected Orders</span>
+                    <span class="info-box-number">{{$orders->where('status','rejected')->count()}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix hidden-md-up"></div>
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-store"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Products</span>
+                    <span class="info-box-number">{{$products->count()}}</span>
+                </div>
+            </div>
 
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-store"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Low Stock Product</span>
+                    <span class="info-box-number">{{$products->where('quantity','<',5)->count()}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix hidden-md-up"></div>
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-tags"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Categories</span>
+                    <span class="info-box-number">{{$categories->count()}}</span>
+                </div>
             </div>
 
         </div>
         <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tag"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">New Members</span>
-                    <span class="info-box-number">2,000</span>
+                    <span class="info-box-text">Brands</span>
+                    <span class="info-box-number">{{$brands->count()}}</span>
                 </div>
 
             </div>

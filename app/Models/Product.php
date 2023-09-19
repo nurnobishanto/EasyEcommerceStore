@@ -20,6 +20,8 @@ class Product extends Model
         'created_by',
         'updated_by',
         'thumbnail',
+        'video_type',
+        'video_url',
         'gallery',
         'brand_id',
     ];

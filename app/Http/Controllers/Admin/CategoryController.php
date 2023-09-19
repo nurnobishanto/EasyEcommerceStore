@@ -54,7 +54,7 @@ class CategoryController extends Controller
             'thumbnail' =>$imagePath,
 
         ]);
-        toastr()->success($category->name.__('global.created_success'),__('global.brand').__('global.created'));
+        toastr()->success($category->name.__('global.created_success'),__('global.category').__('global.created'));
         return redirect()->route('admin.categories.index');
     }
     public function show(string $id)
@@ -97,7 +97,7 @@ class CategoryController extends Controller
         $category->updated_by = auth()->user()->id;
         $category->thumbnail = $imagePath;
         $category->update();
-        toastr()->success($category->name.__('global.updated_success'),__('global.brand').__('global.updated'));
+        toastr()->success($category->name.__('global.updated_success'),__('global.category').__('global.updated'));
         return redirect()->route('admin.categories.index');
     }
 
@@ -106,7 +106,7 @@ class CategoryController extends Controller
         App::setLocale(session('locale'));
         $category = Category::find($id);
         $category->delete();
-        toastr()->success(__('global.brand').__('global.deleted_success'),__('global.brand').__('global.deleted'));
+        toastr()->success(__('global.category').__('global.deleted_success'),__('global.category').__('global.deleted'));
         return redirect()->route('admin.categories.index');
     }
     public function restore($id){
@@ -125,7 +125,7 @@ class CategoryController extends Controller
             @unlink($old_image_path);
         }
         $category->forceDelete();
-        toastr()->success(__('global.brand').__('global.deleted_success'),__('global.deleted'));
+        toastr()->success(__('global.category').__('global.deleted_success'),__('global.deleted'));
         return redirect()->route('admin.categories.trashed');
     }
 }

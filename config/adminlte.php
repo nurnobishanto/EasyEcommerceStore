@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'admin',
     'logout_url' => 'admin/logout',
     'login_url' => 'admin/login',
     'register_url' => 'admin/register',
@@ -318,7 +318,7 @@ return [
             'text' => 'dashboard',
             'url' => 'admin',
             'can' => ['dashboard_manage'],
-            'icon'    => 'fas fa-tag',
+            'icon'    => 'fas fa-tachometer-alt',
         ],
         [
             'text' => 'brands',
@@ -330,31 +330,31 @@ return [
             'text' => 'categories',
             'url' => 'admin/categories',
             'can' => ['category_manage'],
-            'icon'    => 'fas fa-tag',
+            'icon'    => 'fas fa-tags',
         ],
         [
             'text' => 'products',
             'url' => 'admin/products',
             'can' => ['product_manage'],
-            'icon'    => 'fas fa-tag',
+            'icon'    => 'fas fa-store',
         ],
         [
             'text' => 'orders',
             'url' => 'admin/orders',
             'can' => ['order_manage'],
-            'icon'    => 'fas fa-tag',
+            'icon'    => 'fas fa-list',
         ],
         [
             'text' => 'sliders',
             'url' => 'admin/sliders',
             'can' => ['slider_manage'],
-            'icon'    => 'fas fa-tag',
+            'icon'    => 'fas fa-sliders-h',
         ],
         [
             'text' => 'delivery_zones',
             'url' => 'admin/delivery-zones',
             'can' => ['delivery_zone_manage'],
-            'icon'    => 'fas fa-tag',
+            'icon'    => 'fas fa-location-arrow',
         ],
 
         ['header' => 'settings'],
@@ -372,7 +372,6 @@ return [
                     'text' => 'menu',
                     'url' => 'admin/menus',
                     'can' => ['menu_manage'],
-                    'icon'    => 'fas fa-tag',
                 ],
             ]
         ],

@@ -24,6 +24,8 @@ return new class extends Migration
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
             $table->string('thumbnail')->nullable();
+            $table->string('video_type')->nullable();
+            $table->string('video_url')->nullable();
             $table->json('gallery')->nullable();
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
