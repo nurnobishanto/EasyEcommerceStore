@@ -14,7 +14,23 @@
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
+$environmentFile = '.env'; // Default environment file
 
+$domain = $_SERVER['HTTP_HOST'] ?? '';
+
+if ($domain === 'royalmartbd.com' || $domain ==='www.royalmartbd.com') {
+    $environmentFile = '.env.royalmartbd';
+}
+elseif ($domain === 'localhost' || $domain === '127.0.0.1' || $domain === '127.0.0.1:8000') {
+    $environmentFile = '.env.local';
+}
+
+$envFilePath = $app->basePath($environmentFile);
+
+if (file_exists($envFilePath)) {
+    $dotenv = Dotenv\Dotenv::createMutable($app->basePath(), $environmentFile);
+    $dotenv->load();
+}
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces
