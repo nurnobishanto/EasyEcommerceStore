@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('url');
             $table->string('target')->nullable();
+            $table->integer('order')->default(0)->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('status')->default('active');
             $table->softDeletes();

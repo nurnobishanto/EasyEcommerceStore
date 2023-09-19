@@ -13,6 +13,7 @@ class Menu extends Model
         'title',
         'url',
         'target',
+        'order',
         'parent_id',
         'status',
         'created_by',

@@ -13,6 +13,7 @@ class Product extends Model
         'title',
         'description',
         'slug',
+        'sku',
         'price',
         'quantity',
         'status',
@@ -22,7 +23,9 @@ class Product extends Model
         'gallery',
         'brand_id',
     ];
-
+    protected $casts = [
+        'gallery' => 'array',
+    ];
     public function createdBy()
     {
         return $this->belongsTo(Admin::class, 'created_by');

@@ -300,9 +300,62 @@ return [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
+        [
+            'text' => 'visit',
+            'url' => '/',
+            'icon'    => 'fas fa-home',
+            'topnav' => true,
+        ],
+        [
+            'text' => 'optimize',
+            'can'  => 'command_optimize',
+            'url' => 'command/optimize',
+            'topnav' => true,
+        ],
 
         // Sidebar items:
-
+        [
+            'text' => 'dashboard',
+            'url' => 'admin',
+            'can' => ['dashboard_manage'],
+            'icon'    => 'fas fa-tag',
+        ],
+        [
+            'text' => 'brands',
+            'url' => 'admin/brands',
+            'can' => ['brand_manage'],
+            'icon'    => 'fas fa-tag',
+        ],
+        [
+            'text' => 'categories',
+            'url' => 'admin/categories',
+            'can' => ['category_manage'],
+            'icon'    => 'fas fa-tag',
+        ],
+        [
+            'text' => 'products',
+            'url' => 'admin/products',
+            'can' => ['product_manage'],
+            'icon'    => 'fas fa-tag',
+        ],
+        [
+            'text' => 'orders',
+            'url' => 'admin/orders',
+            'can' => ['order_manage'],
+            'icon'    => 'fas fa-tag',
+        ],
+        [
+            'text' => 'sliders',
+            'url' => 'admin/sliders',
+            'can' => ['slider_manage'],
+            'icon'    => 'fas fa-tag',
+        ],
+        [
+            'text' => 'delivery_zones',
+            'url' => 'admin/delivery-zones',
+            'can' => ['delivery_zone_manage'],
+            'icon'    => 'fas fa-tag',
+        ],
 
         ['header' => 'settings'],
         [
@@ -314,6 +367,12 @@ return [
                     'text' => 'site_setting',
                     'can' => 'site_setting_manage',
                     'url' => ''
+                ],
+                [
+                    'text' => 'menu',
+                    'url' => 'admin/menus',
+                    'can' => ['menu_manage'],
+                    'icon'    => 'fas fa-tag',
                 ],
             ]
         ],

@@ -152,6 +152,17 @@ class RoleSeeder extends Seeder
                     'menu_create',
                 ]
             ],
+            [
+                'group_name' => 'Delivery Zone',
+                'permissions' => [
+                    'delivery_zone_manage',
+                    'delivery_zone_list',
+                    'delivery_zone_view',
+                    'delivery_zone_update',
+                    'delivery_zone_delete',
+                    'delivery_zone_create',
+                ]
+            ],
 
         ];
 

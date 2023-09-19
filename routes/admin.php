@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DeliveryZoneController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -58,3 +59,9 @@ Route::get('/menus/trashed',[MenuController::class,'trashed_list'])->middleware(
 Route::get('/menus/trashed/{menu}/restore',[MenuController::class,'restore'])->middleware('permission:menu_manage')->name('menus.restore');
 Route::get('/menus/trashed/{menu}/delete',[MenuController::class,'force_delete'])->middleware('permission:menu_manage')->name('menus.force_delete');
 Route::resource('/menus',MenuController::class)->middleware('permission:menu_manage');
+
+//Delivery Zone
+Route::get('/delivery-zones/trashed',[DeliveryZoneController::class,'trashed_list'])->middleware('permission:delivery_zone_manage')->name('delivery-zones.trashed');
+Route::get('/delivery-zones/trashed/{delivery_zone}/restore',[DeliveryZoneController::class,'restore'])->middleware('permission:delivery_zone_manage')->name('delivery-zones.restore');
+Route::get('/delivery-zones/trashed/{delivery_zone}/delete',[DeliveryZoneController::class,'force_delete'])->middleware('permission:delivery_zone_manage')->name('delivery-zones.force_delete');
+Route::resource('/delivery-zones',DeliveryZoneController::class)->middleware('permission:delivery_zone_manage');

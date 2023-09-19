@@ -9,6 +9,42 @@ if (!function_exists('myCustomFunction')) {
     {
         // Your custom logic here
     }
+
+}
+if (!function_exists('productHascategory')) {
+
+    function productHascategory($product,$cat)
+    {
+        $response = false;
+        foreach ($product->categories as $category){
+            if ($category->id == $cat->id){
+                $response = true;
+            }
+        }
+        return $response;
+    }
+
+}
+if (!function_exists('generateUniqueSlug')) {
+
+
+    function generateUniqueSlug($text, $modelName, $field = 'slug', $separator = '-')
+    {
+        // Normalize the text to create a basic slug
+        $slug = Str::slug($text, $separator);
+
+        // Check if a record with this slug already exists in the specified model
+        $model = app($modelName);
+        $originalSlug = $slug;
+        $count = 2;
+
+        while ($model::where($field, $slug)->exists()) {
+            $slug = $originalSlug . $separator . $count;
+            $count++;
+        }
+
+        return $slug;
+    }
 }
 if (!function_exists('setSetting')) {
 
