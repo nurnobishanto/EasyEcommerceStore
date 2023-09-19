@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('sku')->nullable();
             $table->decimal('price', 10, 2);
+            $table->decimal('regular_price', 10, 2)->nullable();
             $table->integer('quantity');
             $table->string('status')->default('active');
             $table->softDeletes();
