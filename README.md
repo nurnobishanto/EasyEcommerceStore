@@ -1,2 +1,2 @@
-# EasyEcommerceStore
+# Easy Ecommerce Store
  
