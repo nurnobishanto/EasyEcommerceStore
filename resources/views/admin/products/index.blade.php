@@ -54,7 +54,7 @@
                                     <td>{{$product->price}}</td>
                                     <td>{{$product->quantity}}</td>
                                     <td>@foreach($product->categories as $cat) {{$cat->name}}, @endforeach</td>
-                                    <td>{{$product->brand->name}}</td>
+                                    <td>{{$product->brand->name??'Deleted'}}</td>
                                     <td>
                                         @if($product->status=='active') <span class="badge-success badge">Active</span>
                                         @else <span class="badge-danger badge">Deactivate</span>

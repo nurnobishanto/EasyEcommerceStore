@@ -29,6 +29,10 @@ return new class extends Migration
             $table->json('gallery')->nullable();
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->string('meta_image')->nullable();
+            $table->text('meta_keywords')->nullable();
             $table->timestamps();
         });
     }

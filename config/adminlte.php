@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Admin</b>Store',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -84,7 +84,7 @@ return [
     */
 
     'auth_logo' => [
-        'enabled' => false,
+        'enabled' => true,
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'Auth Logo',
@@ -132,7 +132,7 @@ return [
     'usermenu_enabled' => true,
     'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => false,
+    'usermenu_image' => true,
     'usermenu_desc' => false,
     'usermenu_profile_url' => false,
 
@@ -256,7 +256,7 @@ return [
     'dashboard_url' => 'admin',
     'logout_url' => 'admin/logout',
     'login_url' => 'admin/login',
-    'register_url' => 'admin/register',
+    'register_url' => false,
     'password_reset_url' => 'admin/password/reset',
     'password_email_url' => 'admin/password/email',
     'profile_url' => false,
@@ -366,7 +366,7 @@ return [
                 [
                     'text' => 'site_setting',
                     'can' => 'site_setting_manage',
-                    'url' => ''
+                    'url' => 'admin/site-setting'
                 ],
                 [
                     'text' => 'menu',

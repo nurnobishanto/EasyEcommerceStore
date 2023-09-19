@@ -189,5 +189,8 @@ return [
     'stoke_out' => 'Stoke_out',
     'delivered' => 'Delivered',
     'completed' => 'Completed',
+    'site_setting' => 'Site Setting',
+    'site_name' => 'Site Name',
+    'enter_site_name' => 'Enter Site Name',
 
 ];

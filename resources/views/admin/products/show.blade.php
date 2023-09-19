@@ -64,7 +64,7 @@
                                             </tr>
                                             <tr>
                                                 <td>{{__('global.brand')}}</td>
-                                                <td>{{$product->brand->name??'--'}}</td>
+                                                <td>{{$product->brand->name??'Deleted'}}</td>
                                             </tr>
                                             <tr>
                                                 <td>{{__('global.categories')}}</td>

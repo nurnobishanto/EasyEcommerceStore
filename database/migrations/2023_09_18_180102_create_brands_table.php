@@ -20,6 +20,10 @@ return new class extends Migration
             $table->softDeletes();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->string('meta_image')->nullable();
+            $table->text('meta_keywords')->nullable();
             $table->timestamps();
         });
     }

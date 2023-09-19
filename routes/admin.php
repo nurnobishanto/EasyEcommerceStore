@@ -65,3 +65,8 @@ Route::get('/delivery-zones/trashed',[DeliveryZoneController::class,'trashed_lis
 Route::get('/delivery-zones/trashed/{delivery_zone}/restore',[DeliveryZoneController::class,'restore'])->middleware('permission:delivery_zone_manage')->name('delivery-zones.restore');
 Route::get('/delivery-zones/trashed/{delivery_zone}/delete',[DeliveryZoneController::class,'force_delete'])->middleware('permission:delivery_zone_manage')->name('delivery-zones.force_delete');
 Route::resource('/delivery-zones',DeliveryZoneController::class)->middleware('permission:delivery_zone_manage');
+
+
+//Site Setting
+Route::get('site-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'site_setting']);
+Route::post('site-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'site_setting'])->name('site-setting');
