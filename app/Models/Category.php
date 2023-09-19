@@ -15,6 +15,7 @@ class Category extends Model
         'slug',
         'parent_id',
         'status',
+        'is_featured',
         'created_by',
         'updated_by',
         'thumbnail',

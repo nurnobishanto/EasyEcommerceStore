@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('thumbnail')->nullable();
             $table->string('status')->default('active');
+            $table->string('is_featured')->default('no');
             $table->softDeletes();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by')->nullable();

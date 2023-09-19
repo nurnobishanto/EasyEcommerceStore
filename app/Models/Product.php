@@ -18,6 +18,7 @@ class Product extends Model
         'regular_price',
         'quantity',
         'status',
+        'is_featured',
         'created_by',
         'updated_by',
         'thumbnail',

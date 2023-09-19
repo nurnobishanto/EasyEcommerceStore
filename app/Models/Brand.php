@@ -14,6 +14,7 @@ class Brand extends Model
         'thumbnail',
         'slug',
         'status',
+        'is_featured',
         'created_by',
         'updated_by',
     ];

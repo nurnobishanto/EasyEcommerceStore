@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('regular_price', 10, 2)->nullable();
             $table->integer('quantity');
             $table->string('status')->default('active');
+            $table->string('is_featured')->default('no');
             $table->softDeletes();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');

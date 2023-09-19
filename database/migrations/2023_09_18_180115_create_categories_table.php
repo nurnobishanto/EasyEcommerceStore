@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('status')->default('active');
+            $table->string('is_featured')->default('no');
             $table->softDeletes();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
