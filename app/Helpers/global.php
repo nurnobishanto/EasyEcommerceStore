@@ -12,6 +12,14 @@ if (!function_exists('myCustomFunction')) {
     }
 
 }
+if (!function_exists('homeSliders')) {
+
+    function homeSliders(): \Illuminate\Database\Eloquent\Collection
+    {
+        return \App\Models\Slider::all();
+    }
+
+}
 if (!function_exists('productHascategory')) {
 
     function productHascategory($product,$cat)

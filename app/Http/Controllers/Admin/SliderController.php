@@ -82,7 +82,7 @@ class SliderController extends Controller
             'background' => 'image|mimes:jpeg,png,jpg,gif|max:3048',
         ]);
 
-        $imagePath = $slider->thumbnail??null;
+        $imagePath = $slider->image??null;
         if($request->file('image')){
             $imagePath = $request->file('image')->store('slider-image');
             $old_image_path = "uploads/".$request->image_old;
@@ -90,7 +90,7 @@ class SliderController extends Controller
                 @unlink($old_image_path);
             }
         }
-        $bgPath = $slider->thumbnail??null;
+        $bgPath = $slider->background??null;
         if($request->file('background')){
             $bgPath = $request->file('background')->store('slider-background');
             $old_image_path = "uploads/".$request->background_old;

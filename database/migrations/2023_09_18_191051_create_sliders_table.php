@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('url')->nullable();
             $table->string('target')->nullable();
             $table->integer('order')->default(0)->nullable();
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->text('background')->nullable();
             $table->text('description')->nullable();
             $table->string('status')->default('active');

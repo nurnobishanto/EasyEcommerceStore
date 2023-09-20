@@ -1,6 +1,9 @@
 @extends('layouts.front')
 
 @section('content')
+    @if(getSetting('home_slider') === 'show')
+        @include('front.includes.slider')
+    @endif
     <section class="my-lg-2 my-8">
         <div class="container">
             <div class="row">
