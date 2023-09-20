@@ -21,7 +21,7 @@ class GlobalSettingController extends Controller
         setSetting('top_right_text',trim($request->top_right_text));
         setSetting('mobile_category_menu',trim($request->mobile_category_menu));
         setSetting('desktop_category_menu',trim($request->desktop_category_menu));
-
+        setSetting('home_featured_category',trim($request->home_featured_category));
         if($request->file('site_favicon')){
             $imagePath = $request->file('site_favicon')->store('site-photo');
             $old_image_path = "uploads/".getSetting('site_favicon');

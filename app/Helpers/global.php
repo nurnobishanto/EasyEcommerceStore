@@ -12,11 +12,46 @@ if (!function_exists('myCustomFunction')) {
     }
 
 }
+if (!function_exists('calculateDiscountPercentage')) {
+
+    function calculateDiscountPercentage($regularPrice, $sellingPrice) {
+        if ($regularPrice <= 0) {
+            return 0;
+        }
+        $discountPercentage = (($regularPrice - $sellingPrice) / $regularPrice) * 100;
+        return round($discountPercentage); // Round to two decimal places.
+    }
+
+}
 if (!function_exists('homeSliders')) {
 
     function homeSliders(): \Illuminate\Database\Eloquent\Collection
     {
-        return \App\Models\Slider::all();
+        return \App\Models\Slider::where('status','active')->orderBy('order','DESC')->get();
+    }
+
+}
+if (!function_exists('featuredCategories')) {
+
+    function featuredCategories(): \Illuminate\Database\Eloquent\Collection
+    {
+        return \App\Models\Category::where('status','active')->where('is_featured','yes')->get();
+    }
+
+}
+if (!function_exists('featuredProducts')) {
+
+    function featuredProducts(): \Illuminate\Database\Eloquent\Collection
+    {
+        return \App\Models\Product::where('status','active')->where('is_featured','yes')->get();
+    }
+
+}
+if (!function_exists('popularProducts')) {
+
+    function popularProducts(): \Illuminate\Database\Eloquent\Collection
+    {
+        return \App\Models\Product::where('status','active')->get();
     }
 
 }

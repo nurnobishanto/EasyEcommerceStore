@@ -11,4 +11,10 @@ class HomeController extends Controller
         $data =  array();
         return view('front.pages.home', $data);
     }
+    public function category($slug){
+        return $slug;
+    }
+    public function product($slug){
+        return $slug;
+    }
 }

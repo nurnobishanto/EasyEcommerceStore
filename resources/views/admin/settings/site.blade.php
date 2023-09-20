@@ -55,6 +55,7 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="site_description">{{ __('global.site_description')}}</label>
@@ -105,7 +106,15 @@
                                     </select>
                                 </div>
                             </div>
-
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="home_featured_category">{{ __('global.home_featured_category')}}</label>
+                                    <select id="home_featured_category"  name="home_featured_category" class="form-control">
+                                        <option value="show" @if(getSetting('home_featured_category') == 'show') selected @endif>Show</option>
+                                        <option value="hide" @if(getSetting('home_featured_category') == 'hide') selected @endif>Hide</option>
+                                    </select>
+                                </div>
+                            </div>
 
 
                         </div>

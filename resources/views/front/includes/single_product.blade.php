@@ -3,27 +3,30 @@
         <div class="card-body">
             <div class="text-center position-relative ">
                 <div class=" position-absolute top-0 start-0">
-                    <span class="badge bg-success">Sale</span>
+                    @if(calculateDiscountPercentage($product->regular_price, $product->price)>0)
+                        <span class="badge bg-success">{{calculateDiscountPercentage($product->regular_price, $product->price)}}% Off</span>
+                    @endif
+
                 </div>
-                <a href="#!">
-                    <img src="{{ asset('front') }}/images/products/product-img-1.jpg" alt="Grocery Ecommerce Template" class="mb-3 img-fluid">
+                <a href="{{route('product',['slug'=>$product->slug])}}">
+                    <img src="{{ asset('uploads/'.$product->thumbnail) }}" alt="{{$product->title}}" class="mb-3 img-fluid">
                 </a>
             </div>
             <div class="text-small mb-1">
-                <a href="#!" class="text-decoration-none text-muted"><small>Snack & Munchies</small></a></div>
+                <a href="{{route('category',['slug'=>$product->categories->first()->slug])}}" class="text-decoration-none text-muted"><small>{{$product->categories->first()->name}}</small></a></div>
             <h2 class="fs-6">
-                <a href="pages/shop-single.html" class="text-inherit text-decoration-none">Haldiram's Sev Bhujia</a>
+                <a href="pages/shop-single.html" class="text-inherit text-decoration-none">{{$product->title}}</a>
             </h2>
             <div>
-                <span class="text-dark">$18</span>
-                <span class="text-decoration-line-through text-muted">$24</span>
+                <span class="text-dark">{{$product->price}}</span>
+                <span class="text-decoration-line-through text-muted">{{$product->regular_price}}</span>
             </div>
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div>
                     <a href="#!" class="btn btn-primary btn-sm">Buy Now</a>
                 </div>
                 <div>
-                    <a href="#!" class="btn btn-primary btn-sm">+</a>
+                    <a href="#!" class="btn btn-primary btn-sm">Add cart</a>
                 </div>
             </div>
         </div>

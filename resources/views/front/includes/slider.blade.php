@@ -10,8 +10,6 @@
                     <a href="{{$slider->url}}" @if($slider->target) target="{{$slider->target}}" @endif class="btn btn-dark mt-3">Shop Now <i class="feather-icon icon-arrow-right ms-1"></i></a>
                     @endif
                 </div>
-
-
             </div>
             @endforeach
         </div>

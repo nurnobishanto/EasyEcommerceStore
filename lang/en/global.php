@@ -210,5 +210,6 @@ return [
     'desktop_category_menu' => 'Desktop category Menu',
     'regular_price' => 'Regular Price',
     'enter_regular_price' => 'Enter Regular Price',
+    'home_featured_category' => 'Home Featured Categories',
 
 ];

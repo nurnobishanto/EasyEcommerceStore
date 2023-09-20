@@ -62,6 +62,7 @@ class ProductController extends Controller
             'slug' => generateUniqueSlug($request->input('slug')??$request->input('title'),Product::class),
             'sku' => $request->input('sku'),
             'price' => $request->input('price'),
+            'regular_price' => $request->input('regular_price'),
             'quantity' => $request->input('quantity'),
             'status' => $request->input('status'),
             'is_featured' => $request->input('is_featured'),
@@ -140,6 +141,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->sku = $request->sku;
         $product->price = $request->price;
+        $product->regular_price = $request->regular_price;
         $product->quantity = $request->quantity;
         $product->brand_id = $request->brand_id;
         $product->status = $request->status;
