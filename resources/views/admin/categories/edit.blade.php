@@ -60,7 +60,7 @@
                                     <select name="parent_id" class="select2 form-control" id="parent_id">
                                         <option value="">{{__('global.select_parent_category')}}</option>
                                         @foreach($categories as $cat)
-                                            <option value="{{$cat->id}}" @if($cat->id == $category->parent_id) selected @endif>{{$cat->name}}</option>
+                                            <option value="{{$cat->id}}" @if($cat->id == $category->parent_id) selected @endif>{{$cat->name}}{{$cat->parent}}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -60,7 +60,9 @@
                                     <select name="parent_id" class=" form-control" id="parent_id">
                                         <option value="">{{__('global.select_parent_menu')}}</option>
                                         @foreach($menus as $m)
+                                            @if(!$m->parent_id)
                                             <option value="{{$m->id}}" @if($m->id == $menu->parent_id) selected @endif>{{$m->title}}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>

@@ -5,6 +5,8 @@
                 <div class=" position-absolute top-0 start-0">
                     @if(calculateDiscountPercentage($product->regular_price, $product->price)>0)
                         <span class="badge bg-success">{{calculateDiscountPercentage($product->regular_price, $product->price)}}% Off</span>
+                    @elseif($product->is_featured == 'yes')
+                        <span class="badge bg-danger">Hot</span>
                     @endif
 
                 </div>
@@ -15,7 +17,7 @@
             <div class="text-small mb-1">
                 <a href="{{route('category',['slug'=>$product->categories->first()->slug])}}" class="text-decoration-none text-muted"><small>{{$product->categories->first()->name}}</small></a></div>
             <h2 class="fs-6">
-                <a href="pages/shop-single.html" class="text-inherit text-decoration-none">{{$product->title}}</a>
+                <a href="{{route('product',['slug'=>$product->slug])}}" class="text-inherit text-decoration-none">{{$product->title}}</a>
             </h2>
             <div>
                 <span class="text-dark">{{$product->price}}</span>
@@ -23,7 +25,7 @@
             </div>
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div>
-                    <a href="#!" class="btn btn-primary btn-sm">Buy Now</a>
+                    <a href="#!" class="btn btn-danger btn-sm"> অর্ডার করুন</a>
                 </div>
                 <div>
                     <a href="#!" class="btn btn-primary btn-sm">Add cart</a>

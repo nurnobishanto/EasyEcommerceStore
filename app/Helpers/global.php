@@ -55,6 +55,22 @@ if (!function_exists('popularProducts')) {
     }
 
 }
+if (!function_exists('getMenus')) {
+
+    function getMenus(): \Illuminate\Database\Eloquent\Collection
+    {
+        return \App\Models\Menu::where('status','active')->where('parent_id',null)->orderBy('order','ASC')->get();
+    }
+
+}
+if (!function_exists('getCategories')) {
+
+    function getCategories(): \Illuminate\Database\Eloquent\Collection
+    {
+        return \App\Models\Category::where('status','active')->where('parent_id',null)->get();
+    }
+
+}
 if (!function_exists('productHascategory')) {
 
     function productHascategory($product,$cat)
