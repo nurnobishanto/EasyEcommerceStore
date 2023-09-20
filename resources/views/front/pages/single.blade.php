@@ -1,6 +1,5 @@
 @extends('layouts.front')
 @section('content')
-
 <section class="mt-8">
     <div class="container">
         <div class="row">
@@ -8,13 +7,13 @@
                 <div class="slider slider-for">
                     <div>
                         <div class="zoom" onmousemove="zoom(event)" style="background-image: url({{asset('uploads/'.$product->thumbnail)}})">
-                            <img src="{{asset('uploads/'.$product->thumbnail)}}" alt="" style="max-height: 400px;">
+                            <img src="{{asset('uploads/'.$product->thumbnail)}}" alt="" style="max-height: 350px;">
                         </div>
                     </div>
-                    @foreach($product->gallery as $img)
+                    @foreach(productGalleries($product->id) as $img)
                     <div>
-                        <div class="zoom" onmousemove="zoom(event)" style="background-image: url({{asset('uploads/',$img)}})">
-                            <img src="{{asset('uploads/',$img)}}" alt="">
+                        <div class="zoom" onmousemove="zoom(event)" style="background-image: url({{asset('uploads/'.$img)}})">
+                            <img src="{{asset('uploads/'.$img)}}" alt="" style="max-height: 350px;">
                         </div>
                     </div>
                     @endforeach
@@ -26,7 +25,7 @@
                     </div>
                     @foreach($product->gallery as $img)
                     <div>
-                        <img src="{{asset('uploads/',$img)}}" alt="" class="w-100 rounded">
+                        <img src="{{asset('uploads/'.$img)}}" alt="" class="w-100 rounded" style="max-height: 100px">
                     </div>
                     @endforeach
 
@@ -56,15 +55,20 @@
                         </div>
 
                     </div>
+                    @if($product->quantity > 0)
                     <div class="mt-3 row justify-content-start g-2 align-items-center">
-
                         <div class="col-xxl-4 col-lg-4 col-md-6 col-sm-6 d-grid">
                              <button type="button" class="btn btn-danger"><i class="feather-icon icon-shopping-bag me-2"></i>Buy Now</button>
                         </div>
-                        <div class="col-md-6 col-sm-6 d-grid">
+                        <div class="col-lg-4 col-md-6 col-sm-6 d-grid">
                             <button type="button" class="btn btn-primary"><i class="feather-icon icon-shopping-bag me-2"></i>Add to cart</button>
                         </div>
                     </div>
+                    @else
+                    <div class="mt-3  justify-content-start g-2 align-items-center">
+                        <h5 class="text-danger text-center">Stock Out</h5>
+                    </div>
+                    @endif
                     <!-- hr -->
                     <hr class="my-6">
                     <div>
@@ -95,18 +99,10 @@
                                         <a href="{{route('category',['slug'=>$cat->slug])}}">{{$cat->name}} </a>,
                                     @endforeach
                                 </td>
-
                             </tr>
-
-
                             </tbody>
                         </table>
 
-                    </div>
-                    <div class="mt-8">
-                        <!-- dropdown -->
-                        <h4>Product Details</h4>
-                       {!! $product->description !!}
                     </div>
                 </div>
             </div>

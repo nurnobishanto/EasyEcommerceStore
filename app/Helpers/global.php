@@ -12,6 +12,15 @@ if (!function_exists('myCustomFunction')) {
     }
 
 }
+if (!function_exists('productGallery')) {
+
+    function productGalleries($id)
+    {
+        $product = \App\Models\Product::find($id) ;
+        return $product->gallery;
+    }
+
+}
 if (!function_exists('calculateDiscountPercentage')) {
 
     function calculateDiscountPercentage($regularPrice, $sellingPrice) {
