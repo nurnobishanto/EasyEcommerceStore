@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,13 @@ class HomeController extends Controller
         return view('front.pages.home', $data);
     }
     public function category($slug){
-        return $slug;
+        $category = Category::where('slug',$slug)->first();
+        $products = $category->products;
+        if ($category){
+            return view('front.pages.category',compact(['products','category']));
+        }else{
+            abort(404);
+        }
     }
     public function product($slug){
         $product = Product::where('slug',$slug)->first();
