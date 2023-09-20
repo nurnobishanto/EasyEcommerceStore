@@ -35,6 +35,7 @@
                             <tr>
                                 <th>{{__('global.thumbnail')}}</th>
                                 <th>{{__('global.name')}}</th>
+                                <th>{{__('global.featured')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>
@@ -47,6 +48,11 @@
                                         <img class="rounded border" width="100px" src="{{asset('uploads/'.$brand->thumbnail)}}" alt="{{$brand->name}}">
                                     </td>
                                     <td>{{$brand->name}}</td>
+                                    <td>
+                                        @if($brand->is_featured=='yes') <span class="badge-success badge">{{__('global.yes')}}</span>
+                                        @else <span class="badge-danger badge">{{__('global.no')}}</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         @if($brand->status=='active') <span class="badge-success badge">Active</span>
                                         @else <span class="badge-danger badge">Deactivate</span>
@@ -76,6 +82,7 @@
                             <tr>
                                 <th>{{__('global.thumbnail')}}</th>
                                 <th>{{__('global.name')}}</th>
+                                <th>{{__('global.featured')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>

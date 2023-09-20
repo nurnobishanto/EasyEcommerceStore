@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="name">{{ __('global.name')}}</label>
+                                    <label for="name">{{ __('global.name')}}<span class="text-danger"> *</span></label>
                                     <input id="name" name="name" value="{{$brand->name}}" class="form-control" placeholder="{{ __('global.enter_brand')}}">
                                 </div>
                             </div>
@@ -57,7 +57,16 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="status">{{__('global.select_status')}}</label>
+                                    <label for="is_featured">{{__('global.featured')}} <span class="text-danger"> *</span></label>
+                                    <select name="is_featured" class="form-control" id="is_featured">
+                                        <option value="no" @if($brand->is_featured == 'no') selected @endif>{{__('global.no')}}</option>
+                                        <option value="yes" @if($brand->is_featured == 'yes') selected @endif>{{__('global.yes')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="status">{{__('global.select_status')}}<span class="text-danger"> *</span></label>
                                     <select name="status" class="form-control" id="status">
                                         <option value="active" @if($brand->status == 'active') selected @endif>{{__('global.active')}}</option>
                                         <option value="deactivate" @if($brand->status == 'deactivate') selected @endif>{{__('global.deactivate')}}</option>

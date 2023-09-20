@@ -51,6 +51,7 @@ class BrandController extends Controller
             'created_by' =>auth()->user()->id,
             'updated_by' =>auth()->user()->id,
             'status' =>$request->status,
+            'is_featured' =>$request->is_featured,
             'thumbnail' =>$imagePath,
 
         ]);
@@ -89,8 +90,9 @@ class BrandController extends Controller
             }
         }
         $brand->name = $request->name;
-        $brand->slug = generateUniqueSlug($request->slug??$request->name,Brand::class);
+        $brand->slug = generateUniqueSlug($request->slug??$request->name,Brand::class,$id);
         $brand->status = $request->status;
+        $brand->is_featured = $request->is_featured;
         $brand->updated_by = auth()->user()->id;
         $brand->thumbnail = $imagePath;
         $brand->update();

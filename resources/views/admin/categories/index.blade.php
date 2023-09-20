@@ -38,6 +38,7 @@
                                 <th>{{__('global.parent')}}</th>
                                 <th>{{__('global.products')}}</th>
                                 <th>{{__('global.status')}}</th>
+                                <th>{{__('global.featured')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>
                             </thead>
@@ -54,6 +55,11 @@
                                     <td>
                                         @if($category->status=='active') <span class="badge-success badge">Active</span>
                                         @else <span class="badge-danger badge">Deactivate</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($category->is_featured=='yes') <span class="badge-success badge">{{__('global.yes')}}</span>
+                                        @else <span class="badge-danger badge">{{__('global.no')}}</span>
                                         @endif
                                     </td>
                                     <td class="text-center">
@@ -83,6 +89,7 @@
                                 <th>{{__('global.parent')}}</th>
                                 <th>{{__('global.products')}}</th>
                                 <th>{{__('global.status')}}</th>
+                                <th>{{__('global.featured')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>
                             </tfoot>

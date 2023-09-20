@@ -64,6 +64,7 @@ class ProductController extends Controller
             'price' => $request->input('price'),
             'quantity' => $request->input('quantity'),
             'status' => $request->input('status'),
+            'is_featured' => $request->input('is_featured'),
             'thumbnail' => $imagePath,
             'gallery' => $galleryPaths,
             'brand_id' => $request->input('brand_id'),
@@ -135,13 +136,14 @@ class ProductController extends Controller
 
         $product->update();
         $product->title = $request->title;
-        $product->slug = generateUniqueSlug($request->slug??$request->title,Product::class);
+        $product->slug = generateUniqueSlug($request->slug??$request->title,Product::class,$id);
         $product->description = $request->description;
         $product->sku = $request->sku;
         $product->price = $request->price;
         $product->quantity = $request->quantity;
         $product->brand_id = $request->brand_id;
         $product->status = $request->status;
+        $product->is_featured = $request->is_featured;
         $product->updated_by = auth()->user()->id;
         $product->thumbnail = $imagePath;
         $product->update();

@@ -33,20 +33,23 @@
                         <table id="adminsList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>{{__('global.thumbnail')}}</th>
-                                <th>{{__('global.title')}}</th>
+                                <th width="10px">{{__('global.sl')}}</th>
+                                <th width="50px">{{__('global.thumbnail')}}</th>
+                                <th width="20%">{{__('global.title')}}</th>
                                 <th>{{__('global.price')}}</th>
                                 <th>{{__('global.quantity')}}</th>
                                 <th>{{__('global.categories')}}</th>
                                 <th>{{__('global.brands')}}</th>
                                 <th>{{__('global.status')}}</th>
+                                <th>{{__('global.featured')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
+                            <?php $count = 1; ?>
                             @foreach($products as $product)
                                 <tr>
-
+                                    <td>{{$count++}}</td>
                                     <td>
                                         <img class="rounded border" width="100px" src="{{asset('uploads/'.$product->thumbnail)}}" alt="{{$product->name}}">
                                     </td>
@@ -58,6 +61,11 @@
                                     <td>
                                         @if($product->status=='active') <span class="badge-success badge">Active</span>
                                         @else <span class="badge-danger badge">Deactivate</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($product->is_featured=='yes') <span class="badge-success badge">{{__('global.yes')}}</span>
+                                        @else <span class="badge-danger badge">{{__('global.no')}}</span>
                                         @endif
                                     </td>
                                     <td class="text-center">
@@ -82,6 +90,7 @@
                             </tbody>
                             <tfoot>
                             <tr>
+                                <th>{{__('global.sl')}}</th>
                                 <th>{{__('global.thumbnail')}}</th>
                                 <th>{{__('global.title')}}</th>
                                 <th>{{__('global.price')}}</th>
@@ -89,6 +98,7 @@
                                 <th>{{__('global.categories')}}</th>
                                 <th>{{__('global.brands')}}</th>
                                 <th>{{__('global.status')}}</th>
+                                <th>{{__('global.featured')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>
                             </tfoot>

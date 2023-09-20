@@ -2,6 +2,7 @@
 
 
 use App\Models\GlobalSetting;
+use Illuminate\Support\Str;
 
 if (!function_exists('myCustomFunction')) {
 
@@ -28,7 +29,7 @@ if (!function_exists('productHascategory')) {
 if (!function_exists('generateUniqueSlug')) {
 
 
-    function generateUniqueSlug($text, $modelName, $field = 'slug', $separator = '-')
+    function generateUniqueSlug($text, $modelName,$id = null, $field = 'slug', $separator = '-')
     {
         // Normalize the text to create a basic slug
         $slug = Str::slug($text, $separator);
@@ -38,10 +39,18 @@ if (!function_exists('generateUniqueSlug')) {
         $originalSlug = $slug;
         $count = 2;
 
-        while ($model::where($field, $slug)->exists()) {
-            $slug = $originalSlug . $separator . $count;
-            $count++;
+        if($id){
+            while ($model::where($field, $slug)->where('id','!=',$id)->exists()) {
+                $slug = $originalSlug . $separator . $count;
+                $count++;
+            }
+        }else{
+            while ($model::where($field, $slug)->exists()) {
+                $slug = $originalSlug . $separator . $count;
+                $count++;
+            }
         }
+
 
         return $slug;
     }

@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name">{{ __('global.name')}}</label>
+                                    <label for="name">{{ __('global.name')}}<span class="text-danger"> *</span></label>
                                     <input id="name" name="name" value="{{$category->name}}" class="form-control" placeholder="{{ __('global.enter_category')}}">
                                 </div>
                             </div>
@@ -72,10 +72,18 @@
                                     <input name="thumbnail_old"  class="d-none" id="thumbnail" value="{{$category->thumbnail}}">
                                 </div>
                             </div>
-
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="status">{{__('global.select_status')}}</label>
+                                    <label for="is_featured">{{__('global.featured')}}<span class="text-danger"> *</span></label>
+                                    <select name="is_featured" class="form-control" id="is_featured">
+                                        <option value="no" @if($category->is_featured == 'no') selected @endif>{{__('global.no')}}</option>
+                                        <option value="yes" @if($category->is_featured == 'yes') selected @endif>{{__('global.yes')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="status">{{__('global.select_status')}}<span class="text-danger"> *</span></label>
                                     <select name="status" class="form-control" id="status">
                                         <option value="active" @if($category->status == 'active') selected @endif>{{__('global.active')}}</option>
                                         <option value="deactivate" @if($category->status == 'deactivate') selected @endif>{{__('global.deactivate')}}</option>
@@ -134,9 +142,6 @@
                 const imageUrl = URL.createObjectURL(file);
                 selectedImage.src = imageUrl;
                 selectedImage.style.display = 'block';
-            } else {
-                selectedImage.src = '';
-                selectedImage.style.display = 'none';
             }
         });
     });

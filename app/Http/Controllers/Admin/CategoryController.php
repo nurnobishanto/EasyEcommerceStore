@@ -50,6 +50,7 @@ class CategoryController extends Controller
             'slug' => generateUniqueSlug($request->slug??$request->name,Category::class),
             'created_by' =>auth()->user()->id,
             'updated_by' =>auth()->user()->id,
+            'is_featured' =>$request->is_featured,
             'status' =>$request->status,
             'thumbnail' =>$imagePath,
 
@@ -90,10 +91,11 @@ class CategoryController extends Controller
             }
         }
         $category->name = $request->name;
-        $category->slug = generateUniqueSlug($request->slug??$request->name,Category::class);
+        $category->slug = generateUniqueSlug($request->slug??$request->name,Category::class,$id);
         $category->description = $request->description;
         $category->parent_id = $request->parent_id;
         $category->status = $request->status;
+        $category->is_featured = $request->is_featured;
         $category->updated_by = auth()->user()->id;
         $category->thumbnail = $imagePath;
         $category->update();

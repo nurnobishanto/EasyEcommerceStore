@@ -37,7 +37,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="title">{{ __('global.title')}}</label>
+                                    <label for="title">{{ __('global.title')}}<span class="text-danger"> *</span></label>
                                     <input id="title" name="title" class="form-control" placeholder="{{ __('global.enter_title')}}">
                                 </div>
                             </div>
@@ -49,13 +49,19 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="price">{{ __('global.price')}}</label>
+                                    <label for="price">{{ __('global.price')}}<span class="text-danger"> *</span></label>
                                     <input id="price" name="price" class="form-control" placeholder="{{ __('global.enter_price')}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="quantity">{{ __('global.quantity')}}</label>
+                                    <label for="regular_price">{{ __('global.regular_price')}}</label>
+                                    <input id="regular_price" name="regular_price" class="form-control" placeholder="{{ __('global.enter_regular_price')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="quantity">{{ __('global.quantity')}}<span class="text-danger"> *</span></label>
                                     <input id="quantity" name="quantity" class="form-control" placeholder="{{ __('global.enter_quantity')}}">
                                 </div>
                             </div>
@@ -65,15 +71,10 @@
                                     <input id="sku" name="sku" class="form-control" placeholder="{{ __('global.enter_sku')}}">
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="description">{{ __('global.description')}}</label>
-                                    <textarea id="description" name="description" class="form-control" placeholder="{{ __('global.enter_description')}}"></textarea>
-                                </div>
-                            </div>
+
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="categories">{{__('global.select_category')}}</label>
+                                    <label for="categories">{{__('global.select_category')}}<span class="text-danger"> *</span></label>
                                     <select name="categories[]" class="select2 form-control" id="categories" multiple>
                                         <option value="">{{__('global.select_category')}}</option>
                                         @foreach($categories as $cat)
@@ -84,7 +85,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="brand_id">{{__('global.select_brand')}}</label>
+                                    <label for="brand_id">{{__('global.select_brand')}}<span class="text-danger"> *</span></label>
                                     <select name="brand_id" class="select2 form-control" id="brand_id" >
                                         <option value="">{{__('global.select_brand')}}</option>
                                         @foreach($brands as $brand)
@@ -93,10 +94,17 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="description">{{ __('global.description')}}</label>
+                                    <textarea id="description" name="description" class="form-control" placeholder="{{ __('global.enter_description')}}"></textarea>
+                                </div>
+                            </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="thumbnail">{{__('global.select_photo')}}</label>
                                     <input name="thumbnail" type="file" class="form-control" id="thumbnail" accept="image/*">
+                                    <img src="" class="img-thumbnail" alt="Selected Image" id="selected-image" style="display: none;max-height: 100px">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -107,7 +115,16 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="status">{{__('global.select_status')}}</label>
+                                    <label for="is_featured">{{__('global.featured')}}<span class="text-danger"> *</span></label>
+                                    <select name="is_featured" class="form-control" id="is_featured">
+                                        <option value="no">{{__('global.no')}}</option>
+                                        <option value="yes">{{__('global.yes')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="status">{{__('global.select_status')}}<span class="text-danger"> *</span></label>
                                     <select name="status" class="form-control" id="status">
                                         <option value="active">{{__('global.active')}}</option>
                                         <option value="deactivate">{{__('global.deactivate')}}</option>
@@ -115,9 +132,6 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <img src="" alt="Selected Image" id="selected-image" style="display: none;max-height: 150px">
-                            </div>
                             <div class="col-md-12">
                                 <div id="image-preview">
                                     <!-- Selected images will be displayed here -->

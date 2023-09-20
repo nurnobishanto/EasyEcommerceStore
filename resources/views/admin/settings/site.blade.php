@@ -22,7 +22,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.site-setting')}}" method="POST" enctype="multipart/form-data" id="admin-form">
+                    <form action="{{route('admin.site-setting')}}" method="POST" enctype="multipart/form-data" id="site_setting">
                         @csrf
                         @if (count($errors) > 0)
                             <div class = "alert alert-danger">
@@ -37,13 +37,81 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="site_name">{{ __('global.site_name')}}</label>
-                                    <input id="site_name" name="site_name" class="form-control" placeholder="{{ __('global.enter_site_name')}}">
+                                    <input id="site_name"  value="{{getSetting('site_name')}}" name="site_name" class="form-control" placeholder="{{ __('global.enter_site_name')}}">
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="site_tagline">{{ __('global.site_tagline')}}</label>
+                                    <input id="site_tagline" value="{{getSetting('site_tagline')}}" name="site_tagline" class="form-control" placeholder="{{ __('global.enter_site_tagline')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="home_slider">{{ __('global.home_slider')}}</label>
+                                    <select id="home_slider"  name="home_slider" class="form-control">
+                                        <option value="show" @if(getSetting('home_slider') == 'show') selected @endif>Show</option>
+                                        <option value="hide" @if(getSetting('home_slider') == 'hide') selected @endif>Hide</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="site_description">{{ __('global.site_description')}}</label>
+                                    <textarea id="site_description" rows="4" name="site_description" class="form-control" placeholder="{{__('global.enter_site_description')}}">{{getSetting('site_description')}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="site_favicon">{{ __('global.site_favicon')}}</label>
+                                    <input id="site_favicon"  name="site_favicon" class="form-control" type="file" accept="image">
+                                    <img src="{{asset('uploads/'.getSetting('site_favicon'))}}" class="img-thumbnail"  id="selected-site_favicon" style="max-height: 70px">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="site_logo">{{ __('global.site_logo')}}</label>
+                                    <input id="site_logo"  name="site_logo" class="form-control" type="file" accept="image">
+                                    <img src="{{asset('uploads/'.getSetting('site_logo'))}}" class="img-thumbnail"  id="selected-site_logo" style="max-height: 70px">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="top_left_text">{{ __('global.top_left_text')}}</label>
+                                    <input id="top_left_text" value="{{getSetting('top_left_text')}}" name="top_left_text" class="form-control" placeholder="{{ __('global.enter_top_left_text')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="top_right_text">{{ __('global.top_right_text')}}</label>
+                                    <input id="top_right_text" value="{{getSetting('top_right_text')}}" name="top_right_text" class="form-control" placeholder="{{ __('global.enter_top_right_text')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="mobile_category_menu">{{ __('global.mobile_category_menu')}}</label>
+                                    <select id="mobile_category_menu"  name="mobile_category_menu" class="form-control">
+                                        <option value="show" @if(getSetting('mobile_category_menu') == 'show') selected @endif>Show</option>
+                                        <option value="hide" @if(getSetting('mobile_category_menu') == 'hide') selected @endif>Hide</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="desktop_category_menu">{{ __('global.desktop_category_menu')}}</label>
+                                    <select id="desktop_category_menu"  name="desktop_category_menu" class="form-control">
+                                        <option value="show" @if(getSetting('desktop_category_menu') == 'show') selected @endif>Show</option>
+                                        <option value="hide" @if(getSetting('desktop_category_menu') == 'hide') selected @endif>Hide</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
                         </div>
 
-                        @can('brand_create')
-                            <button class="btn btn-success" type="submit">{{ __('global.create')}}</button>
+                        @can('site_setting_manage')
+                            <button class="btn btn-success" type="submit">{{ __('global.update')}}</button>
                         @endcan
                     </form>
                 </div>
@@ -66,6 +134,26 @@
     <script>
         $(document).ready(function() {
             toastr.now();
+        });
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const imageForm = document.getElementById('site_setting');
+
+            const site_faviconImage = document.getElementById('selected-site_favicon');
+            const site_logoImage = document.getElementById('selected-site_logo');
+
+            imageForm.addEventListener('change', function () {
+                const site_favicon = this.querySelector('input[name="site_favicon"]').files[0];
+                const site_logo = this.querySelector('input[name="site_logo"]').files[0];
+                if (site_favicon) {
+                    site_faviconImage.src = URL.createObjectURL(site_favicon);
+                }
+                if (site_logo) {
+                    site_logoImage.src = URL.createObjectURL(site_logo);
+                }
+            });
         });
     </script>
 @stop

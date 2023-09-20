@@ -69,4 +69,4 @@ Route::resource('/delivery-zones',DeliveryZoneController::class)->middleware('pe
 
 //Site Setting
 Route::get('site-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'site_setting']);
-Route::post('site-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'site_setting'])->name('site-setting');
+Route::post('site-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'site_setting_update'])->name('site-setting');
