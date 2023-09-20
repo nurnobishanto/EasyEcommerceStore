@@ -99,7 +99,7 @@
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="description">{{ __('global.description')}}</label>
-                                    <textarea id="description" name="description" class="form-control" placeholder="{{ __('global.enter_description')}}">{{$product->description}}</textarea>
+                                    <textarea id="description" name="description" class="form-control summernote" placeholder="{{ __('global.enter_description')}}">{{$product->description}}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -177,6 +177,7 @@
 @stop
 @section('plugins.toastr',true)
 @section('plugins.Select2',true)
+@section('plugins.Summernote',true)
 @section('css')
     <style>
         .select2-container--default .select2-selection--multiple .select2-selection__choice{
@@ -185,12 +186,18 @@
         .select2{
             max-width: 100%!important;
         }
+
     </style>
 @stop
 
 @section('js')
     <script>
-        // Function to display selected images as thumbnails
+        $(document).ready(function() {
+            // Initialize Summernote on the textarea with the 'summernote' class
+            $('.summernote').summernote({
+                // You can customize Summernote options here
+            });
+        });
         function displaySelectedImages(input) {
             var imagePreview = document.getElementById('image-preview');
             imagePreview.innerHTML = ''; // Clear previous images

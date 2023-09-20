@@ -211,5 +211,7 @@ return [
     'regular_price' => 'Regular Price',
     'enter_regular_price' => 'Enter Regular Price',
     'home_featured_category' => 'Home Featured Categories',
+    'currency' => 'Currency',
+    'top_bar' => 'Top Bar',
 
 ];

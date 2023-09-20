@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('',[\App\Http\Controllers\Website\HomeController::class,'index'])->name('home');
-Route::get('category/{slug}',[\App\Http\Controllers\Website\HomeController::class,'category'])->name('category');
+Route::get('/',[\App\Http\Controllers\Website\HomeController::class,'index'])->name('home');
+Route::get('/category/{slug}',[\App\Http\Controllers\Website\HomeController::class,'category'])->name('category');
+Route::get('/products',[\App\Http\Controllers\Website\HomeController::class,'products'])->name('products');
 Route::get('/{slug}',[\App\Http\Controllers\Website\HomeController::class,'product'])->name('product');
 
 

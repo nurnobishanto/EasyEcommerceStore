@@ -20,8 +20,10 @@
                 <a href="{{route('product',['slug'=>$product->slug])}}" class="text-inherit text-decoration-none">{{$product->title}}</a>
             </h2>
             <div>
-                <span class="text-dark">{{$product->price}}</span>
-                <span class="text-decoration-line-through text-muted">{{$product->regular_price}}</span>
+                <span class="text-dark">{{getSetting('currency')}} {{$product->price}}</span>
+                @if($product->regular_price)
+                <span class="text-decoration-line-through text-muted">{{getSetting('currency')}} {{$product->regular_price}}</span>
+                @endif
             </div>
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div>

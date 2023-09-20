@@ -22,6 +22,11 @@ class HomeController extends Controller
             abort(404);
         }
     }
+    public function products(){
+        $products = Product::where('status','active')->get();
+        return view('front.pages.products',compact('products'));
+
+    }
     public function product($slug){
         $product = Product::where('slug',$slug)->first();
         if ($product){

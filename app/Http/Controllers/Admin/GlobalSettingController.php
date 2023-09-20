@@ -13,6 +13,7 @@ class GlobalSettingController extends Controller
     public function site_setting_update(Request $request){
 
         setSetting('site_name',trim($request->site_name));
+        setSetting('currency',trim($request->currency));
         setSetting('site_tagline',trim($request->site_tagline));
         setSetting('home_slider',trim($request->home_slider));
         setSetting('site_description',trim($request->site_description));
@@ -22,6 +23,7 @@ class GlobalSettingController extends Controller
         setSetting('mobile_category_menu',trim($request->mobile_category_menu));
         setSetting('desktop_category_menu',trim($request->desktop_category_menu));
         setSetting('home_featured_category',trim($request->home_featured_category));
+        setSetting('top_bar',trim($request->top_bar));
         if($request->file('site_favicon')){
             $imagePath = $request->file('site_favicon')->store('site-photo');
             $old_image_path = "uploads/".getSetting('site_favicon');

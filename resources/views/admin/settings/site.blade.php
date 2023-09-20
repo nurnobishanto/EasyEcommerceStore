@@ -90,6 +90,15 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
+                                    <label for="top_bar">{{ __('global.top_bar')}}</label>
+                                    <select id="top_bar"  name="top_bar" class="form-control">
+                                        <option value="show" @if(getSetting('top_bar') == 'show') selected @endif>Show</option>
+                                        <option value="hide" @if(getSetting('top_bar') == 'hide') selected @endif>Hide</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
                                     <label for="mobile_category_menu">{{ __('global.mobile_category_menu')}}</label>
                                     <select id="mobile_category_menu"  name="mobile_category_menu" class="form-control">
                                         <option value="show" @if(getSetting('mobile_category_menu') == 'show') selected @endif>Show</option>
@@ -113,6 +122,12 @@
                                         <option value="show" @if(getSetting('home_featured_category') == 'show') selected @endif>Show</option>
                                         <option value="hide" @if(getSetting('home_featured_category') == 'hide') selected @endif>Hide</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="currency">{{ __('global.currency')}}</label>
+                                    <input id="currency"  value="{{getSetting('currency')}}" name="currency" class="form-control" placeholder="{{ __('global.currency')}}">
                                 </div>
                             </div>
 

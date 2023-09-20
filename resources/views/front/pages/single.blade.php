@@ -39,8 +39,10 @@
                     <!-- heading -->
                     <h1 class="mb-1">{{$product->title}}</h1>
                     <div class="fs-4">
-                        <!-- price --><span class="fw-bold text-dark">{{$product->price}}</span> <span
-                            class="text-decoration-line-through text-muted">{{$product->regular_price}}</span>
+                        <span class="fw-bold text-dark">{{getSetting('currency')}} {{$product->price}}</span>
+                        @if($product->regular_price)
+                            <span class="text-decoration-line-through text-muted">{{getSetting('currency')}} {{$product->regular_price}}</span>
+                        @endif
                         @if(calculateDiscountPercentage($product->regular_price,$product->price)>0)
                         <span><small class="fs-6 ms-2 text-danger">{{calculateDiscountPercentage($product->regular_price,$product->price)}}% Off</small></span>
                         @endif

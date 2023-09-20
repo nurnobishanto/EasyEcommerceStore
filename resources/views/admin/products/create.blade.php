@@ -21,8 +21,8 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-
             <div class="card">
+
                 <div class="card-body">
                     <span class="text-info text-bold mb-2">Image Size : 4:3, 720X540, 800X600</span>
                     <form action="{{route('admin.products.store')}}" method="POST" enctype="multipart/form-data" id="admin-form">
