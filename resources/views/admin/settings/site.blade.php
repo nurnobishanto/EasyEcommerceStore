@@ -63,14 +63,14 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="site_favicon">{{ __('global.site_favicon')}}</label>
+                                    <label for="site_favicon">{{ __('global.site_favicon')}} <span class="text-muted">(32 x 32)</span></label>
                                     <input id="site_favicon"  name="site_favicon" class="form-control" type="file" accept="image">
                                     <img src="{{asset('uploads/'.getSetting('site_favicon'))}}" class="img-thumbnail"  id="selected-site_favicon" style="max-height: 70px">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="site_logo">{{ __('global.site_logo')}}</label>
+                                    <label for="site_logo">{{ __('global.site_logo')}} <span class="text-muted">(250 x 70)</span></label>
                                     <input id="site_logo"  name="site_logo" class="form-control" type="file" accept="image">
                                     <img src="{{asset('uploads/'.getSetting('site_logo'))}}" class="img-thumbnail"  id="selected-site_logo" style="max-height: 70px">
                                 </div>

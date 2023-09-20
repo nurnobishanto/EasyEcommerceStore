@@ -16,7 +16,7 @@
             <div class="row w-100 align-items-center gx-lg-2 gx-0">
                 <div class="col-xxl-2 col-lg-3">
                     <a class="navbar-brand d-none d-lg-block" href="index-2.html">
-                        <img src="{{ asset('uploads/'.getSetting('site_logo')) }} "alt="{{getSetting('site_name')}}" style="max-height: 70px">
+                        <img src="{{ asset('uploads/'.getSetting('site_logo')) }} "alt="{{getSetting('site_name')}}" style="max-height: 70px;max-width: 250px">
                     </a>
                     <div class="d-flex justify-content-between w-100 d-lg-none">
                         <a class="navbar-brand" href="index-2.html">
