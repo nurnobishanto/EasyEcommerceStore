@@ -7,7 +7,7 @@
                     <div class="col-6">
                         <!-- list -->
                         @if(getSetting('site_logo'))
-                      <img src="{{asset('uploads/'.getSetting('site_log'))}}" class="img-fluid" style="max-height: 200px">
+                      <img src="{{asset('uploads/'.getSetting('site_logo'))}}" class="img-fluid" style="max-height: 200px">
                         @endif
                     </div>
                     <div class="col-6">
