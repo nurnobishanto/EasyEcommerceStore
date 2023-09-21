@@ -2,34 +2,16 @@
     <div class="container">
         <div class="row g-4 py-4">
             <div class="col-12 col-md-12 col-lg-6">
-                <h6 class="mb-4">Categories</h6>
+                <h6 class="mb-4">About us</h6>
                 <div class="row">
                     <div class="col-6">
                         <!-- list -->
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Vegetables &
-                                    Fruits</a></li>
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link"> Breakfast & instant
-                                    food</a></li>
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link"> Bakery &
-                                    Biscuits</a></li>
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Atta, rice & dal</a>
-                            </li>
-
-                        </ul>
+                        @if(getSetting('site_logo'))
+                      <img src="{{asset('uploads/'.getSetting('site_log'))}}" class="img-fluid" style="max-height: 200px">
+                        @endif
                     </div>
                     <div class="col-6">
-                        <!-- list -->
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Vegetables &
-                                    Fruits</a></li>
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link"> Breakfast & instant
-                                    food</a></li>
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link"> Bakery &
-                                    Biscuits</a></li>
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Atta, rice & dal</a>
-                            </li>
-                        </ul>
+                        {!! getSetting('site_description') !!}
                     </div>
                 </div>
             </div>
@@ -39,24 +21,16 @@
                         <h6 class="mb-4">Get to know us</h6>
                         <!-- list -->
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Company</a></li>
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link">About</a></li>
-                            <li class="nav-item mb-2"><a href="#1" class="nav-link">Blog</a></li>
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Help Center</a></li>
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Our Value</a></li>
+                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Terms</a></li>
+                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Privacy</a></li>
                         </ul>
                     </div>
                     <div class="col-12 col-sm-6 col-md-6">
-                        <h6 class="mb-4">For Consumers</h6>
+                        <h6 class="mb-4">Important Links</h6>
                         <ul class="nav flex-column">
                             <!-- list -->
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Payments</a></li>
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Shipping</a></li>
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Product Returns</a>
-                            </li>
-                            <li class="nav-item mb-2"><a href="#!" class="nav-link">FAQ</a></li>
-                            <li class="nav-item mb-2"><a href="pages/shop-checkout.html" class="nav-link">Shop
-                                    Checkout</a></li>
+                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Track Order</a></li>
+                            <li class="nav-item mb-2"><a href="#!" class="nav-link">Checkout</a></li>
                         </ul>
                     </div>
 
@@ -67,33 +41,15 @@
             <div class="row align-items-center">
                 <div class="col-lg-5 text-lg-start text-center mb-2 mb-lg-0">
                     <ul class="list-inline mb-0">
-                        <li class="list-inline-item text-dark">Payment Partners</li>
+                        <li class="list-inline-item text-dark">Support Number</li>
                         <li class="list-inline-item">
-                            <a href="#!"><img src="{{ asset('front') }}/images/payment/amazonpay.svg"
-                                              alt=""></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!"><img
-                                    src="{{ asset('front') }}/images/payment/american-express.svg"
-                                    alt=""></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!"><img src="{{ asset('front') }}/images/payment/mastercard.svg"
-                                              alt=""></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!"><img src="{{ asset('front') }}/images/payment/paypal.svg"
-                                              alt=""></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!"><img src="{{ asset('front') }}/images/payment/visa.svg"
-                                              alt=""></a>
+                            <a href="tel:{{getSetting('support_number')}}">{{getSetting('support_number')}}</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-lg-7 mt-4 mt-md-0">
                     <ul class="list-inline mb-0 text-lg-end text-center">
-                        <li class="list-inline-item mb-2 mb-md-0 text-dark">Developed By SOFT-ITBD.COM</li>
+                        <li class="list-inline-item mb-2 mb-md-0 text-dark">Developed By <a href="https://soft-itbd.com">SOFT-ITBD.COM Smart IT Solution</a></li>
                     </ul>
                 </div>
             </div>
@@ -105,8 +61,8 @@
                                 <script>
                                     document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
                                 </script>
-                            </span>All rights reserved. Powered by <a
-                            href="https://royalmartbd.com/">Royal Mart BD</a>.</span></div>
+                            </span>All rights reserved <a
+                            href="{{route('home')}}">{{getSetting('site_title')}}</a>.</span></div>
                 <div class="col-md-6">
                     <ul class="list-inline text-md-end mb-0 small mt-3 mt-md-0">
                         <li class="list-inline-item text-muted">Follow us on</li>

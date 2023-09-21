@@ -46,7 +46,7 @@
 
 
     <!-- footer -->
-{{--  @include('front.includes.footer')--}}
+  @include('front.includes.footer')
 
     <!-- Javascript-->
 
