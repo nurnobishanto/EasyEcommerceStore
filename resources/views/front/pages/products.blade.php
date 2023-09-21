@@ -17,29 +17,7 @@
                             @include('front.includes.single_product',['$product'=>$product])
                         @endforeach
                     </div>
-                    <!-- row -->
-                    <div class="row mt-8">
-                        <div class="col">
-                            <!-- nav -->
-                            <nav>
-                                <ul class="pagination">
-                                    <li class="page-item disabled">
-                                        <a class="page-link  mx-1 " href="#" aria-label="Previous">
-                                            <i class="feather-icon icon-chevron-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item "><a class="page-link  mx-1 active" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link mx-1 text-body" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link mx-1 text-body" href="#">12</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link mx-1 text-body" href="#" aria-label="Next">
-                                            <i class="feather-icon icon-chevron-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                    @include('front.includes.pagination', ['paginator' => $products])
                 </div>
             </div>
         </div>

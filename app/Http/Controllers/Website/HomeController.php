@@ -15,7 +15,7 @@ class HomeController extends Controller
     }
     public function category($slug){
         $category = Category::where('slug',$slug)->first();
-        $products = $category->products;
+        $products = $category->products()->paginate(20);
         if ($category){
             return view('front.pages.category',compact(['products','category']));
         }else{
@@ -23,7 +23,7 @@ class HomeController extends Controller
         }
     }
     public function products(){
-        $products = Product::where('status','active')->get();
+        $products = Product::where('status','active')->paginate(20);
         return view('front.pages.products',compact('products'));
 
     }
