@@ -45,9 +45,7 @@
                                             </line>
                                             <path d="M16 10a4 4 0 0 1-8 0"></path>
                                         </svg>
-                                        <span
-                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                                                1
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success cart-count">0
                                                 <span class="visually-hidden">unread messages</span>
                                             </span>
                                     </a>

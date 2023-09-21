@@ -52,10 +52,10 @@
                     @if($product->quantity > 0)
                     <div class="mt-3 row justify-content-start g-2 align-items-center">
                         <div class="col-xxl-4 col-lg-4 col-md-6 col-sm-6 d-grid">
-                             <button type="button" class="btn btn-danger"><i class="feather-icon icon-shopping-bag me-2"></i>Buy Now</button>
+                             <button onclick="orderNow({{$product->id}})" type="button" class="btn btn-danger"><i class="feather-icon icon-shopping-bag me-2"></i>অর্ডার করুন</button>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6 d-grid">
-                            <button onclick="addToCart({{$product->id}})" type="button" class="btn btn-primary"><i class="feather-icon icon-shopping-bag me-2"></i>Add to cart</button>
+                            <button onclick="addToCart({{$product->id}})" type="button" class="btn btn-primary"><i class="feather-icon icon-shopping-cart me-2">+</i>Add to cart</button>
                         </div>
                     </div>
                     @else

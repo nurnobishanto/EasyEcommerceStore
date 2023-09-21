@@ -28,10 +28,10 @@
             @if($product->quantity > 0)
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div>
-                    <a href="#!" class="btn btn-danger btn-sm"> অর্ডার করুন</a>
+                    <button onclick="orderNow({{$product->id}})" class="btn btn-danger btn-sm">অর্ডার করুন</button>
                 </div>
                 <div>
-                    <button class="btn btn-primary btn-sm add-to-cart" data-product-id="{{ $product->id }}">Add cart</button>
+                    <button class="btn btn-primary btn-sm add-to-cart" data-product-id="{{ $product->id }}"><i class="feather-icon icon-shopping-cart me-2"></i>+</button>
                 </div>
             </div>
             @else

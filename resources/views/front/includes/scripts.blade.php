@@ -6,10 +6,16 @@
             success: function(response) {
                 if (response.totalItemCount > 0 ) {
                     $('.cart-empty').addClass('d-none')
+                    $('.cart-empty').removeClass('d-block')
+                    $('.checkout').addClass('d-block')
+                    $('.checkout').removeClass('d-none')
                     $('.cart-count').text(response.totalItemCount)
                     updateCartInfo(response.cartList, response.totalItemCount, response.subtotal)
                 } else {
                     $('.cart-empty').addClass('d-block')
+                    $('.cart-empty').removeClass('d-none')
+                    $('.checkout').addClass('d-none')
+                    $('.checkout').removeClass('d-block')
                     $('.cart-list').html('');
                     $('.checkout').html('');
                     $('.cart-button').html('');
@@ -18,7 +24,7 @@
                 }
             },
             error: function(xhr, status, error) {
-                alert("Error: " + error);
+                console.log('Status :'+status+', Error: '+error+', xhr:'+xhr)
             }
         });
     }
@@ -76,7 +82,11 @@
             url: '/cart/remove',
             data: { product_id: productId },
             success: function(response) {
-                alert(response.message);
+                Swal.fire({
+                    title: 'Error!',
+                    text: response.message,
+                    icon: 'error',
+                })
                 getCartInfo()
             }
         });
@@ -87,6 +97,7 @@
             url: '/cart/minus',
             data: { product_id: productId },
             success: function(response) {
+
                 getCartInfo()
             }
         });
@@ -97,7 +108,30 @@
             url: '/cart/add',
             data: { product_id: productId },
             success: function(response) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: response.message,
+                    icon: 'success',
+
+                })
                 getCartInfo()
+            }
+        });
+    }
+    function orderNow(productId){
+        $.ajax({
+            type: 'POST',
+            url: '/cart/add',
+            data: { product_id: productId },
+            success: function(response) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: response.message,
+                    icon: 'success',
+
+                })
+                getCartInfo()
+                window.location.replace("{{route('checkout')}}");
             }
         });
     }
@@ -117,7 +151,12 @@
                 url: '/cart/add',
                 data: { product_id: productId },
                 success: function(response) {
-                    alert(response.message);
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+
+                    })
                     getCartInfo()
                 }
             });

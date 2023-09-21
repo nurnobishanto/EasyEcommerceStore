@@ -27,7 +27,7 @@
     <link href="{{ asset('front') }}/libs/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="{{ asset('front') }}/libs/feather-webfont/dist/feather-icons.css" rel="stylesheet">
     <link href="{{ asset('front') }}/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
-
+    <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.min.css " rel="stylesheet">
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('front') }}/css/theme.min.css">
 
@@ -65,7 +65,7 @@
     <script src="{{ asset('front') }}/js/vendors/tns-slider.js"></script>
     <script src="{{ asset('front') }}/js/vendors/zoom.js"></script>
     <script src="{{ asset('front') }}/js/vendors/increment-value.js"></script>
-
+   <script src=" https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js "></script>
 @include('front.includes.scripts')
 
 
