@@ -12,6 +12,14 @@ if (!function_exists('myCustomFunction')) {
     }
 
 }
+if (!function_exists('deliveryZones')) {
+
+    function deliveryZones()
+    {
+        return \App\Models\DeliveryZone::where('status','active')->get();
+    }
+
+}
 if (!function_exists('productGallery')) {
 
     function productGalleries($id)

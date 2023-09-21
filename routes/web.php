@@ -19,6 +19,9 @@ Route::patch('/cart/update', [\App\Http\Controllers\Website\CartController::clas
 Route::delete('/cart/remove', [\App\Http\Controllers\Website\CartController::class,'removeFromCart'])->name('removeFromCart');
 Route::delete('/cart/minus', [\App\Http\Controllers\Website\CartController::class,'minusFromCart'])->name('minusFromCart');
 
+Route::post('/cart/order-confirm', [\App\Http\Controllers\Website\CartController::class,'orderConfirm'])->name('orderConfirm');
+Route::get('/success/{id}', [\App\Http\Controllers\Website\CartController::class,'success'])->name('success');
+
 
 Route::get('/',[\App\Http\Controllers\Website\HomeController::class,'index'])->name('home');
 Route::get('/category/{slug}',[\App\Http\Controllers\Website\HomeController::class,'category'])->name('category');

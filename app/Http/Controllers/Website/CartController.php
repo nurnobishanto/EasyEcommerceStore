@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use App\Models\DeliveryZone;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 
 class CartController extends Controller
@@ -23,9 +26,15 @@ class CartController extends Controller
         $quantity++;
         if($product->quantity >= $quantity){
             session()->put("cart.$productId", $quantity);
-            return response()->json(['message' => 'Product added to cart']);
+            return response()->json([
+                'message' => 'Product added to cart',
+                'status' => 'success',
+            ]);
         }
-        return response()->json(['message' => 'Product Stock out']);
+        return response()->json([
+            'message' => 'Product Stock out',
+            'status' => 'error',
+            ]);
     }
 
     public function minusFromCart(Request $request)
@@ -97,5 +106,65 @@ class CartController extends Controller
             'totalItemCount' => $totalItemCount,
             'subtotal' => $subtotal,
         ]);
+    }
+
+    public function orderConfirm(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'delivery_zone_id' => 'required',
+        ]);
+
+        $admin =  Admin::first();
+        $delivery_zone = DeliveryZone::find($request->delivery_zone_id);
+        $order = Order::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'order_note' => $request->order_note,
+            'delivery_zone_id' => $request->delivery_zone_id,
+            'status' => 'pending',
+            'subtotal' => 0,
+            'delivery_charge' => $delivery_zone->charge,
+            'created_by' => $admin->id,
+            'updated_by' => $admin->id,
+        ]);
+        $cart = session()->get('cart', []);
+        $subtotal = 0;
+        $productsWithPivot = [];
+        foreach ($cart as $productId => $quantity) {
+            $product = Product::find($productId);
+            if ($product) {
+                $product->quantity = $product->quantity -$quantity;
+                $product->update();
+                $sub_total = $quantity*$product->price;
+                $productsWithPivot[] = [
+                    'product_id' => $productId,
+                    'order_id' => $order->id,
+                    'quantity' => $quantity,
+                    'price' => $product->price,
+                    'sub_total' => $quantity*$product->price,
+                ];
+                $subtotal += $sub_total;
+            }
+        }
+        DB::table('order_product')->insert($productsWithPivot);
+        $order->subtotal = $subtotal;
+        $order->update();
+        Session()->put('cart',[]);
+        toastr()->success($order->name.__('global.created_success'),__('global.order').__('global.created'));
+        return redirect(route('success',['id'=>$order->id]));
+    }
+    public function success($id){
+        $order = Order::where('id',$id)->first();
+        if ($order){
+            return view('front.pages.confirmation',compact('order'));
+        }else{
+            $order = Order::where('order_id',$id)->first();
+            return view('front.pages.confirmation',compact('order'));
+        }
+
+
     }
 }

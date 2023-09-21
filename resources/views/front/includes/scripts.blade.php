@@ -69,7 +69,7 @@
             $('.cart-list').append(cartRow);
 
         });
-        $('.cart-list').append('<div class="text-end fw-bold mt-2 px-3">Sub Total : {{getSetting('currency')}}'+subtotal+'</div>');
+        $('.cart-list').append('<div class="text-end fw-bold mt-2 px-3">Sub Total : {{getSetting('currency')}}<span class="product_sub_total">'+subtotal+'</span></div>');
         $('.cart-button').append(' <div class="d-flex justify-content-between mt-4">' +
             '<a href="{{route('products')}}" class="btn btn-primary">Continue Shopping</a>' +
             '<a href="{{route('checkout')}}" class="btn btn-danger">Checkout</a>' +
@@ -83,9 +83,9 @@
             data: { product_id: productId },
             success: function(response) {
                 Swal.fire({
-                    title: 'Error!',
+                    title: 'Removed!',
                     text: response.message,
-                    icon: 'error',
+                    icon: response.status,
                 })
                 getCartInfo()
             }
@@ -111,12 +111,21 @@
                 Swal.fire({
                     title: 'Success!',
                     text: response.message,
-                    icon: 'success',
+                    icon: response.status,
 
                 })
                 getCartInfo()
             }
         });
+    }
+    function updateTotalwithDeliveryCharge() {
+        var selectedOption = $('#delivery_zone_id').find(':selected');
+        var charge = selectedOption.length > 0 ? parseFloat(selectedOption.data('charge')) : 80;
+        var subtotal = $('.product_sub_total:last').text();
+        var totalAmount = parseFloat(subtotal) + charge;
+        $('.total_amount').text(totalAmount);
+
+        console.log(charge)
     }
     function orderNow(productId){
         $.ajax({
@@ -127,7 +136,7 @@
                 Swal.fire({
                     title: 'Success!',
                     text: response.message,
-                    icon: 'success',
+                    icon: response.status,
 
                 })
                 getCartInfo()
@@ -143,6 +152,12 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        updateTotalwithDeliveryCharge();
+
+        // Listen for changes in the select element
+        $('#delivery_zone_id').on('change', function () {
+            updateTotalwithDeliveryCharge();
+        });
         // Add to Cart
         $('.add-to-cart').click(function() {
             var productId = $(this).data('product-id');
@@ -154,7 +169,7 @@
                     Swal.fire({
                         title: 'Success!',
                         text: response.message,
-                        icon: 'success',
+                        icon: response.status,
 
                     })
                     getCartInfo()
