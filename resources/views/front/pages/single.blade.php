@@ -48,22 +48,14 @@
                         @endif
                     </div>
                     <!-- hr -->
-                    <hr class="my-6">
-                        <!-- input -->
-                        <div class="input-group input-spinner  ">
-                            <input type="button" value="-" class="button-minus  btn  btn-sm " data-field="quantity">
-                            <input type="number" step="1" max="10" value="1" name="quantity" class=" form-control-sm form-input   ">
-                            <input type="button" value="+" class="button-plus btn btn-sm " data-field="quantity">
-                        </div>
 
-                    </div>
                     @if($product->quantity > 0)
                     <div class="mt-3 row justify-content-start g-2 align-items-center">
                         <div class="col-xxl-4 col-lg-4 col-md-6 col-sm-6 d-grid">
                              <button type="button" class="btn btn-danger"><i class="feather-icon icon-shopping-bag me-2"></i>Buy Now</button>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6 d-grid">
-                            <button type="button" class="btn btn-primary"><i class="feather-icon icon-shopping-bag me-2"></i>Add to cart</button>
+                            <button onclick="addToCart({{$product->id}})" type="button" class="btn btn-primary"><i class="feather-icon icon-shopping-bag me-2"></i>Add to cart</button>
                         </div>
                     </div>
                     @else

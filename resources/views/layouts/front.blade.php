@@ -9,13 +9,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="{{getSetting('site_name')}}" name="author">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{getSetting('site_name')}} {{getSetting('site_tagline')}}</title>
     <link href="{{ asset('front') }}/libs/slick-carousel/slick/slick.css" rel="stylesheet" />
     <link href="{{ asset('front') }}/libs/slick-carousel/slick/slick-theme.css" rel="stylesheet" />
     <link href="{{ asset('front') }}/libs/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
 
     <!-- Favicon icon-->
+    @if(getSetting('site_favicon'))
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('uploads/'.getSetting('site_favicon')) }}">
+    @endif
 
     @yield('seo_meta')
 
@@ -24,7 +27,6 @@
     <link href="{{ asset('front') }}/libs/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="{{ asset('front') }}/libs/feather-webfont/dist/feather-icons.css" rel="stylesheet">
     <link href="{{ asset('front') }}/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
-
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('front') }}/css/theme.min.css">
@@ -65,6 +67,8 @@
     <script src="{{ asset('front') }}/js/vendors/increment-value.js"></script>
 
 @include('front.includes.scripts')
+
+
 
 </body>
 

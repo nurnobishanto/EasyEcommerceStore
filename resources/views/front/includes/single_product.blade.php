@@ -25,14 +25,18 @@
                 <span class="text-decoration-line-through text-muted">{{getSetting('currency')}} {{$product->regular_price}}</span>
                 @endif
             </div>
+            @if($product->quantity > 0)
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div>
                     <a href="#!" class="btn btn-danger btn-sm"> অর্ডার করুন</a>
                 </div>
                 <div>
-                    <a href="#!" class="btn btn-primary btn-sm">Add cart</a>
+                    <button class="btn btn-primary btn-sm add-to-cart" data-product-id="{{ $product->id }}">Add cart</button>
                 </div>
             </div>
+            @else
+                <span class="text-danger">Stock Out</span>
+            @endif
         </div>
     </div>
 </div>
