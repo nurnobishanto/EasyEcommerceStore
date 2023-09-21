@@ -7,13 +7,13 @@
                 <div class="slider slider-for">
                     <div>
                         <div class="zoom" onmousemove="zoom(event)" style="background-image: url({{asset('uploads/'.$product->thumbnail)}})">
-                            <img src="{{asset('uploads/'.$product->thumbnail)}}" alt="" style="max-height: 350px;">
+                            <img src="{{asset('uploads/'.$product->thumbnail)}}" alt="" style="max-height: 450px;">
                         </div>
                     </div>
                     @foreach(productGalleries($product->id) as $img)
                     <div>
                         <div class="zoom" onmousemove="zoom(event)" style="background-image: url({{asset('uploads/'.$img)}})">
-                            <img src="{{asset('uploads/'.$img)}}" alt="" style="max-height: 350px;">
+                            <img src="{{asset('uploads/'.$img)}}" alt="" style="max-height: 450px;">
                         </div>
                     </div>
                     @endforeach
@@ -21,11 +21,11 @@
                 </div>
                 <div class="slider slider-nav mt-4">
                     <div>
-                        <img src="{{asset('uploads/'.$product->thumbnail)}}" alt="" class="w-100 rounded" style="max-height: 100px">
+                        <img src="{{asset('uploads/'.$product->thumbnail)}}" alt="" class="w-100 rounded">
                     </div>
                     @foreach($product->gallery as $img)
                     <div>
-                        <img src="{{asset('uploads/'.$img)}}" alt="" class="w-100 rounded" style="max-height: 100px">
+                        <img src="{{asset('uploads/'.$img)}}" alt="" class="w-100 rounded">
                     </div>
                     @endforeach
 
