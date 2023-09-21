@@ -17,7 +17,13 @@
             <div class="text-small mb-1">
                 <a href="{{route('category',['slug'=>$product->categories->first()->slug])}}" class="text-decoration-none text-muted"><small>{{$product->categories->first()->name}}</small></a></div>
             <h2 class="fs-6">
-                <a href="{{route('product',['slug'=>$product->slug])}}" class="text-inherit text-decoration-none">{{$product->title}}</a>
+                <a href="{{route('product',['slug'=>$product->slug])}}" class="text-inherit text-decoration-none">
+                    @if(strlen($product->title) > 40)
+                        {{ substr($product->title, 0, 40) }}...
+                    @else
+                        {{ $product->title }}
+                    @endif
+                </a>
             </h2>
             <div>
                 <span class="text-dark">{{getSetting('currency')}} {{$product->price}}</span>
