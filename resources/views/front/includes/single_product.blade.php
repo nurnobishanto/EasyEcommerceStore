@@ -15,7 +15,9 @@
                 </a>
             </div>
             <div class="text-small mb-1">
+                @if($product->categories->first())
                 <a href="{{route('category',['slug'=>$product->categories->first()->slug])}}" class="text-decoration-none text-muted"><small>{{$product->categories->first()->name}}</small></a></div>
+               @endif
             <h2 class="fs-6">
                 <a href="{{route('product',['slug'=>$product->slug])}}" class="text-inherit text-decoration-none">
                     @if(strlen($product->title) > 40)
