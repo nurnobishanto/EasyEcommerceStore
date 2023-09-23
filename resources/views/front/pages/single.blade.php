@@ -35,7 +35,9 @@
             <div class="col-md-6">
                 <div class="ps-lg-10 mt-6 mt-md-0">
                     <!-- content -->
+                    @if($product->categories->first())
                     <a href="{{route('category',['slug'=>$product->categories->first()->slug])}}" class="mb-4 d-block">{{$product->categories->first()->name}}</a>
+                    @endif
                     <!-- heading -->
                     <h1 class="mb-1">{{$product->title}}</h1>
                     <div class="fs-4">
