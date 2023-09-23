@@ -42,6 +42,7 @@
                                                 <div class="form-group">
                                                     <label for="phone" class="form-label">আপনার মোবাইল নম্বর </label>
                                                     <input type="tel" name="phone" id="phone" class="form-control" placeholder="আপনার মোবাইল নম্বর ">
+                                                    <p id="validationMessage"></p>
                                                     @error('phone')
                                                     <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -104,3 +105,4 @@
         </div>
     </section>
 @endsection
+

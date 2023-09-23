@@ -177,6 +177,19 @@
             });
         });
         getCartInfo()
+
+        var phoneInput = $('#phone');
+        var validationMessage = $('#validationMessage');
+        var pattern = /^(?:\+8801|8801|01)([3456789]\d{8})$/;
+        function validatePhoneNumber() {
+            var phoneNumber = phoneInput.val();
+            if (pattern.test(phoneNumber)) {
+                validationMessage.text('Valid Bangladeshi phone number').css('color', 'green');
+            } else {
+                validationMessage.text('Invalid Bangladeshi phone number').css('color', 'red');
+            }
+        }
+        phoneInput.on('input', validatePhoneNumber);
     });
 
 
