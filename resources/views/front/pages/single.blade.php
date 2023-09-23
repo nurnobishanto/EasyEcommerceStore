@@ -7,13 +7,13 @@
                 <div class="slider slider-for">
                     <div>
                         <div class="zoom" onmousemove="zoom(event)" style="background-image: url({{asset('uploads/'.$product->thumbnail)}})">
-                            <img src="{{asset('uploads/'.$product->thumbnail)}}" alt="" style="max-height: 450px;">
+                            <img src="{{asset('uploads/'.$product->thumbnail)}}" alt="" >
                         </div>
                     </div>
                     @foreach(productGalleries($product->id) as $img)
                     <div>
                         <div class="zoom" onmousemove="zoom(event)" style="background-image: url({{asset('uploads/'.$img)}})">
-                            <img src="{{asset('uploads/'.$img)}}" alt="" style="max-height: 450px;">
+                            <img src="{{asset('uploads/'.$img)}}" alt="" >
                         </div>
                     </div>
                     @endforeach
@@ -51,10 +51,10 @@
 
                     @if($product->quantity > 0)
                     <div class="mt-3 row justify-content-start g-2 align-items-center">
-                        <div class="col-xxl-4 col-lg-4 col-md-6 col-sm-6 d-grid">
+                        <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-6 d-grid">
                              <button onclick="orderNow({{$product->id}})" type="button" class="btn btn-danger"><i class="feather-icon icon-shopping-bag me-2"></i>অর্ডার করুন</button>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 d-grid">
+                        <div class="col-lg-5 col-md-6 col-sm-6 d-grid">
                             <button onclick="addToCart({{$product->id}})" type="button" class="btn btn-primary"><i class="feather-icon icon-shopping-cart me-2">+</i>Add to cart</button>
                         </div>
                     </div>
@@ -63,13 +63,21 @@
                         <h5 class="text-danger text-center">Stock Out</h5>
                     </div>
                     @endif
+
                     <!-- hr -->
                     <hr class="my-6">
+
                     <div>
                         <!-- table -->
                         <table class="table table-borderless mb-0">
 
                             <tbody>
+                            <tr>
+                                <td colspan="2"><a href="tel:" class="btn btn-info w-100 w-md-80 w-lg-50">কল করতে ক্লিক করুন</a></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><a href="tel:" class="btn btn-secondary w-100 w-md-80 w-lg-50">কল করতে ক্লিক করুন</a></td>
+                            </tr>
                             <tr>
                                 <td>Product Code:</td>
                                 <td class="text-uppercase">{{$product->sku}}</td>
