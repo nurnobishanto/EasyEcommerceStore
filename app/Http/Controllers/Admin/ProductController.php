@@ -44,6 +44,7 @@ class ProductController extends Controller
             'thumbnail' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
             'gallery.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
             'brand_id' => 'exists:brands,id',
+            'categories' => 'required',
         ]);
         $imagePath = null;
         if($request->file('thumbnail')){
@@ -106,6 +107,7 @@ class ProductController extends Controller
             'thumbnail' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
             'gallery.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
             'brand_id' => 'exists:brands,id',
+            'categories' => 'required',
         ]);
         // Remove selected images
         if ($request->has('remove_images')) {
