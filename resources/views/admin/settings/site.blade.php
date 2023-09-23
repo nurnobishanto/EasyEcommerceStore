@@ -130,6 +130,18 @@
                                     <input id="currency"  value="{{getSetting('currency')}}" name="currency" class="form-control" placeholder="{{ __('global.currency')}}">
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="inquiry_number_one">{{ __('global.inquiry_number_one')}}</label>
+                                    <input id="inquiry_number_one"  value="{{getSetting('inquiry_number_one')}}" name="inquiry_number_one" class="form-control" placeholder="{{ __('global.inquiry_number_one')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="inquiry_number_two">{{ __('global.inquiry_number_two')}}</label>
+                                    <input id="inquiry_number_two"  value="{{getSetting('inquiry_number_two')}}" name="inquiry_number_two" class="form-control" placeholder="{{ __('global.inquiry_number_two')}}">
+                                </div>
+                            </div>
 
 
                         </div>

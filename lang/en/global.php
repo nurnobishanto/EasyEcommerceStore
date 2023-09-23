@@ -213,5 +213,10 @@ return [
     'home_featured_category' => 'Home Featured Categories',
     'currency' => 'Currency',
     'top_bar' => 'Top Bar',
-
+    'header_footer_code' => 'Header Footer Code',
+    'header_code' => 'Header Code',
+    'body_code' => 'Body Code',
+    'footer_code' => 'Footer Code',
+    'inquiry_number_one' => 'Inquiry Phone No One',
+    'inquiry_number_two' => 'Inquiry Phone No Two',
 ];

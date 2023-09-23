@@ -370,6 +370,11 @@ return [
                     'url' => 'admin/site-setting'
                 ],
                 [
+                    'text' => 'header_footer_code',
+                    'can' => 'code_setting_manage',
+                    'url' => 'admin/code-setting'
+                ],
+                [
                     'text' => 'menu',
                     'url' => 'admin/menus',
                     'can' => ['menu_manage'],

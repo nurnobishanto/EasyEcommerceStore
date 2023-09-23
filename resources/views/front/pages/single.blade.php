@@ -74,12 +74,16 @@
                         <table class="table table-borderless mb-0">
 
                             <tbody>
+                            @if(getSetting('inquiry_number_one'))
                             <tr>
-                                <td colspan="2"><a href="tel:" class="btn btn-info w-100 w-md-80 w-lg-50">কল করতে ক্লিক করুন</a></td>
+                                <td colspan="2"><a href="tel:{{getSetting('inquiry_number_one')}}" class="btn btn-info w-100 w-md-75 w-lg-75">কল করতে ক্লিক করুন {{getSetting('inquiry_number_one')}}</a></td>
                             </tr>
+                            @endif
+                            @if(getSetting('inquiry_number_two'))
                             <tr>
-                                <td colspan="2"><a href="tel:" class="btn btn-secondary w-100 w-md-80 w-lg-50">কল করতে ক্লিক করুন</a></td>
+                                <td colspan="2"><a href="tel:{{getSetting('inquiry_number_two')}}" class="btn btn-secondary w-100 w-md-75 w-lg-75">কল করতে ক্লিক করুন</a></td>
                             </tr>
+                            @endif
                             <tr>
                                 <td>Product Code:</td>
                                 <td class="text-uppercase">{{$product->sku}}</td>

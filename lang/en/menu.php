@@ -32,4 +32,5 @@ return [
     'products' => 'Products',
     'categories' => 'Categories',
     'brands' => 'Brands',
+    'header_footer_code' => 'Header Footer Code',
 ];

@@ -31,11 +31,11 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('front') }}/css/theme.min.css">
 
-
+    {!! getSetting('header_code') !!}
 </head>
 
 <body>
-
+    {!! getSetting('body_code') !!}
    @include('front.includes.header')
     <!-- Shop Cart -->
     @include('front.includes.cart')
@@ -69,7 +69,7 @@
 @include('front.includes.scripts')
 
 
-
+    {!! getSetting('footer_code') !!}
 </body>
 
 </html>
