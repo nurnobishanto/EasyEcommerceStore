@@ -156,7 +156,9 @@
         </div>
         <!-- row -->
         <div class="row g-4 row-cols-lg-5 row-cols-2 row-cols-md-2 mt-2">
-            @include('front.includes.single_product',['product'=>$product])
+            @foreach(relatedProducts($product->id) as $relatedProduct)
+            @include('front.includes.single_product',['product'=>$relatedProduct])
+            @endforeach
         </div>
     </div>
 </section>

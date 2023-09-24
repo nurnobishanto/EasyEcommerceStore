@@ -2,6 +2,7 @@
 
 
 use App\Models\GlobalSetting;
+use App\Models\Product;
 use Illuminate\Support\Str;
 
 if (!function_exists('myCustomFunction')) {
@@ -9,6 +10,22 @@ if (!function_exists('myCustomFunction')) {
     function myCustomFunction($param)
     {
         // Your custom logic here
+    }
+
+}
+if (!function_exists('relatedProducts')) {
+
+    function relatedProducts($productId)
+    {
+        $product = Product::find($productId);
+        $categories = $product->categories;
+        $relatedProducts = Product::whereHas('categories', function ($query) use ($categories) {
+            $query->whereIn('categories.id', $categories->pluck('id'));
+        })
+            ->where('id', '<>', $productId) // Exclude the current product
+            ->take(5)
+            ->get();
+        return $relatedProducts;
     }
 
 }
@@ -60,15 +77,15 @@ if (!function_exists('featuredProducts')) {
 
     function featuredProducts(): \Illuminate\Database\Eloquent\Collection
     {
-        return \App\Models\Product::where('status','active')->where('is_featured','yes')->get();
+        return \App\Models\Product::where('status','active')->where('is_featured','yes')->orderBy('id','desc')->take(5)->get();
     }
 
 }
 if (!function_exists('popularProducts')) {
 
-    function popularProducts(): \Illuminate\Database\Eloquent\Collection
+    function popularProducts()
     {
-        return \App\Models\Product::where('status','active')->get();
+        return \App\Models\Product::where('status','active')->paginate(20);
     }
 
 }

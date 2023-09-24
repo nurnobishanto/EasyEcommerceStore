@@ -25,7 +25,7 @@
                             @include('front.includes.single_product',['$product'=>$product])
                         @endforeach
                     </div>
-                    @include('front.includes.pagination', ['paginator' => $products])
+                    @include('front.includes.pagination', ['products' => $products])
                 </div>
             </div>
         </div>

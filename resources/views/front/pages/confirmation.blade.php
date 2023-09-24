@@ -12,7 +12,7 @@
                         <table class="table">
                             <tr>
                                 <th>ORDER ID</th>
-                                <td>{{$order->order_id}}</td>
+                                <th>{{$order->order_id}}</th>
                             </tr>
                             <tr>
                                 <th>Name</th>
@@ -29,6 +29,10 @@
                             <tr>
                                 <th>Order Note</th>
                                 <td>{{$order->order_note}}</td>
+                            </tr>
+                            <tr>
+                                <th>Order Status</th>
+                                <th class="text-uppercase">{{$order->status}}</th>
                             </tr>
                         </table>
 

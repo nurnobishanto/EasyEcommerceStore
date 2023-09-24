@@ -111,7 +111,7 @@ class CartController extends Controller
     public function orderConfirm(Request $request){
         $request->validate([
             'name' => 'required',
-            'phone' => 'required|regex:/^(01|\+8801|8801)[3456789]\d{8}$/',
+            'phone' => ['required', 'regex:/^(01|\+8801|8801)[3456789]\d{8}$/'],
             'address' => 'required',
             'delivery_zone_id' => 'required',
         ]);
