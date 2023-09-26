@@ -72,7 +72,7 @@
 
                     <form action="{{route('products')}}" method="get">
                         <div class="input-group ">
-                            <input class="form-control rounded" name="query" type="search" placeholder="Search for products">
+                            <input class="form-control rounded" name="query" value="{{old('query')}}" type="search" placeholder="Search for products">
                             <input class="btn btn-primary" type="submit" value="search">
                         </div>
 
@@ -131,12 +131,12 @@
                 </div>
                 <div class="offcanvas-body">
                     <div class="d-block d-lg-none mb-4">
-                        <form action="{{route('products')}}" method="post">
+                        <form action="{{route('products')}}" method="get">
                             <div class="input-group ">
-                                <input class="form-control rounded" name="query" type="search"
+                                <input class="form-control rounded" name="query" value="{{old('query')}}" type="search"
                                        placeholder="Search for products">
                                 <input class="btn btn-primary" type="submit" value="search">
-                               
+
                             </div>
                         </form>
                     </div>
