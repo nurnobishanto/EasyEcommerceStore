@@ -54,7 +54,10 @@
                                     <td>{{$order->delivery_zone->name}}</td>
                                     <td>{{$order->products->count() }}</td>
                                     <td>
-                                        @if($order->status=='completed') <span class="badge-success badge">{{$order->status}}</span>
+                                        @if($order->status=='pending') <span class="badge-warning badge">{{$order->status}}</span>
+                                        @elseif($order->status=='received') <span class="badge-info badge">{{$order->status}}</span>
+                                        @elseif($order->status=='delivered') <span class="badge-primary badge">{{$order->status}}</span>
+                                        @elseif($order->status=='completed') <span class="badge-success badge">{{$order->status}}</span>
                                         @else <span class="badge-danger badge">{{$order->status}}</span>
                                         @endif
                                     </td>
@@ -63,6 +66,7 @@
                                             @method('DELETE')
                                             @csrf
                                             @can('order_view')
+                                                <a target="_blank" href="{{route('admin.orders.print',['order'=>$order->id])}}" class="btn btn-primary px-1 py-0 btn-sm"><i class="fa fa-print"></i></a>
                                                 <a href="{{route('admin.orders.show',['order'=>$order->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
                                             @endcan
                                             @can('order_update')
@@ -71,7 +75,19 @@
                                             @can('order_delete')
                                                 <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
                                             @endcan
-
+                                        </form>
+                                        <form action="{{route('admin.orders.status_update',['order' => $order->id])}}" method="post" class="mt-2">
+                                            @csrf
+                                            <select name="status">
+                                                <option value="pending" @if($order->status == "pending") selected @endif>{{__('global.pending')}}</option>
+                                                <option value="received" @if($order->status == "received") selected @endif>{{__('global.received')}}</option>
+                                                <option value="rejected" @if($order->status == "rejected") selected @endif>{{__('global.rejected')}}</option>
+                                                <option value="canceled" @if($order->status == "canceled") selected @endif>{{__('global.canceled')}}</option>
+                                                <option value="stoke_out" @if($order->status == "stoke_out") selected @endif>{{__('global.stoke_out')}}</option>
+                                                <option value="delivered" @if($order->status == "delivered") selected @endif>{{__('global.delivered')}}</option>
+                                                <option value="completed" @if($order->status == "completed") selected @endif>{{__('global.completed')}}</option>
+                                            </select>
+                                            <input type="submit" value="Submit" class="btn btn-sm btn-primary">
                                         </form>
                                     </td>
                                 </tr>

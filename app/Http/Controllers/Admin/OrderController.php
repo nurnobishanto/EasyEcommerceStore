@@ -8,9 +8,12 @@ use App\Models\Category;
 use App\Models\DeliveryZone;
 use App\Models\Order;
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 
 class OrderController extends Controller
@@ -227,5 +230,69 @@ class OrderController extends Controller
         $order->forceDelete();
         toastr()->success(__('global.order').__('global.deleted_success'),__('global.deleted'));
         return redirect()->route('admin.orders.trashed');
+    }
+
+    public function order_status_update(Request $request,$id){
+        $order = Order::find($id);
+        $newStatus = $request->input('status');
+        $updateQuantity = false;
+
+        if (in_array($order->status, ['pending', 'received', 'delivered','completed']) && in_array($newStatus, ['rejected', 'canceled', 'stoke_out'])) {
+            $updateQuantity = true;
+        }elseif (in_array($order->status, ['rejected', 'canceled', 'stoke_out']) && in_array($newStatus, ['pending', 'received', 'delivered','completed'])){
+            $updateQuantity = true;
+        }
+        $order->status = $newStatus;
+        $order->save();
+
+
+        // Update product quantity if necessary
+        if ($updateQuantity) {
+            foreach ($order->products as $product) {
+                switch ($newStatus) {
+                    case 'pending':
+                    case 'success':
+                    case 'received':
+                    case 'delivered':
+                    case 'completed':
+                        $product->quantity -= $product->pivot->quantity;
+                        break;
+
+                    case 'canceled':
+                    case 'rejected':
+                    case 'stock_out':
+                        $product->quantity += $product->pivot->quantity;
+                        break;
+
+                    default:
+
+                        break;
+                }
+
+                // Save the product
+                $product->save();
+            }
+        }
+        toastr()->success(__('global.order').__('global.updated_success'),__('global.updated'));
+        return redirect()->route('admin.orders.index');
+    }
+    public function order_print($id){
+        $order = Order::find($id);
+        $data = [
+            'title' => getSetting('site_name').' Order Invoice',
+            'date' => date('m/d/Y'),
+            'order' => $order,
+        ];
+
+        $html = view('invoice', $data);
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $pdfFileName = $order->order_id . '_invoice.pdf';
+        $pdfPath = public_path('pdfs/' . $pdfFileName);
+        $dompdf->stream($pdfPath);
+
+        return redirect(route('admin.orders.index'));
     }
 }

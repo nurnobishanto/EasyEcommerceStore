@@ -43,6 +43,8 @@ Route::get('/products/trashed/{product}/delete',[ProductController::class,'force
 Route::resource('/products',ProductController::class)->middleware('permission:product_manage');
 
 //Order
+Route::post('/orders/status/{order}/update',[OrderController::class,'order_status_update'])->middleware('permission:order_manage')->name('orders.status_update');
+Route::get('/orders/{order}/print',[OrderController::class,'order_print'])->middleware('permission:order_manage')->name('orders.print');
 Route::get('/orders/trashed',[OrderController::class,'trashed_list'])->middleware('permission:order_manage')->name('orders.trashed');
 Route::get('/orders/trashed/{order}/restore',[OrderController::class,'restore'])->middleware('permission:order_manage')->name('orders.restore');
 Route::get('/orders/trashed/{order}/delete',[OrderController::class,'force_delete'])->middleware('permission:order_manage')->name('orders.force_delete');
@@ -70,5 +72,7 @@ Route::resource('/delivery-zones',DeliveryZoneController::class)->middleware('pe
 //Site Setting
 Route::get('site-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'site_setting']);
 Route::get('code-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'code_setting']);
+Route::get('page-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'page_setting']);
 Route::post('site-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'site_setting_update'])->name('site-setting');
 Route::post('code-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'code_setting_update'])->name('code-setting');
+Route::post('page-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'page_setting_update'])->name('page-setting');

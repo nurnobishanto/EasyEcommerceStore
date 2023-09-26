@@ -48,13 +48,11 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="home_slider">{{ __('global.home_slider')}}</label>
-                                    <select id="home_slider"  name="home_slider" class="form-control">
-                                        <option value="show" @if(getSetting('home_slider') == 'show') selected @endif>Show</option>
-                                        <option value="hide" @if(getSetting('home_slider') == 'hide') selected @endif>Hide</option>
-                                    </select>
+                                    <label for="site_address">{{ __('global.site_address')}}</label>
+                                    <input id="site_address" value="{{getSetting('site_address')}}" name="site_address" class="form-control" placeholder="{{ __('global.site_address')}}">
                                 </div>
                             </div>
+
 
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -86,6 +84,15 @@
                                 <div class="form-group">
                                     <label for="top_right_text">{{ __('global.top_right_text')}}</label>
                                     <input id="top_right_text" value="{{getSetting('top_right_text')}}" name="top_right_text" class="form-control" placeholder="{{ __('global.enter_top_right_text')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="home_slider">{{ __('global.home_slider')}}</label>
+                                    <select id="home_slider"  name="home_slider" class="form-control">
+                                        <option value="show" @if(getSetting('home_slider') == 'show') selected @endif>Show</option>
+                                        <option value="hide" @if(getSetting('home_slider') == 'hide') selected @endif>Hide</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -140,6 +147,37 @@
                                 <div class="form-group">
                                     <label for="inquiry_number_two">{{ __('global.inquiry_number_two')}}</label>
                                     <input id="inquiry_number_two"  value="{{getSetting('inquiry_number_two')}}" name="inquiry_number_two" class="form-control" placeholder="{{ __('global.inquiry_number_two')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="support_number">{{ __('global.support_number')}}</label>
+                                    <input id="support_number"  value="{{getSetting('support_number')}}" name="support_number" class="form-control" placeholder="{{ __('global.support_number')}}">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="facebook">{{ __('global.facebook')}}</label>
+                                    <input id="facebook"  value="{{getSetting('facebook')}}" name="facebook" class="form-control" placeholder="{{ __('global.facebook')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="youtube">{{ __('global.youtube')}}</label>
+                                    <input id="youtube"  value="{{getSetting('youtube')}}" name="youtube" class="form-control" placeholder="{{ __('global.youtube')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="instagram">{{ __('global.instagram')}}</label>
+                                    <input id="instagram"  value="{{getSetting('instagram')}}" name="instagram" class="form-control" placeholder="{{ __('global.instagram')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="whatsapp">{{ __('global.whatsapp')}}</label>
+                                    <input id="whatsapp"  value="{{getSetting('whatsapp')}}" name="whatsapp" class="form-control" placeholder="{{ __('global.whatsapp')}}">
                                 </div>
                             </div>
 

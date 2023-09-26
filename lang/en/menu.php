@@ -33,4 +33,5 @@ return [
     'categories' => 'Categories',
     'brands' => 'Brands',
     'header_footer_code' => 'Header Footer Code',
+    'page_content' => 'Page Content',
 ];

@@ -27,6 +27,7 @@ class RoleSeeder extends Seeder
                     'dashboard_manage',
                     'site_setting_manage',
                     'code_setting_manage',
+                    'page_setting_manage',
                 ]
             ],
             [

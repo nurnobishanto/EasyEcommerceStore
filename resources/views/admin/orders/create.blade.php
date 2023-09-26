@@ -76,9 +76,6 @@
                                     <select name="status" class="form-control" id="status">
                                         <option value="pending">{{__('global.pending')}}</option>
                                         <option value="received">{{__('global.received')}}</option>
-                                        <option value="rejected">{{__('global.rejected')}}</option>
-                                        <option value="canceled">{{__('global.canceled')}}</option>
-                                        <option value="stoke_out">{{__('global.stoke_out')}}</option>
                                         <option value="delivered">{{__('global.delivered')}}</option>
                                         <option value="completed">{{__('global.completed')}}</option>
                                     </select>

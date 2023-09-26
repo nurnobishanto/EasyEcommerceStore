@@ -20,6 +20,7 @@ class DashboardController extends Controller
         $data['categories'] = Category::all();
         $data['products'] = Product::all();
         $data['orders'] = Order::all();
+        $data['recent_orders'] = Order::orderBy('created_at', 'desc')->take(10)->get();
         $data['zones'] = DeliveryZone::all();
         return view('admin.dashboard',$data);
     }

@@ -106,13 +106,68 @@
 
         </div>
     </div>
-    <div class="card-body">
-        @php
-            $readmePath = base_path('README.md'); // Replace with the actual path to your readme.md file
-            $readmeContent = \Illuminate\Support\Facades\File::get($readmePath);
-        @endphp
-        @markdown($readmeContent)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Recent Orders</h5>
+                </div>
+                <div class="card-body table-responsive">
+
+                    <table id="" class="table  dataTable table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>{{__('global.sl')}}</th>
+                            <th>{{__('global.order_id')}}</th>
+
+                            <th>{{__('global.price')}}</th>
+                            <th>{{__('global.delivery_zone')}}</th>
+                            <th>{{__('global.products')}}</th>
+                            <th>{{__('global.status')}}</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($recent_orders as $order)
+                            <tr>
+
+                                <td>{{$order->id}}</td>
+                                <td>{{$order->order_id}}</td>
+
+                                <td>{{$order->subtotal}} + {{$order->delivery_charge}} = {{$order->subtotal+$order->delivery_charge}}</td>
+                                <td>{{$order->delivery_zone->name}}</td>
+                                <td>{{$order->products->count() }}</td>
+                                <td>
+                                    @if($order->status=='pending') <span class="badge-warning badge">{{$order->status}}</span>
+                                    @elseif($order->status=='received') <span class="badge-info badge">{{$order->status}}</span>
+                                    @elseif($order->status=='delivered') <span class="badge-primary badge">{{$order->status}}</span>
+                                    @elseif($order->status=='completed') <span class="badge-success badge">{{$order->status}}</span>
+                                    @else <span class="badge-danger badge">{{$order->status}}</span>
+                                    @endif
+                                </td>
+
+                            </tr>
+                        @endforeach
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>{{__('global.sl')}}</th>
+                            <th>{{__('global.order_id')}}</th>
+                            <th>{{__('global.price')}}</th>
+                            <th>{{__('global.delivery_zone')}}</th>
+                            <th>{{__('global.products')}}</th>
+                            <th>{{__('global.status')}}</th>
+
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
+
 
 @stop
 @section('footer')
@@ -125,11 +180,21 @@
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
-
+@section('plugins.datatablesPlugins', true)
+@section('plugins.Datatables', true)
 @section('js')
     <script>
         $(document).ready(function() {
-            toastr.now();
+            $(".dataTable").DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                searching: false,
+                ordering: true,
+                info: false,
+                paging: false,
+
+            });
         });
     </script>
 @stop

@@ -375,6 +375,11 @@ return [
                     'url' => 'admin/code-setting'
                 ],
                 [
+                    'text' => 'page_content',
+                    'can' => 'page_setting_manage',
+                    'url' => 'admin/page-setting'
+                ],
+                [
                     'text' => 'menu',
                     'url' => 'admin/menus',
                     'can' => ['menu_manage'],

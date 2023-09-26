@@ -60,7 +60,7 @@
                                     <textarea id="order_note" name="order_note"  class="form-control" placeholder="{{ __('global.enter_order_note')}}">{{$order->order_note}}</textarea>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="delivery_zone_id">{{__('global.select_delivery_zone')}}<span class="text-danger">*</span></label>
                                     <select name="delivery_zone_id" class="select2 form-control" id="delivery_zone_id" >
@@ -71,21 +71,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="status">{{__('global.select_status')}}<span class="text-danger">*</span></label>
-                                    <select name="status" class="form-control" id="status">
-                                        <option value="pending" @if($order->status == "pending") selected @endif>{{__('global.pending')}}</option>
-                                        <option value="received" @if($order->status == "received") selected @endif>{{__('global.received')}}</option>
-                                        <option value="rejected" @if($order->status == "rejected") selected @endif>{{__('global.rejected')}}</option>
-                                        <option value="canceled" @if($order->status == "canceled") selected @endif>{{__('global.canceled')}}</option>
-                                        <option value="stoke_out" @if($order->status == "stoke_out") selected @endif>{{__('global.stoke_out')}}</option>
-                                        <option value="delivered" @if($order->status == "delivered") selected @endif>{{__('global.delivered')}}</option>
-                                        <option value="completed" @if($order->status == "completed") selected @endif>{{__('global.completed')}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="product">{{__('global.select_products')}}<span class="text-danger">*</span></label>
                                     <select name="product" class="select2 form-control" id="product">
