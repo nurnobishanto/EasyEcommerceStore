@@ -4,14 +4,14 @@
             <div class="col-12 col-md-12 col-lg-6">
                 <h6 class="mb-4">About us</h6>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <!-- list -->
                         @if(getSetting('site_logo'))
                       <img src="{{asset('uploads/'.getSetting('site_logo'))}}" class="img-fluid" style="max-height: 200px">
                         @endif
                         {!! getSetting('site_address') !!}
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         {!! getSetting('site_description') !!}
                     </div>
                 </div>
@@ -20,9 +20,7 @@
                 <div class="row g-4">
                     <div class="col-12 col-sm-6 col-md-6">
                         <h6 class="mb-4">Get to know us</h6>
-                        <!-- list -->
                         <ul class="nav flex-column">
-
                             <li class="nav-item mb-2"><a href="{{route('terms')}}" class="nav-link">Terms & Conditions</a></li>
                             <li class="nav-item mb-2"><a href="{{route('privacy')}}" class="nav-link">Privacy Policy</a></li>
                             <li class="nav-item mb-2"><a href="{{route('return_policy')}}" class="nav-link">Return Policy</a></li>
