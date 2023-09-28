@@ -21,6 +21,10 @@ class Order extends Model
         'status',
         'created_by',
         'updated_by',
+        'payment_method_id',
+        'trxid',
+        'paid_amount',
+        'sent_from',
     ];
     protected static function boot()
     {
@@ -37,6 +41,10 @@ class Order extends Model
     public function createdBy()
     {
         return $this->belongsTo(Admin::class, 'created_by');
+    }
+    public function payment_method()
+    {
+        return $this->belongsTo(PaymentMethod::class, 'payment_method_id');
     }
 
     public function updatedBy()

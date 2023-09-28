@@ -31,7 +31,7 @@
                                             <div class="row g-2">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="name" class="form-label">আপনার নাম </label>
+                                                    <label for="name" class="form-label">আপনার নাম <span class="text-danger"> *</span></label>
                                                     <input type="text" id="name" name="name" class="form-control" placeholder="আপনার নাম ">
                                                     @error('name')
                                                     <div class="text-danger">{{ $message }}</div>
@@ -40,7 +40,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="phone" class="form-label">আপনার মোবাইল নম্বর </label>
+                                                    <label for="phone" class="form-label">আপনার মোবাইল নম্বর <span class="text-danger"> *</span></label>
                                                     <input type="tel" name="phone" id="phone" class="form-control" placeholder="আপনার মোবাইল নম্বর ">
                                                     <p id="validationMessage"></p>
                                                     @error('phone')
@@ -50,7 +50,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="address" class="form-label">আপনার সম্পূর্ণ ঠিকানা</label>
+                                                    <label for="address" class="form-label">আপনার সম্পূর্ণ ঠিকানা <span class="text-danger"> *</span></label>
                                                     <textarea  id="address" class="form-control" name="address" placeholder="আপনার সম্পূর্ণ ঠিকানা"></textarea>
                                                     @error('address')
                                                     <div class="text-danger">{{ $message }}</div>
@@ -59,13 +59,13 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="order_note" class="form-label">Order Note</label>
+                                                    <label for="order_note" class="form-label">অর্ডার নোট</label>
                                                     <textarea  id="order_note" class="form-control" name="order_note" placeholder="Order Note"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="delivery_zone_id" class="form-label">Delivery Zone</label>
+                                                    <label for="delivery_zone_id" class="form-label">ডেলিভারি জোন <span class="text-danger"> *</span></label>
                                                     <select id="delivery_zone_id" class="form-control" name="delivery_zone_id" >
                                                         <option value="">Select Delivery Zone</option>
                                                         @foreach(deliveryZones() as $zone)
@@ -77,6 +77,55 @@
                                                     @enderror
                                                 </div>
                                             </div>
+                                                @if(getSetting('payment_method') =='show')
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="payment_method_id" class="form-label">Payment Method</label>
+                                                    <select id="payment_method_id" class="form-control" name="payment_method_id" >
+                                                        <option value="">Select Payment Method</option>
+                                                        @foreach(paymentMethods() as $pm)
+                                                            <option onclick="paymentMethodInfo()" value="{{$pm->id}}">{{$pm->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <div class="mt-2" id="payment_description"></div>
+                                                    @error('payment_method_id')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label for="trxid" class="form-label">ট্রানজেকশন আইডি (TrxID) <span class="text-danger"> *</span></label>
+                                                            <input  id="trxid" class="form-control" name="trxid" placeholder="Enter Transaction id">
+                                                            @error('trxid')
+                                                            <div class="text-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="paid_amount" class="form-label">টাকার পরিমান <span class="text-danger"> *</span></label>
+                                                            <input  id="paid_amount" class="form-control" name="paid_amount" placeholder="Enter amount">
+                                                            @error('paid_amount')
+                                                            <div class="text-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="sent_from" class="form-label">যে নাম্বার থেকে পাঠিয়েছেন <span class="text-danger"> *</span></label>
+                                                    <input  id="sent_from" class="form-control" name="sent_from" placeholder="আপনি যে নম্বরে টাকা পাঠিয়েছেন">
+                                                    @error('sent_from')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                                @endif
                                             <input type="submit" class="btn btn-danger" value="অর্ডার কনফার্ম করুন">
 
                                         </div>

@@ -26,6 +26,7 @@ class GlobalSettingController extends Controller
         setSetting('site_tagline',trim($request->site_tagline));
         setSetting('home_slider',trim($request->home_slider));
         setSetting('site_description',trim($request->site_description));
+        setSetting('payment_method',trim($request->payment_method));
 
         setSetting('top_left_text',trim($request->top_left_text));
         setSetting('top_right_text',trim($request->top_right_text));

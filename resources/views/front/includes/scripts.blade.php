@@ -60,7 +60,7 @@
                 '<button type="button" class="button-plus btn btn-sm " onclick="addToCart(' + item.product_id + ')" data-field="quantity">+</button>' +
                 '</div>' +
                 '</div>' +
-                '<div class="col-2 text-lg-end text-start text-md-end col-md-2">' +
+                '<div class="col-2 text-lg-end text-start text-md-end col-md-2 p-0">' +
                 '<span class="fw-bold">{{getSetting('currency')}}'+ item.total +'</span>' +
                 '</div>' +
                 '</div>' +
@@ -125,7 +125,21 @@
         var totalAmount = parseFloat(subtotal) + charge;
         $('.total_amount').text(totalAmount);
 
-        console.log(charge)
+    }
+    function paymentMethodInfo() {
+         var id = $('#payment_method_id').val();
+        $('#payment_description').text('');
+        $.ajax({
+            type: 'POST',
+            url: '/payment-method',
+            data: { id: id },
+
+            success: function(response) {
+                $('#payment_description').text(response.message);
+            }
+        });
+
+
     }
     function orderNow(productId){
         $.ajax({
@@ -153,10 +167,13 @@
             }
         });
         updateTotalwithDeliveryCharge();
-
+        paymentMethodInfo()
         // Listen for changes in the select element
         $('#delivery_zone_id').on('change', function () {
             updateTotalwithDeliveryCharge();
+        });
+        $('#payment_method_id').on('change', function () {
+            paymentMethodInfo();
         });
         // Add to Cart
         $('.add-to-cart').click(function() {

@@ -357,6 +357,12 @@ return [
             'can' => ['delivery_zone_manage'],
             'icon'    => 'fas fa-location-arrow',
         ],
+        [
+            'text' => 'payment_methods',
+            'url' => 'admin/payment-methods',
+            'can' => ['payment_method_manage'],
+            'icon'    => 'fas fa-money-bill',
+        ],
 
         ['header' => 'settings'],
         [

@@ -51,6 +51,17 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td>{{__('global.payment_method')}}</td>
+                                                <td>
+                                                    @if($order->payment_method)
+                                                    Method : {{$order->payment_method->name}} ({{$order->payment_method->account_no}})<br>
+                                                    Paid Amount : {{$order->paid_amount}}{{getSetting('currency')}}<br>
+                                                    TrxID : {{$order->trxid}}<br>
+                                                    From : {{$order->sent_from}}<br>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td>{{__('global.order_note')}}</td>
                                                 <td>{{$order->order_note}}</td>
                                             </tr>

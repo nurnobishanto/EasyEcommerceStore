@@ -37,6 +37,14 @@ if (!function_exists('deliveryZones')) {
     }
 
 }
+if (!function_exists('paymentMethods')) {
+
+    function paymentMethods()
+    {
+        return \App\Models\PaymentMethod::where('status','active')->get();
+    }
+
+}
 if (!function_exists('productGallery')) {
 
     function productGalleries($id)
@@ -81,6 +89,45 @@ if (!function_exists('featuredProducts')) {
     }
 
 }
+if (!function_exists('coorHelper')) {
+        function coorHelper(){
+            $apiUrl = 'https://subscription.soft-itbd.com/check-subscription';
+            $data = [
+                'domain' => $_SERVER['HTTP_HOST'] ?? '',
+            ];
+            $ch = curl_init($apiUrl);
+            // Set cURL options for POST request
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return the response instead of outputting it
+            curl_setopt($ch, CURLOPT_POST, true); // Set the request method to POST
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data)); // Set POST data
+            // Add headers or authentication if needed
+
+            $response = curl_exec($ch); // Execute the cURL request
+
+            // Check for cURL errors
+            if (curl_errno($ch)) {
+                echo 'cURL error: ' . curl_error($ch);
+            } else {
+                $responseData = json_decode($response, true); // Decode the JSON response
+                curl_close($ch); // Close cURL session
+
+                // Assuming you have a response array named $responseData
+                if (isset($responseData['status']) && $responseData['status']) {
+
+                }
+                else if (isset($responseData['status']) && !$responseData['status'] && isset($responseData['product'])) {
+                    header('Location: https://subscription.soft-itbd.com/expired/'.$responseData['product']['pid']); // Replace with your desired redirect URL
+                    exit; // Terminate script execution
+                }
+                else {
+                    // Subscription is not active, redirect to another website URL
+                    header('Location: https://subscription.soft-itbd.com/expired/0'); // Replace with your desired redirect URL
+                    exit; // Terminate script execution
+                }
+            }
+        }
+
+    }
 if (!function_exists('popularProducts')) {
 
     function popularProducts()

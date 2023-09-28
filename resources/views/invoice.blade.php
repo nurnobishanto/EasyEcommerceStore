@@ -49,6 +49,12 @@
             margin-top: 20px;
             font-size: 14px;
         }
+        .text-danger{
+            color: red;
+        }
+        .text-success{
+            color: darkgreen;
+        }
     </style>
 </head>
 <body>
@@ -112,6 +118,16 @@
                 <th class="text-end" colspan="3">Total</th>
                 <th>{{getSetting('currency')}}{{$order->delivery_charge + $order->subtotal}}</th>
             </tr>
+            @if($order->payment_method)
+                <tr>
+                    <th class="text-end text-success" colspan="3">Paid Amount</th>
+                    <th>{{getSetting('currency')}}{{$order->paid_amount}}</th>
+                </tr>
+                <tr>
+                    <th class="text-end text-danger" colspan="3">Due Amount</th>
+                    <th>{{getSetting('currency')}}{{($order->delivery_charge + $order->subtotal) - $order->paid_amount}}</th>
+                </tr>
+            @endif
             </tfoot>
         </table>
     </div>

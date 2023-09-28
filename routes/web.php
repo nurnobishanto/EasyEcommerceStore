@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Cart Handle
+Route::post('/payment-method', [\App\Http\Controllers\Website\CartController::class,'payment_method'])->name('getPaymentMethod');
 Route::get('/cart/get', [\App\Http\Controllers\Website\CartController::class,'getCart'])->name('getCart');
 Route::post('/cart/add', [\App\Http\Controllers\Website\CartController::class,'addToCart'])->name('addToCart');
 Route::patch('/cart/update', [\App\Http\Controllers\Website\CartController::class,'updateCart'])->name('updateCart');

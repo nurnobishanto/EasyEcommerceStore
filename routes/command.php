@@ -40,13 +40,13 @@ Route::prefix('command')->group(function (){
     });
     Route::get('/migrate-fresh', function (){
         App::setLocale(session('locale'));
-        //Artisan::call('migrate:fresh');
+        Artisan::call('migrate:fresh');
         toastr()->success(Artisan::output(), __('notification.fresh_migrated'));
         return redirect()->back();
     });
     Route::get('/migrate-fresh-seed', function (){
         App::setLocale(session('locale'));
-        //Artisan::call('migrate:fresh --seed');
+        Artisan::call('migrate:fresh --seed');
         toastr()->success(Artisan::output(), __('notification.fresh_migrated_seed'));
         return redirect()->back();
     });

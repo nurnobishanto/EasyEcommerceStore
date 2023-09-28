@@ -2,6 +2,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DeliveryZoneController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -67,6 +68,13 @@ Route::get('/delivery-zones/trashed',[DeliveryZoneController::class,'trashed_lis
 Route::get('/delivery-zones/trashed/{delivery_zone}/restore',[DeliveryZoneController::class,'restore'])->middleware('permission:delivery_zone_manage')->name('delivery-zones.restore');
 Route::get('/delivery-zones/trashed/{delivery_zone}/delete',[DeliveryZoneController::class,'force_delete'])->middleware('permission:delivery_zone_manage')->name('delivery-zones.force_delete');
 Route::resource('/delivery-zones',DeliveryZoneController::class)->middleware('permission:delivery_zone_manage');
+
+//Payment methods
+Route::get('/payment-methods/trashed',[PaymentMethodController::class,'trashed_list'])->middleware('permission:payment_method_manage')->name('payment-methods.trashed');
+Route::get('/payment-methods/trashed/{payment_method}/restore',[PaymentMethodController::class,'restore'])->middleware('permission:payment_method_manage')->name('payment-methods.restore');
+Route::get('/payment-methods/trashed/{payment_method}/delete',[PaymentMethodController::class,'force_delete'])->middleware('permission:payment_method_manage')->name('payment-methods.force_delete');
+Route::resource('/payment-methods',PaymentMethodController::class)->middleware('permission:payment_method_manage');
+
 
 
 //Site Setting

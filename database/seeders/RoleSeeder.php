@@ -155,7 +155,7 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
-                'group_name' => 'Delivery Zone',
+                'group_name' => 'DeliveryZone',
                 'permissions' => [
                     'delivery_zone_manage',
                     'delivery_zone_list',
@@ -163,6 +163,17 @@ class RoleSeeder extends Seeder
                     'delivery_zone_update',
                     'delivery_zone_delete',
                     'delivery_zone_create',
+                ]
+            ],
+            [
+                'group_name' => 'PaymentMethod',
+                'permissions' => [
+                    'payment_method_manage',
+                    'payment_method_list',
+                    'payment_method_view',
+                    'payment_method_update',
+                    'payment_method_delete',
+                    'payment_method_create',
                 ]
             ],
 

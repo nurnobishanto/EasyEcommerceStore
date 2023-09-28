@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\DeliveryZone;
 use App\Models\Order;
+use App\Models\PaymentMethod;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,19 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
+    public function payment_method(Request $request){
+        $id = $request->input('id');
+        $pm =  PaymentMethod::find($id);
+        if($pm){
+            return response()->json([
+                'message' => $pm->description,
+            ]);
+        }
+        return response()->json([
+            'message' => '',
+        ]);
+
+    }
 
     public function addToCart(Request $request)
     {
@@ -115,6 +129,16 @@ class CartController extends Controller
             'address' => 'required',
             'delivery_zone_id' => 'required',
         ]);
+        if(getSetting('payment_method') == 'show'){
+            $request->validate([
+                'payment_method_id' => 'required',
+                'trxid' => 'required',
+                'paid_amount' => 'required',
+                'sent_from' => 'required',
+
+            ]);
+        }
+
 
         $admin =  Admin::first();
         $delivery_zone = DeliveryZone::find($request->delivery_zone_id);
@@ -130,6 +154,14 @@ class CartController extends Controller
             'created_by' => $admin->id,
             'updated_by' => $admin->id,
         ]);
+        if(getSetting('payment_method') == 'show'){
+            $order->payment_method_id = $request->payment_method_id;
+            $order->trxid = $request->trxid;
+            $order->sent_from = $request->sent_from;
+            $order->paid_amount = $request->paid_amount;
+        }
+
+
         $cart = session()->get('cart', []);
         $subtotal = 0;
         $productsWithPivot = [];

@@ -231,4 +231,14 @@ return [
     'site_privacy' => 'Site Privacy Policy',
     'site_return_policy' => 'Site Return Policy',
     'page_content' => 'Page Content',
+    'payment_method' => 'Payment Method',
+    'payment_methods' => 'Payment Methods',
+    'create_payment_method' => 'Create Payment Method',
+    'enter_payment_method' => 'Enter Payment Method Name',
+    'edit_payment_method' => 'Edit Payment Method',
+    'update_payment_method' => 'Update Payment Method',
+    'delete_payment_method' => 'Delete Payment Method',
+    'view_payment_method' => 'View Payment Method',
+    'account_no' => 'Account No',
+    'enter_account_no' => 'Enter account no'
 ];
