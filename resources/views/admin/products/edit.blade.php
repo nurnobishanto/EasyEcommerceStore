@@ -49,32 +49,32 @@
                                     <input id="slug" value="{{$product->slug}}" name="slug" class="form-control" placeholder="{{ __('global.enter_slug')}}">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for="price">{{ __('global.price')}}<span class="text-danger"> *</span></label>
-                                    <input id="price" value="{{$product->price}}" name="price" class="form-control" placeholder="{{ __('global.enter_price')}}">
+                                    <input id="price" type="number" value="{{$product->price}}" name="price" class="form-control" placeholder="{{ __('global.enter_price')}}">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for="regular_price">{{ __('global.regular_price')}}</label>
-                                    <input id="regular_price" value="{{$product->regular_price}}" name="regular_price" class="form-control" placeholder="{{ __('global.enter_regular_price')}}">
+                                    <input id="regular_price" type="number" value="{{$product->regular_price}}" name="regular_price" class="form-control" placeholder="{{ __('global.enter_regular_price')}}">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for="quantity">{{ __('global.quantity')}}<span class="text-danger"> *</span></label>
-                                    <input id="quantity" value="{{$product->quantity}}" name="quantity" class="form-control" placeholder="{{ __('global.enter_quantity')}}">
+                                    <input id="quantity" type="number" value="{{$product->quantity}}" name="quantity" class="form-control" placeholder="{{ __('global.enter_quantity')}}">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for="sku">{{ __('global.sku')}}</label>
                                     <input id="sku" name="sku" value="{{$product->sku}}" class="form-control" placeholder="{{ __('global.enter_sku')}}">
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="categories">{{__('global.select_category')}}<span class="text-danger"> *</span></label>
                                     <select name="categories[]" class="select2 form-control" id="categories" multiple>
