@@ -126,7 +126,7 @@
     function updateTotalwithDeliveryCharge() {
 
         var selectedOption = $('#delivery_zone_id :selected');
-        var charge = parseFloat(selectedOption.data('charge')) || 80;
+        var charge = parseFloat(selectedOption.data('charge')) || 0;
         var subtotal = parseFloat($('.product_sub_total:first').html());
         var discount = parseFloat($('#discount_amount').text())|| 0;
         var totalAmount = subtotal + charge;
