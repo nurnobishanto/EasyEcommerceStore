@@ -8,7 +8,9 @@
                         <div class="carousel-item {{$active}}">
                             <img src="{{ asset('uploads/'.$slider->background) }}" class="d-block w-100" alt="{{$slider->title}}">
                             <div class="carousel-caption d-none d-md-block">
+                                @if($slider->image)
                                 <img src="{{ asset('uploads/'.$slider->image) }}" class="text-center" alt="{{$slider->title}}">
+                                @endif
                                 <h5>{!! $slider->title !!}</h5>
                                 <p>{!! $slider->description !!}</p>
                             </div>
