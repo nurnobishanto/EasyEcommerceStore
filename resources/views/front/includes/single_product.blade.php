@@ -28,9 +28,9 @@
                 </a>
             </h2>
             <div>
-                <span class="text-dark">{{getSetting('currency')}} {{$product->price}}</span>
+                <span class="text-dark">{{getSetting('currency')}}{{$product->price}}</span>
                 @if($product->regular_price)
-                <span class="text-decoration-line-through text-muted">{{getSetting('currency')}} {{$product->regular_price}}</span>
+                <span class="text-decoration-line-through text-muted">{{getSetting('currency')}}{{$product->regular_price}}</span>
                 @endif
             </div>
             @if($product->quantity > 0)
