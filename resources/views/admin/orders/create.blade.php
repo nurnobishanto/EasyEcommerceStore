@@ -61,6 +61,42 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
+                                    <label for="payment_method_id" class="form-label">Payment Method</label>
+                                    <select id="payment_method_id" class="form-control" name="payment_method_id" >
+                                        <option value="">Select Payment Method</option>
+                                        <option value="cod">Cash on Delivery</option>
+                                        @foreach(paymentMethods() as $pm)
+                                            <option value="{{$pm->id}}">{{$pm->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="trxid" class="form-label">TrxID</label>
+                                    <input  id="trxid" class="form-control"  name="trxid" placeholder="Enter Transaction id">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="paid_amount" class="form-label">Paid Amount</label>
+                                    <input  id="paid_amount" type="number"  class="form-control" name="paid_amount" placeholder="Enter amount">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="discount_percent" class="form-label">Discount %</label>
+                                    <input  id="discount_percent" type="number" value="{{getSetting('payment_discount')}}" class="form-control" name="discount_percent" placeholder="Enter Discount in %">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="max_discount" class="form-label">Max Discount Amount</label>
+                                    <input  id="max_discount" type="number" value="{{getSetting('payment_max_discount')}}" class="form-control" name="max_discount" placeholder="Enter max discount amount">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
                                     <label for="delivery_zone_id">{{__('global.select_delivery_zone')}}<span class="text-danger">*</span></label>
                                     <select name="delivery_zone_id" class="select2 form-control" id="delivery_zone_id" >
                                         <option value="">{{__('global.select_delivery_zone')}}</option>
@@ -81,7 +117,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="product">{{__('global.select_products')}}<span class="text-danger">*</span></label>
                                     <select name="" class="select2 form-control" id="product">

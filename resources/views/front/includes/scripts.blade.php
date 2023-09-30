@@ -11,6 +11,7 @@
                     $('.checkout').removeClass('d-none')
                     $('.cart-count').text(response.totalItemCount)
                     updateCartInfo(response.cartList, response.totalItemCount, response.subtotal)
+
                 } else {
                     $('.cart-empty').addClass('d-block')
                     $('.cart-empty').removeClass('d-none')
@@ -21,12 +22,14 @@
                     $('.cart-button').html('');
                     $('.cart-list').html('Cart is empty');
                     $('.cart-count').text(0)
+
                 }
             },
             error: function(xhr, status, error) {
                 console.log('Status :'+status+', Error: '+error+', xhr:'+xhr)
             }
         });
+
     }
     function updateCartInfo(cartList, totalItemCount, subtotal) {
         // Update your HTML elements or template here to display the cart information
@@ -74,6 +77,8 @@
             '<a href="{{route('products')}}" class="btn btn-primary">Continue Shopping</a>' +
             '<a href="{{route('checkout')}}" class="btn btn-danger">Checkout</a>' +
             '</div>');
+        updateTotalwithDeliveryCharge();
+        paymentMethodInfo();
     }
 
     function removeFromCart(productId){
@@ -97,7 +102,6 @@
             url: '/cart/minus',
             data: { product_id: productId },
             success: function(response) {
-
                 getCartInfo()
             }
         });
@@ -115,30 +119,62 @@
 
                 })
                 getCartInfo()
+
             }
         });
     }
     function updateTotalwithDeliveryCharge() {
-        var selectedOption = $('#delivery_zone_id').find(':selected');
-        var charge = selectedOption.length > 0 ? parseFloat(selectedOption.data('charge')) : 80;
-        var subtotal = $('.product_sub_total:last').text();
-        var totalAmount = parseFloat(subtotal) + charge;
-        $('.total_amount').text(totalAmount);
+
+        var selectedOption = $('#delivery_zone_id :selected');
+        var charge = parseFloat(selectedOption.data('charge')) || 80;
+        var subtotal = parseFloat($('.product_sub_total:first').html());
+        var discount = parseFloat($('#discount_amount').text())|| 0;
+        var totalAmount = subtotal + charge;
+
+        $('#delivery_charge').text(charge);
+        $('#total_amount').text(totalAmount - discount);
+
 
     }
     function paymentMethodInfo() {
          var id = $('#payment_method_id').val();
         $('#payment_description').text('');
-        $.ajax({
-            type: 'POST',
-            url: '/payment-method',
-            data: { id: id },
+         if (id === 'cod' || id === ''){
+             $('#payment_details').removeClass('d-block');
+             $('#payment_details').addClass('d-none');
+             var subtotal = parseFloat($('.product_sub_total').html());
+             var charge = parseFloat($('#delivery_charge').text());
+             var totalAmount = subtotal + charge ;
+             $('#total_amount').text(totalAmount);
+             $('#discount_amount').text(0)
+         }else {
+             $('#payment_details').removeClass('d-none')
+             $('#payment_details').addClass('d-block')
+             $.ajax({
+                 type: 'POST',
+                 url: '/payment-method',
+                 data: { id: id },
+                 success: function(response) {
+                     $('#payment_description').text(response.message);
 
-            success: function(response) {
-                $('#payment_description').text(response.message);
-            }
-        });
 
+                     var subtotal = parseFloat($('.product_sub_total:last').html());
+                     var charge = parseFloat($('#delivery_charge').text());
+
+                     var discount_rate = parseFloat('{{getSetting('payment_discount')}}'); // Parse as a float
+                     var max_discount = parseFloat('{{getSetting('payment_max_discount')}}'); // Parse as a float
+                     var discount = (discount_rate / 100) * subtotal;
+                     var totalAmount = subtotal+charge;
+
+                     if (discount > max_discount){
+                         discount = max_discount;
+                     }
+                     $('#discount_amount').text(discount)
+                     $('#total_amount').text(totalAmount-discount);
+
+                 }
+             });
+         }
 
     }
     function orderNow(productId){
@@ -154,6 +190,7 @@
 
                 })
                 getCartInfo()
+                updateTotalwithDeliveryCharge()
                 window.location.replace("{{route('checkout')}}");
             }
         });
@@ -166,8 +203,10 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        getCartInfo();
         updateTotalwithDeliveryCharge();
-        paymentMethodInfo()
+        paymentMethodInfo();
+
         // Listen for changes in the select element
         $('#delivery_zone_id').on('change', function () {
             updateTotalwithDeliveryCharge();
@@ -189,11 +228,13 @@
                         icon: response.status,
 
                     })
-                    getCartInfo()
+                    getCartInfo();
+
                 }
             });
         });
-        getCartInfo()
+
+
 
         var phoneInput = $('#phone');
         var validationMessage = $('#validationMessage');

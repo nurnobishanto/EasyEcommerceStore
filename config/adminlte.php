@@ -376,6 +376,11 @@ return [
                     'url' => 'admin/site-setting'
                 ],
                 [
+                    'text' => 'checkout_setting',
+                    'can' => 'checkout_setting_manage',
+                    'url' => 'admin/checkout-setting'
+                ],
+                [
                     'text' => 'header_footer_code',
                     'can' => 'code_setting_manage',
                     'url' => 'admin/code-setting'

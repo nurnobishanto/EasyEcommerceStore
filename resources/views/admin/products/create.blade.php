@@ -87,7 +87,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="brand_id">{{__('global.select_brand')}}<span class="text-danger"> *</span></label>
+                                    <label for="brand_id">{{__('global.select_brand')}}</label>
                                     <select name="brand_id" class="select2 form-control" id="brand_id" >
                                         <option value="">{{__('global.select_brand')}}</option>
                                         @foreach($brands as $brand)

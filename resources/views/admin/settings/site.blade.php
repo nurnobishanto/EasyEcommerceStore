@@ -131,33 +131,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="currency">{{ __('global.currency')}}</label>
-                                    <input id="currency"  value="{{getSetting('currency')}}" name="currency" class="form-control" placeholder="{{ __('global.currency')}}">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="payment_method">{{ __('global.payment_method')}}</label>
-                                    <select id="payment_method"  name="payment_method" class="form-control">
-                                        <option value="show" @if(getSetting('payment_method') == 'show') selected @endif>Show</option>
-                                        <option value="hide" @if(getSetting('payment_method') == 'hide') selected @endif>Hide</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="inquiry_number_one">{{ __('global.inquiry_number_one')}}</label>
-                                    <input id="inquiry_number_one"  value="{{getSetting('inquiry_number_one')}}" name="inquiry_number_one" class="form-control" placeholder="{{ __('global.inquiry_number_one')}}">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="inquiry_number_two">{{ __('global.inquiry_number_two')}}</label>
-                                    <input id="inquiry_number_two"  value="{{getSetting('inquiry_number_two')}}" name="inquiry_number_two" class="form-control" placeholder="{{ __('global.inquiry_number_two')}}">
-                                </div>
-                            </div>
+
+
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="support_number">{{ __('global.support_number')}}</label>

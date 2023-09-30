@@ -25,6 +25,8 @@ class Order extends Model
         'trxid',
         'paid_amount',
         'sent_from',
+        'discount_percent',
+        'max_discount',
     ];
     protected static function boot()
     {

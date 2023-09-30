@@ -60,7 +60,43 @@
                                     <textarea id="order_note" name="order_note"  class="form-control" placeholder="{{ __('global.enter_order_note')}}">{{$order->order_note}}</textarea>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="payment_method_id" class="form-label">Payment Method</label>
+                                    <select id="payment_method_id" class="form-control" name="payment_method_id" >
+                                        <option value="">Select Payment Method</option>
+                                        <option @if($order->payment_method_id === 'cod') selected @endif  value="cod">Cash on Delivery</option>
+                                        @foreach(paymentMethods() as $pm)
+                                            <option @if($order->payment_method_id === $pm->id) selected @endif  value="{{$pm->id}}">{{$pm->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="trxid" class="form-label">TrxID</label>
+                                    <input  id="trxid" class="form-control" value="{{$order->trxid}}" name="trxid" placeholder="Enter Transaction id">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="paid_amount" class="form-label">Paid Amount</label>
+                                    <input  id="paid_amount" type="number" value="{{$order->paid_amount}}" class="form-control" name="paid_amount" placeholder="Enter amount">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="discount_percent" class="form-label">Discount %</label>
+                                    <input  id="discount_percent" type="number" value="{{$order->discount_percent}}" class="form-control" name="discount_percent" placeholder="Enter Discount in %">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="max_discount" class="form-label">Max Discount Amount</label>
+                                    <input  id="max_discount" type="number" value="{{$order->max_discount}}" class="form-control" name="max_discount" placeholder="Enter max discount amount">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="delivery_zone_id">{{__('global.select_delivery_zone')}}<span class="text-danger">*</span></label>
                                     <select name="delivery_zone_id" class="select2 form-control" id="delivery_zone_id" >
@@ -71,7 +107,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="product">{{__('global.select_products')}}<span class="text-danger">*</span></label>
                                     <select name="product" class="select2 form-control" id="product">

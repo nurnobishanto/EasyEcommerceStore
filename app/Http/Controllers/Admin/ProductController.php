@@ -43,7 +43,6 @@ class ProductController extends Controller
             'status' => 'required|in:active,deactivate',
             'thumbnail' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
             'gallery.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
-            'brand_id' => 'exists:brands,id',
             'categories' => 'required',
         ]);
         $imagePath = null;
@@ -106,9 +105,13 @@ class ProductController extends Controller
             'status' => 'required|in:active,deactivate',
             'thumbnail' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
             'gallery.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
-            'brand_id' => 'exists:brands,id',
             'categories' => 'required',
         ]);
+
+        if ($request->has('categories')) {
+            $product->categories()->detach();
+            $product->categories()->attach($request->input('categories'));
+        }
         // Remove selected images
         if ($request->has('remove_images')) {
             foreach ($request->input('remove_images') as $image) {

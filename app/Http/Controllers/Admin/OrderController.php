@@ -59,6 +59,10 @@ class OrderController extends Controller
             'address' => $request->address,
             'order_note' => $request->order_note,
             'delivery_zone_id' => $request->delivery_zone_id,
+            'paid_amount' => $request->paid_amount??0,
+            'trxid' => $request->trxid,
+            'discount_percent' => $request->discount_percent??0,
+            'max_discount' => $request->max_discount??0.0,
             'status' => $request->status,
             'subtotal' => 0,
             'delivery_charge' => 0,
@@ -96,6 +100,10 @@ class OrderController extends Controller
         }
 
         $order->subtotal = $orderSubTotal;
+        if ( $request->input('payment_method_id') ==='cod' || $request->input('payment_method_id') ===''){
+        }else{
+            $order->payment_method_id = $request->input('payment_method_id');
+        }
         $order->update();
         toastr()->success($order->name.__('global.created_success'),__('global.order').__('global.created'));
         return redirect()->route('admin.orders.index');
@@ -124,7 +132,6 @@ class OrderController extends Controller
             'name' => 'required',
             'phone' => 'required',
             'address' => 'required',
-            'status' => 'required',
             'product_ids' => 'required',
             'product_quantities' => 'required',
             'delivery_zone_id' => 'required',
@@ -161,14 +168,20 @@ class OrderController extends Controller
             }
             $product->update();
         }
-
+        if ( $request->input('payment_method_id') ==='cod' || $request->input('payment_method_id') ===''){
+        }else{
+            $order->payment_method_id = $request->input('payment_method_id');
+        }
         // 4. Update the Order
         $order->name = $request->input('name');
         $order->phone = $request->input('phone');
         $order->address = $request->input('address');
         $order->order_note = $request->input('order_note');
         $order->delivery_zone_id = $request->input('delivery_zone_id');
-        $order->status = $request->input('status');
+        $order->discount_percent = $request->input('discount_percent')??0.0;
+        $order->max_discount = $request->input('max_discount')??0.0;
+        $order->paid_amount = $request->input('paid_amount')??0.0;
+        $order->trxid = $request->input('trxid');
         $order->updated_by = auth()->user()->id;
 
         // Handle selected products for update
@@ -291,7 +304,7 @@ class OrderController extends Controller
         $dompdf->render();
         $pdfFileName = $order->order_id . '_invoice.pdf';
         $pdfPath = public_path('pdfs/' . $pdfFileName);
-        $dompdf->stream($pdfPath);
+        $dompdf->stream($pdfFileName);
 
         return redirect(route('admin.orders.index'));
     }

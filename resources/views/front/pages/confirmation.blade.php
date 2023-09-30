@@ -32,6 +32,16 @@
                                     <td>{{$order->order_note}}</td>
                                 </tr>
                                 <tr>
+                                    <th>Payment Method</th>
+                                    <th>
+                                        @if($order->payment_method)
+                                            {{$order->payment_method->name}}
+                                        @else
+                                            Cash On Delivery
+                                        @endif
+                                    </th>
+                                </tr>
+                                <tr>
                                     <th>Order Status</th>
                                     <th class="text-uppercase">{{$order->status}}</th>
                                 </tr>
@@ -73,13 +83,33 @@
                                     <th>{{getSetting('currency')}}{{$order->subtotal}}</th>
                                 </tr>
                                 <tr>
-                                    <th class="text-end" colspan="3">Delivery Charge</th>
-                                    <th>{{getSetting('currency')}}{{$order->delivery_charge}}</th>
+                                    <th class="text-end text-danger" colspan="3">Delivery Charge</th>
+                                    <th class="text-danger">+ {{getSetting('currency')}}{{$order->delivery_charge}}</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-end text-success" colspan="3">Discount</th>
+                                    @php
+                                    $discount  = ($order->discount_percent/100)*$order->subtotal;
+                                    if ($discount>$order->max_discount){
+                                        $discount = $order->max_discount;
+                                    }
+                                    @endphp
+                                    <th class="text-success">- {{getSetting('currency')}}{{$discount}}</th>
                                 </tr>
                                 <tr>
                                     <th class="text-end" colspan="3">Total</th>
-                                    <th>{{getSetting('currency')}}{{$order->delivery_charge + $order->subtotal}}</th>
+                                    <th>{{getSetting('currency')}}{{($order->delivery_charge + $order->subtotal) - $discount}}</th>
                                 </tr>
+                                @if($order->payment_method)
+                                <tr>
+                                    <th class="text-end" colspan="3">Paid</th>
+                                    <th>{{getSetting('currency')}}{{$order->paid_amount}}</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-end" colspan="3">Due</th>
+                                    <th>{{getSetting('currency')}}{{($order->delivery_charge + $order->subtotal) -($discount - $order->paid_amount) }}</th>
+                                </tr>
+                                @endif
                                 </tfoot>
                             </table>
                         </div>

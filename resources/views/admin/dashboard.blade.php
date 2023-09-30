@@ -133,8 +133,13 @@
 
                                 <td>{{$order->id}}</td>
                                 <td>{{$order->order_id}}</td>
-
-                                <td>{{$order->subtotal}} + {{$order->delivery_charge}} = {{$order->subtotal+$order->delivery_charge}}</td>
+                                @php
+                                    $discount  = ($order->discount_percent/100)*$order->subtotal;
+                                    if ($discount>$order->max_discount){
+                                        $discount = $order->max_discount;
+                                    }
+                                @endphp
+                                <td>{{$order->subtotal}} + {{$order->delivery_charge}} - {{$discount}} = {{$order->subtotal + $order->delivery_charge - $discount}}</td>
                                 <td>{{$order->delivery_zone->name}}</td>
                                 <td>{{$order->products->count() }}</td>
                                 <td>

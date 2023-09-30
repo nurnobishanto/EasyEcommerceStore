@@ -10,6 +10,9 @@ class GlobalSettingController extends Controller
     public function site_setting(){
         return view('admin.settings.site');
     }
+    public function checkout_setting(){
+        return view('admin.settings.checkout');
+    }
     public function code_setting(){
         return view('admin.settings.code');
     }
@@ -20,13 +23,11 @@ class GlobalSettingController extends Controller
 
         setSetting('site_name',trim($request->site_name));
         setSetting('site_address',trim($request->site_address));
-        setSetting('currency',trim($request->currency));
-        setSetting('inquiry_number_one',trim($request->inquiry_number_one));
-        setSetting('inquiry_number_two',trim($request->inquiry_number_two));
+
         setSetting('site_tagline',trim($request->site_tagline));
         setSetting('home_slider',trim($request->home_slider));
         setSetting('site_description',trim($request->site_description));
-        setSetting('payment_method',trim($request->payment_method));
+
 
         setSetting('top_left_text',trim($request->top_left_text));
         setSetting('top_right_text',trim($request->top_right_text));
@@ -76,8 +77,19 @@ class GlobalSettingController extends Controller
         setSetting('site_privacy',trim($request->site_privacy));
         setSetting('site_return_policy',trim($request->site_return_policy));
         setSetting('site_terms',trim($request->site_terms));
-
         toastr()->success(__('global.page_content').__('global.updated'));
+        return redirect()->back();
+    }
+    public function checkout_setting_update(Request $request){
+        setSetting('currency',trim($request->currency));
+        setSetting('checkout_description',trim($request->checkout_description));
+        setSetting('payment_method',trim($request->payment_method));
+        setSetting('dc_required',trim($request->dc_required));
+        setSetting('payment_discount',trim($request->payment_discount??0));
+        setSetting('payment_max_discount',trim($request->payment_max_discount??0));
+        setSetting('inquiry_number_one',trim($request->inquiry_number_one));
+        setSetting('inquiry_number_two',trim($request->inquiry_number_two));
+        toastr()->success(__('global.checkout_setting').__('global.updated'));
         return redirect()->back();
     }
 }

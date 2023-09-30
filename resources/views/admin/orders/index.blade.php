@@ -36,23 +36,33 @@
                                 <th>{{__('global.sl')}}</th>
                                 <th>{{__('global.order_id')}}</th>
                                 <th>{{__('global.order_by')}}</th>
-                                <th>{{__('global.price')}}</th>
-                                <th>{{__('global.delivery_zone')}}</th>
-                                <th>{{__('global.products')}}</th>
+                                <th width="125px">{{__('global.price')}}</th>
+                                <th width="150px">{{__('global.delivery_zone')}}</th>
                                 <th>{{__('global.status')}}</th>
-                                <th>{{__('global.action')}}</th>
+                                <th width="150px">{{__('global.action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @php $sl = 1 @endphp
                             @foreach($orders as $order)
                                 <tr>
 
-                                    <td>{{$order->id}}</td>
+                                    <td>{{$sl++}}</td>
                                     <td>{{$order->order_id}}</td>
                                     <td>{{$order->name}},<br>{{$order->phone}},<br>{{$order->address}}</td>
-                                    <td>Subtotal : {{$order->subtotal}}<br>D. Charge : {{$order->delivery_charge}}<br>Total : {{$order->subtotal+$order->delivery_charge}}</td>
-                                    <td>{{$order->delivery_zone->name}}</td>
-                                    <td>{{$order->products->count() }}</td>
+                                    @php
+                                        $discount  = ($order->discount_percent/100)*$order->subtotal;
+                                        if ($discount>$order->max_discount){
+                                            $discount = $order->max_discount;
+                                        }
+                                    @endphp
+                                    <td>Subtotal : {{$order->subtotal}}<br>D. Charge : {{$order->delivery_charge}}<br>Discount : {{$discount}}<br>Total : {{$order->subtotal+$order->delivery_charge-$discount}}</td>
+                                    <td>
+                                        D. Zone: {{$order->delivery_zone->name}}<br>
+                                        Pay. M: {{$order->payment_method->name??'Cash on Delivery'}}<br>
+                                        TrxID: {{$order->trxid??'---'}}<br>
+                                        Paid: {{$order->paid_amount??'0.00'}}<br>
+                                    </td>
                                     <td>
                                         @if($order->status=='pending') <span class="badge-warning badge">{{$order->status}}</span>
                                         @elseif($order->status=='received') <span class="badge-info badge">{{$order->status}}</span>
@@ -101,7 +111,6 @@
                                 <th>{{__('global.order_by')}}</th>
                                 <th>{{__('global.price')}}</th>
                                 <th>{{__('global.delivery_zone')}}</th>
-                                <th>{{__('global.products')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>

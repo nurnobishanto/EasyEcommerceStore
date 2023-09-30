@@ -240,5 +240,10 @@ return [
     'delete_payment_method' => 'Delete Payment Method',
     'view_payment_method' => 'View Payment Method',
     'account_no' => 'Account No',
-    'enter_account_no' => 'Enter account no'
+    'enter_account_no' => 'Enter account no',
+    'checkout_setting' => 'Checkout / Order Setting',
+    'checkout_description' => 'Checkout Description',
+    'payment_discount' => 'Payment Discount',
+    'payment_max_discount' => 'Payment Max Discount',
+    'dc_required' => 'Delivery Charge Required?',
 ];

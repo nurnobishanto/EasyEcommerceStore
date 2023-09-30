@@ -55,10 +55,12 @@
                                                 <td>
                                                     @if($order->payment_method)
                                                     Method : {{$order->payment_method->name}} ({{$order->payment_method->account_no}})<br>
-                                                    Paid Amount : {{$order->paid_amount}}{{getSetting('currency')}}<br>
-                                                    TrxID : {{$order->trxid}}<br>
-                                                    From : {{$order->sent_from}}<br>
+                                                    @else
+                                                        Method : Cash on Delivery<br>
                                                     @endif
+                                                        Paid Amount : {{$order->paid_amount}}{{getSetting('currency')}}<br>
+                                                        TrxID : {{$order->trxid}}<br>
+                                                        From : {{$order->sent_from}}<br>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -125,9 +127,29 @@
                                             <td>{{$order->delivery_charge}}</td>
                                         </tr>
                                         <tr>
-                                            <th colspan="5">Total</th>
-                                            <th>{{$order->delivery_charge + $order->subtotal}}</th>
+                                            <th class="text-end text-success" colspan="5">Discount {{$order->discount_percent}}%</th>
+                                            @php
+                                                $discount  = ($order->discount_percent/100)*$order->subtotal;
+                                                if ($discount>$order->max_discount){
+                                                    $discount = $order->max_discount;
+                                                }
+                                            @endphp
+                                            <th class="text-success">- {{getSetting('currency')}}{{$discount}}</th>
                                         </tr>
+                                        <tr>
+                                            <th class="text-end" colspan="5">Total</th>
+                                            <th>{{getSetting('currency')}}{{($order->delivery_charge + $order->subtotal) - $discount}}</th>
+                                        </tr>
+                                        @if($order->payment_method)
+                                            <tr>
+                                                <th class="text-end" colspan="5">Paid</th>
+                                                <th>{{getSetting('currency')}}{{$order->paid_amount}}</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-end" colspan="5">Due</th>
+                                                <th>{{getSetting('currency')}}{{($order->delivery_charge + $order->subtotal) -($discount - $order->paid_amount) }}</th>
+                                            </tr>
+                                        @endif
                                         </tfoot>
                                     </table>
                                 </div>

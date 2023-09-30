@@ -11,7 +11,7 @@
                     <div>
                         <div class="mb-8">
                             <h1 class="fw-bold mb-0">Checkout</h1>
-                            <p class="mb-0">অর্ডারটি কনফার্ম করতে আপনার নাম, ঠিকানা, মোবাইল নাম্বার, লিখে অর্ডার কনফার্ম করুন বাটনে ক্লিক করুন </p>
+                            <p class="mb-0">{{getSetting('checkout_description')}}</p>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="name" class="form-label">আপনার নাম <span class="text-danger"> *</span></label>
-                                                    <input type="text" id="name" name="name" class="form-control" placeholder="আপনার নাম ">
+                                                    <input type="text" id="name" value="{{old('name')}}" name="name" class="form-control" placeholder="আপনার নাম ">
                                                     @error('name')
                                                     <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -41,7 +41,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="phone" class="form-label">আপনার মোবাইল নম্বর <span class="text-danger"> *</span></label>
-                                                    <input type="tel" name="phone" id="phone" class="form-control" placeholder="আপনার মোবাইল নম্বর ">
+                                                    <input type="tel" value="{{old('phone')}}" name="phone" id="phone" class="form-control" placeholder="আপনার মোবাইল নম্বর ">
                                                     <p id="validationMessage"></p>
                                                     @error('phone')
                                                     <div class="text-danger">{{ $message }}</div>
@@ -51,7 +51,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="address" class="form-label">আপনার সম্পূর্ণ ঠিকানা <span class="text-danger"> *</span></label>
-                                                    <textarea  id="address" class="form-control" name="address" placeholder="আপনার সম্পূর্ণ ঠিকানা"></textarea>
+                                                    <textarea  id="address"   class="form-control" name="address" placeholder="আপনার সম্পূর্ণ ঠিকানা">{{old('address')}}</textarea>
                                                     @error('address')
                                                     <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -60,16 +60,16 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="order_note" class="form-label">অর্ডার নোট</label>
-                                                    <textarea  id="order_note" class="form-control" name="order_note" placeholder="Order Note"></textarea>
+                                                    <textarea  id="order_note" class="form-control" name="order_note" placeholder="Order Note">{{old('order_note')}}</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="delivery_zone_id" class="form-label">ডেলিভারি জোন <span class="text-danger"> *</span></label>
                                                     <select id="delivery_zone_id" class="form-control" name="delivery_zone_id" >
-                                                        <option value="">Select Delivery Zone</option>
+                                                        <option value="" data-charge="80">Select Delivery Zone</option>
                                                         @foreach(deliveryZones() as $zone)
-                                                            <option onclick="updateTotalwithDeliveryCharge()" value="{{$zone->id}}" data-charge="{{$zone->charge}}">{{$zone->name}} - {{getSetting('currency')}}{{$zone->charge}}</option>
+                                                            <option @if(old('delivery_zone_id') === $zone->id) selected @endif onclick="updateTotalwithDeliveryCharge()" value="{{$zone->id}}" data-charge="{{$zone->charge}}">{{$zone->name}} - {{getSetting('currency')}}{{$zone->charge}}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('delivery_zone_id')
@@ -77,14 +77,15 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                                @if(getSetting('payment_method') =='show')
+                                                @if(getSetting('payment_method') === 'show' || getSetting('dc_required') ==='yes')
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="payment_method_id" class="form-label">Payment Method</label>
                                                     <select id="payment_method_id" class="form-control" name="payment_method_id" >
                                                         <option value="">Select Payment Method</option>
+                                                        <option @if(old('payment_method_id') === 'cod') selected @endif  value="cod">Cash on Delivery</option>
                                                         @foreach(paymentMethods() as $pm)
-                                                            <option onclick="paymentMethodInfo()" value="{{$pm->id}}">{{$pm->name}}</option>
+                                                            <option @if(old('payment_method_id') === $pm->id) selected @endif onclick="paymentMethodInfo()" value="{{$pm->id}}">{{$pm->name}} @if(getSetting('payment_discount')>0) - {{getSetting('payment_discount')}}% Discount @endif</option>
                                                         @endforeach
                                                     </select>
                                                     <div class="mt-2" id="payment_description"></div>
@@ -93,38 +94,41 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-md-8">
-                                                        <div class="form-group">
-                                                            <label for="trxid" class="form-label">ট্রানজেকশন আইডি (TrxID) <span class="text-danger"> *</span></label>
-                                                            <input  id="trxid" class="form-control" name="trxid" placeholder="Enter Transaction id">
-                                                            @error('trxid')
-                                                            <div class="text-danger">{{ $message }}</div>
-                                                            @enderror
+                                            <div id="payment_details">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+                                                                <label for="trxid" class="form-label">ট্রানজেকশন আইডি (TrxID) <span class="text-danger"> *</span></label>
+                                                                <input  id="trxid" class="form-control" name="trxid" placeholder="Enter Transaction id">
+                                                                @error('trxid')
+                                                                <div class="text-danger">{{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="paid_amount" class="form-label">টাকার পরিমান <span class="text-danger"> *</span></label>
+                                                                <input  id="paid_amount" type="number" class="form-control" name="paid_amount" placeholder="Enter amount">
+                                                                @error('paid_amount')
+                                                                <div class="text-danger">{{ $message }}</div>
+                                                                @enderror
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="paid_amount" class="form-label">টাকার পরিমান <span class="text-danger"> *</span></label>
-                                                            <input  id="paid_amount" class="form-control" name="paid_amount" placeholder="Enter amount">
-                                                            @error('paid_amount')
-                                                            <div class="text-danger">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
 
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="sent_from" class="form-label">যে নাম্বার থেকে পাঠিয়েছেন <span class="text-danger"> *</span></label>
-                                                    <input  id="sent_from" class="form-control" name="sent_from" placeholder="আপনি যে নম্বরে টাকা পাঠিয়েছেন">
-                                                    @error('sent_from')
-                                                    <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label for="sent_from" class="form-label">যে নাম্বার থেকে পাঠিয়েছেন <span class="text-danger"> *</span></label>
+                                                        <input  id="sent_from" class="form-control" name="sent_from" placeholder="আপনি যে নম্বরে টাকা পাঠিয়েছেন">
+                                                        @error('sent_from')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
+
                                                 @endif
                                             <input type="submit" class="btn btn-danger" value="অর্ডার কনফার্ম করুন">
 
@@ -143,8 +147,10 @@
 
                                 </ul>
                                 <div class="card-footer cart-footer">
-                                    <p class="text-end">Delivery Charge : + {{getSetting('currency')}}<span class="delivery_charge">80</span></p>
-                                    <p class="text-end fw-bold">Total :  {{getSetting('currency')}}<span class="total_amount"></span></p>
+                                    <p class="text-end">Delivery Charge : + {{getSetting('currency')}}<span id="delivery_charge"></span></p>
+                                    <p class="text-end">Discount : - {{getSetting('currency')}}<span id="discount_amount"></span></p>
+                                    <p class="text-end fw-bold">Total :  {{getSetting('currency')}}<span id="total_amount"></span></p>
+
                                 </div>
                             </div>
                         </div>

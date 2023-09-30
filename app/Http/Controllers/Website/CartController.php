@@ -87,7 +87,6 @@ class CartController extends Controller
     public function getCart()
     {
         $cart = session()->get('cart', []);
-
         $cartList = [];
         $totalItemCount = 0;
         $subtotal = 0;
@@ -105,10 +104,7 @@ class CartController extends Controller
                     'total' => $product->price * $quantity,
                     'url' => route('product',['slug'=>$product->slug]),
                 ];
-
-
                 $cartList[] = $cartItem;
-
                 $totalItemCount += $quantity;
                 $subtotal += $cartItem['total'];
             }
@@ -116,7 +112,6 @@ class CartController extends Controller
 
         return response()->json([
             'cartList' => $cartList,
-
             'totalItemCount' => $totalItemCount,
             'subtotal' => $subtotal,
         ]);
@@ -129,14 +124,18 @@ class CartController extends Controller
             'address' => 'required',
             'delivery_zone_id' => 'required',
         ]);
-        if(getSetting('payment_method') == 'show'){
-            $request->validate([
-                'payment_method_id' => 'required',
-                'trxid' => 'required',
-                'paid_amount' => 'required',
-                'sent_from' => 'required',
 
-            ]);
+        if (getSetting('payment_method') == 'show') {
+            if ($request->payment_method_id === "cod" || $request->payment_method_id === ""){
+
+            }else{
+                $request->validate([
+                    'payment_method_id' => 'required',
+                    'trxid' => 'required',
+                    'paid_amount' => 'required',
+                    'sent_from' => 'required',
+                ]);
+            }
         }
 
 
@@ -154,13 +153,14 @@ class CartController extends Controller
             'created_by' => $admin->id,
             'updated_by' => $admin->id,
         ]);
-        if(getSetting('payment_method') == 'show'){
+        if (getSetting('payment_method') == 'show' && $request->payment_method_id !== 'cod' && !empty($request->payment_method_id)) {
             $order->payment_method_id = $request->payment_method_id;
             $order->trxid = $request->trxid;
             $order->sent_from = $request->sent_from;
             $order->paid_amount = $request->paid_amount;
+            $order->discount_percent = getSetting('payment_discount');
+            $order->max_discount = getSetting('payment_max_discount');
         }
-
 
         $cart = session()->get('cart', []);
         $subtotal = 0;
@@ -184,6 +184,7 @@ class CartController extends Controller
         DB::table('order_product')->insert($productsWithPivot);
         $order->subtotal = $subtotal;
         $order->update();
+
         Session()->put('cart',[]);
         toastr()->success($order->name.__('global.created_success'),__('global.order').__('global.created'));
         return redirect(route('success',['id'=>$order->id]));

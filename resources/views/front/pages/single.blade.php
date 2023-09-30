@@ -96,10 +96,12 @@
                                 <td class="text-danger">Stock Out</td>
                                 @endif
                             </tr>
+                            @if($product->brand)
                             <tr>
                                 <td>Brand:</td>
-                                <td>{{$product->brand->name}}</td>
+                                <td>{{$product->brand->name??'----'}}</td>
                             </tr>
+                            @endif
                             <tr>
                                 <td>Categories:</td>
                                 <td>
@@ -135,7 +137,7 @@
                     <div class="tab-pane fade show active" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab"
                          tabindex="0">
                         <div class="my-8">
-                            {!! $product->details !!}
+                            {!! $product->description !!}
                         </div>
                     </div>
                 </div>

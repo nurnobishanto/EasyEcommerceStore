@@ -123,9 +123,19 @@
                     <th class="text-end text-success" colspan="3">Paid Amount</th>
                     <th>{{getSetting('currency')}}{{$order->paid_amount}}</th>
                 </tr>
+                @php
+                    $discount  = ($order->discount_percent/100)*$order->subtotal;
+                    if ($discount>$order->max_discount){
+                        $discount = $order->max_discount;
+                    }
+                @endphp
+                <tr>
+                    <th class="text-end text-success" colspan="3">Discount {{$order->discount_percent}}%</th>
+                    <th class="text-success">- {{getSetting('currency')}}{{$discount}}</th>
+                </tr>
                 <tr>
                     <th class="text-end text-danger" colspan="3">Due Amount</th>
-                    <th>{{getSetting('currency')}}{{($order->delivery_charge + $order->subtotal) - $order->paid_amount}}</th>
+                    <th>{{getSetting('currency')}}{{($order->delivery_charge + $order->subtotal) - ($order->paid_amount + $discount)}}</th>
                 </tr>
             @endif
             </tfoot>

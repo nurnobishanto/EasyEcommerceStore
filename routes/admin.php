@@ -79,8 +79,10 @@ Route::resource('/payment-methods',PaymentMethodController::class)->middleware('
 
 //Site Setting
 Route::get('site-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'site_setting']);
+Route::get('checkout-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'checkout_setting']);
 Route::get('code-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'code_setting']);
 Route::get('page-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'page_setting']);
 Route::post('site-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'site_setting_update'])->name('site-setting');
+Route::post('checkout-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'checkout_setting_update'])->name('checkout-setting');
 Route::post('code-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'code_setting_update'])->name('code-setting');
 Route::post('page-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'page_setting_update'])->name('page-setting');
