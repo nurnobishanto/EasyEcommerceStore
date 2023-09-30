@@ -35,7 +35,10 @@
                 @include('front.includes.single_product',['product' => $product])
                 @endforeach
             </div>
-            @include('front.includes.pagination', ['products' => popularProducts() ])
+            <div class="row">
+                @include('front.includes.pagination', ['products' => popularProducts() ])
+            </div>
+
         </div>
     </section>
 @endsection
