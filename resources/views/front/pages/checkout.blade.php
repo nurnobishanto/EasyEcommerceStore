@@ -11,7 +11,7 @@
                     <div>
                         <div class="mb-8">
                             <h1 class="fw-bold mb-0">Checkout</h1>
-                            <p class="mb-0">{{getSetting('checkout_description')}}</p>
+                            <p class="mb-0">{!! getSetting('checkout_description') !!}</p>
                         </div>
                     </div>
                 </div>
