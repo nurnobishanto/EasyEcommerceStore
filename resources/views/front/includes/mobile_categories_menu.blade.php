@@ -17,7 +17,7 @@
             <ul class="mb-0 list-unstyled">
                 {{--                                        Mobile category--}}
                 @foreach(getCategories() as $category)
-                <li><a class="dropdown-item" href="{{route('category',['slug'=>$category->slug])}}">{{$category->name}}</a></li>
+                <li><a class="dropdown-item" href="{{route('category',['slug'=>$category->slug])}}">{{$category->name}} ({{countCategoryProducts($category->slug)}})</a></li>
                 @endforeach
 
             </ul>

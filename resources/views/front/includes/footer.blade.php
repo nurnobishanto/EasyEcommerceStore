@@ -21,6 +21,8 @@
                     <div class="col-12 col-sm-6 col-md-6">
                         <h6 class="mb-4">Get to know us</h6>
                         <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="{{route('about')}}" class="nav-link">About Us</a></li>
+                            <li class="nav-item mb-2"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
                             <li class="nav-item mb-2"><a href="{{route('terms')}}" class="nav-link">Terms & Conditions</a></li>
                             <li class="nav-item mb-2"><a href="{{route('privacy')}}" class="nav-link">Privacy Policy</a></li>
                             <li class="nav-item mb-2"><a href="{{route('return_policy')}}" class="nav-link">Return Policy</a></li>
@@ -29,8 +31,9 @@
                     <div class="col-12 col-sm-6 col-md-6">
                         <h6 class="mb-4">Important Links</h6>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="{{route('about')}}" class="nav-link">About Us</a></li>
-                            <li class="nav-item mb-2"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
+                            <li class="nav-item mb-2"><a href="{{route('products')}}" class="nav-link">All Products</a></li>
+                            <li class="nav-item mb-2"><a href="{{route('categories')}}" class="nav-link">All Categories</a></li>
+                            <li class="nav-item mb-2"><a href="{{route('new_products')}}" class="nav-link">New Products</a></li>
                             <li class="nav-item mb-2"><a href="{{route('track_order')}}" class="nav-link">Track Order</a></li>
                             <li class="nav-item mb-2"><a href="{{route('checkout')}}" class="nav-link">Checkout</a></li>
                         </ul>

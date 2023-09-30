@@ -25,8 +25,10 @@ Route::get('/success/{id}', [\App\Http\Controllers\Website\CartController::class
 
 
 Route::get('/',[\App\Http\Controllers\Website\HomeController::class,'index'])->name('home');
+Route::get('/categories',[\App\Http\Controllers\Website\HomeController::class,'categories'])->name('categories');
 Route::get('/category/{slug}',[\App\Http\Controllers\Website\HomeController::class,'category'])->name('category');
 Route::get('/products',[\App\Http\Controllers\Website\HomeController::class,'products'])->name('products');
+Route::get('/new-products',[\App\Http\Controllers\Website\HomeController::class,'new_products'])->name('new_products');
 Route::get('/checkout',[\App\Http\Controllers\Website\HomeController::class,'checkout'])->name('checkout');
 Route::get('/track-order',[\App\Http\Controllers\Website\HomeController::class,'track_order'])->name('track_order');
 Route::get('/about',[\App\Http\Controllers\Website\HomeController::class,'about'])->name('about');

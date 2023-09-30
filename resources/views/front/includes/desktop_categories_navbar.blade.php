@@ -13,7 +13,7 @@
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         @foreach(getCategories() as $category)
-            <li><a class="dropdown-item" href="{{route('category',['slug'=>$category->slug])}}">{{$category->name}}</a></li>
+            <li><a class="dropdown-item" href="{{route('category',['slug'=>$category->slug])}}">{{$category->name}} ({{countCategoryProducts($category->slug)}})</a></li>
         @endforeach
     </ul>
 </div>

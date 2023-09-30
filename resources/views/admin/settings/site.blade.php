@@ -97,6 +97,15 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
+                                    <label for="home_slider_text">{{ __('global.home_slider_text')}}</label>
+                                    <select id="home_slider_text"  name="home_slider_text" class="form-control">
+                                        <option value="show" @if(getSetting('home_slider') == 'show') selected @endif>Show</option>
+                                        <option value="hide" @if(getSetting('home_slider') == 'hide') selected @endif>Hide</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
                                     <label for="top_bar">{{ __('global.top_bar')}}</label>
                                     <select id="top_bar"  name="top_bar" class="form-control">
                                         <option value="show" @if(getSetting('top_bar') == 'show') selected @endif>Show</option>

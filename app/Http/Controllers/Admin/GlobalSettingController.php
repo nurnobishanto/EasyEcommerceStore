@@ -26,6 +26,7 @@ class GlobalSettingController extends Controller
 
         setSetting('site_tagline',trim($request->site_tagline));
         setSetting('home_slider',trim($request->home_slider));
+        setSetting('home_slider_text',trim($request->home_slider_text));
         setSetting('site_description',trim($request->site_description));
 
 

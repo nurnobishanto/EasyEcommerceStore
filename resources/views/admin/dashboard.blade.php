@@ -6,7 +6,27 @@
     <h1>{{__('global.dashboard')}}</h1>
 @stop
 @section('content')
+    <span>  Last Check : {{getSetting('subscription_last_check')??'1997-01-01'}} </span>
     <div class="row">
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-exclamation-triangle"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Expire date</span>
+                    <span class="info-box-number">{{getSetting('subscription_expire_date')??'1997-01-01'}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-bell"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Remain</span>
+                    <span class="info-box-number">{{getSetting('subscription_remaining')??'0'}} Days</span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix hidden-md-up"></div>
         <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
                 <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-shopping-cart"></i></span>

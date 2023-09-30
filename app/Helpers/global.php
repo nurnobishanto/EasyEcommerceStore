@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Models\Category;
 use App\Models\GlobalSetting;
 use App\Models\Product;
 use Illuminate\Support\Str;
@@ -10,6 +11,22 @@ if (!function_exists('myCustomFunction')) {
     function myCustomFunction($param)
     {
         // Your custom logic here
+    }
+
+}
+if (!function_exists('countCategoryProducts')) {
+
+    function countCategoryProducts($slug)
+    {
+        $category = Category::with('children.products', 'products')->where('slug',$slug)->first();
+        $parentCategoryProducts = $category->products;
+        $childCategoryProducts = $category->children->flatMap(function ($childCategory) {
+            return $childCategory->products;
+        });
+        $allProducts = $parentCategoryProducts->concat($childCategoryProducts);
+        $productIds = $allProducts->pluck('id');
+        return Product::whereIn('id', $productIds)->count();
+
     }
 
 }
@@ -113,7 +130,9 @@ if (!function_exists('coorHelper')) {
 
                 // Assuming you have a response array named $responseData
                 if (isset($responseData['status']) && $responseData['status']) {
-
+                    setSetting('subscription_expire_date',$responseData['product']['end_date']);
+                    setSetting('subscription_remaining',$responseData['remaining']);
+                    setSetting('subscription_last_check',date('Y-m-d',time()));
                 }
                 else if (isset($responseData['status']) && !$responseData['status'] && isset($responseData['product'])) {
                     header('Location: https://subscription.soft-itbd.com/expired/'.$responseData['product']['pid']); // Replace with your desired redirect URL

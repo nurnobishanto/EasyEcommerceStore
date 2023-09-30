@@ -204,6 +204,7 @@ return [
     'site_tagline' => 'Site Tagline',
     'enter_site_tagline' => 'Enter Site Tagline',
     'home_slider' => 'Home Page Slider',
+    'home_slider_text' => 'Home Page Slider Text',
     'site_favicon' => 'Site Favicon',
     'site_logo' => 'Site Logo',
     'mobile_category_menu' => 'Mobile category Menu',

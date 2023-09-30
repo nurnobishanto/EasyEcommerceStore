@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -14,10 +15,29 @@ class HomeController extends Controller
         $data =  array();
         return view('front.pages.home', $data);
     }
+    public function categories(){
+        $title = 'All Categories';
+        $categories = Category::where('parent_id',null)->get();
+        $products = Product::where('id',0)->paginate(5);
+        return view('front.pages.categories',compact(['categories','title','products']));
+    }
     public function category($slug){
-        $category = Category::where('slug',$slug)->first();
-        $products = $category->products()->paginate(20);
+
+        $category = Category::with('children.products', 'products')->where('slug',$slug)->first();
         if ($category){
+            $parentCategoryProducts = $category->products;
+            $childCategoryProducts = $category->children->flatMap(function ($childCategory) {
+                return $childCategory->products;
+            });
+            $allProducts = $parentCategoryProducts->concat($childCategoryProducts);
+            $productIds = $allProducts->pluck('id');
+            $products = Product::whereIn('id', $productIds)->paginate(20);
+
+            if ($category->children->count()>0){
+                $title = $category->name.' Category';
+                $categories = $category->children;
+                return view('front.pages.categories',compact(['categories','title','products']));
+            }
             return view('front.pages.category',compact(['products','category']));
         }else{
             abort(404);
@@ -27,7 +47,10 @@ class HomeController extends Controller
         $searchQuery = $request->input('query');
         $products = Product::where('status','active')->where('title', 'like', '%' . $searchQuery . '%')->paginate(20);
         return view('front.pages.products',compact('products'));
-
+    }
+    public function new_products(){
+        $products = Product::where('status','active')->orderBy('id','desc')->paginate(20);
+        return view('front.pages.products',compact('products'));
     }
     public function product($slug){
         $product = Product::where('slug',$slug)->first();

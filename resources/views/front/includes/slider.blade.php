@@ -7,6 +7,7 @@
                     <a href="{{$slider->url}}" @if($slider->target) target="{{$slider->target}}" @endif>
                         <div class="carousel-item {{$active}}">
                             <img src="{{ asset('uploads/'.$slider->background) }}" class="d-block w-100" alt="{{$slider->title}}">
+                            @if(getSetting('home_slider_text') ==='show')
                             <div class="carousel-caption d-none d-md-block">
                                 @if($slider->image)
                                 <img src="{{ asset('uploads/'.$slider->image) }}" class="text-center" alt="{{$slider->title}}">
@@ -14,6 +15,7 @@
                                 <h5>{!! $slider->title !!}</h5>
                                 <p>{!! $slider->description !!}</p>
                             </div>
+                            @endif
                         </div>
                     </a>
                     @php $active = '' @endphp
