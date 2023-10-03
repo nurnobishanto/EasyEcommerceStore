@@ -30,6 +30,18 @@ class Product extends Model
     protected $casts = [
         'gallery' => 'array',
     ];
+
+    // Define the default order
+    protected $defaultOrder = [
+        'created_at' => 'desc',
+    ];
+
+    public function scopeDefaultOrder($query)
+    {
+        foreach ($this->defaultOrder as $column => $direction) {
+            $query->orderBy($column, $direction);
+        }
+    }
     public function createdBy()
     {
         return $this->belongsTo(Admin::class, 'created_by');
