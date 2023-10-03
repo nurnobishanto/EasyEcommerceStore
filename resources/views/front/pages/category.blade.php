@@ -25,7 +25,7 @@
                             @include('front.includes.single_product',['$product'=>$product])
                         @endforeach
                     </div>
-                    @if($products->hasMorePages())
+                    @if($products->count()>=20)
                         @include('front.includes.pagination', ['products' => $products])
                     @endif
                 </div>
