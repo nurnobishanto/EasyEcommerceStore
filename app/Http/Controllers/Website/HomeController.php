@@ -49,7 +49,7 @@ class HomeController extends Controller
         return view('front.pages.products',compact('products'));
     }
     public function new_products(){
-        $products = Product::where('status', 'active')
+        $products = Product::where('status', 'active')->defaultOrder()
            // ->orderBy('created_at', 'desc')
             ->paginate(20);
         return view('front.pages.products',compact('products'));
