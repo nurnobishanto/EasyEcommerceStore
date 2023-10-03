@@ -48,9 +48,10 @@ class HomeController extends Controller
         $products = Product::where('status','active')->where('title', 'like', '%' . $searchQuery . '%')->paginate(20);
         return view('front.pages.products',compact('products'));
     }
-    public function new_products(Request $request){
-        $searchQuery = $request->input('query');
-        $products = Product::where('status','active')->where('title', 'like', '%' . $searchQuery . '%')->orderBy('id','desc')->paginate(20);
+    public function new_products(){
+        $products = Product::where('status', 'active')
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
         return view('front.pages.products',compact('products'));
 
     }
@@ -72,7 +73,10 @@ class HomeController extends Controller
         $data = array();
         $data['msg'] = '';
         if ($searchQuery){
-            $orders = Order::where('id',$searchQuery)->orWhere('order_id',$searchQuery)->orWhere('phone like %',$searchQuery.'%')->get();
+            $orders = Order::where('id', $searchQuery)
+                ->orWhere('order_id', $searchQuery)
+                ->orWhere('phone', 'like', '%' . $searchQuery . '%')
+                ->get();
             $data['orders'] = $orders;
             if ($orders->count()>0){
                 $data['msg'] = '<span class="text-success">'.$orders->count().' order found!</span>';
