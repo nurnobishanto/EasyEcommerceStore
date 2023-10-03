@@ -33,7 +33,7 @@ class Product extends Model
 
     // Define the default order
     protected $defaultOrder = [
-        'created_at' => 'desc',
+        'created_at' => 'asc',
     ];
 
     public function scopeDefaultOrder($query)
