@@ -160,7 +160,7 @@
                                     }
                                 @endphp
                                 <td>{{$order->subtotal}} + {{$order->delivery_charge}} - {{$discount}} = {{$order->subtotal + $order->delivery_charge - $discount}}</td>
-                                <td>{{$order->delivery_zone->name}}</td>
+                                <td>{{$order->delivery_zone->name??'--'}}</td>
                                 <td>{{$order->products->count() }}</td>
                                 <td>
                                     @if($order->status=='pending') <span class="badge-warning badge">{{$order->status}}</span>
