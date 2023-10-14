@@ -14,6 +14,98 @@ if (!function_exists('myCustomFunction')) {
     }
 
 }
+
+if (!function_exists('pathaoStoreList')) {
+    function pathaoStoreList() {
+        issuePathaoToken();
+        $url = env('PATHAO_BASE_URL'). '/aladdin/api/v1/stores';
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . getSetting('pathao_access_token'),
+            'Content-Type: application/json',
+            'Accept: application/json',
+        ]);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            return false;
+        }
+        curl_close($ch);
+
+        if ($response === false || $response === 'Unauthorized.') {
+            toastr()->warning('Please Fix the Pathao Information');
+            return [];
+        }
+        $responseData = json_decode($response, true);
+        if ($responseData['code'] === 200) {
+            return $responseData['data']['data'];
+        }
+    }
+}
+if (!function_exists('apiRequest')) {
+    function apiRequest($url, $data) {
+        $dataString = json_encode($data);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($dataString)
+        ]);
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        if ($httpCode !== 200) {
+            setSetting('pathao_status', false);
+            return false;
+        }
+        $responseData = json_decode($response, true);
+        if ($responseData) {
+            setSetting('pathao_status', true);
+            if (isset($responseData['access_token'])) {
+                setSetting('pathao_access_token', $responseData['access_token']);
+            }
+            if (isset($responseData['refresh_token'])) {
+                setSetting('pathao_refresh_token', $responseData['refresh_token']);
+            }
+            return true;
+        } else {
+            setSetting('pathao_status', false);
+            return false;
+        }
+    }
+}
+if (!function_exists('issuePathaoToken')) {
+    function issuePathaoToken() {
+        $url = env('PATHAO_BASE_URL') . '/aladdin/api/v1/issue-token';
+        $data = [
+            'client_id' => env('PATHAO_CLIENT_ID'),
+            'client_secret' => env('PATHAO_CLIENT_SECRET'),
+            'username' => env('PATHAO_CLIENT_EMAIL'),
+            'password' => env('PATHAO_CLIENT_PASSWORD'),
+            'grant_type' => 'password',
+        ];
+        return apiRequest($url, $data);
+    }
+}
+if (!function_exists('refreshPathaoToken')) {
+    function refreshPathaoToken() {
+        $accessToken = getSetting('pathao_access_token');
+        if ($accessToken) {
+            return true;
+        }
+        $url = env('PATHAO_BASE_URL') . '/aladdin/api/v1/issue-token';
+        $data = [
+            'client_id' => env('PATHAO_CLIENT_ID'),
+            'client_secret' => env('PATHAO_CLIENT_SECRET'),
+            'refresh_token' => getSetting('pathao_refresh_token'),
+            'grant_type' => 'refresh_token',
+        ];
+        return apiRequest($url, $data);
+    }
+}
 if (!function_exists('countCategoryProducts')) {
 
     function countCategoryProducts($slug)
@@ -198,18 +290,22 @@ if (!function_exists('generateUniqueSlug')) {
         $originalSlug = $slug;
         $count = 2;
 
-        if($id){
-            while ($model::where($field, $slug)->where('id','!=',$id)->exists()) {
+        if ($id) {
+            while ($model::withTrashed()
+                ->where($field, $slug)
+                ->where('id', '!=', $id)
+                ->exists()) {
                 $slug = $originalSlug . $separator . $count;
                 $count++;
             }
-        }else{
-            while ($model::where($field, $slug)->exists()) {
+        } else {
+            while ($model::withTrashed()
+                ->where($field, $slug)
+                ->exists()) {
                 $slug = $originalSlug . $separator . $count;
                 $count++;
             }
         }
-
 
         return $slug;
     }

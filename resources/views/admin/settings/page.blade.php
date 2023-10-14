@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', __('global.page_content'))
+@section('title',$title)
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.page_content')}}</h1>
+            <h1>{{$title}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.page_content')}}</li>
+                <li class="breadcrumb-item active">{{$title}}</li>
             </ol>
 
         </div>
@@ -33,38 +33,20 @@
                                 </ul>
                             </div>
                         @endif
+                        <input name="slug" value="{{$slug}}" class="d-none">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="site_about">{{ __('global.site_about')}}</label>
-                                    <textarea id="site_about"  name="site_about" class="form-control summernote" placeholder="{{__('global.site_about')}}">{{getSetting('site_about')}}</textarea>
+                                    <label for="{{$heading}}">{{ __('global.'.$heading)}}</label>
+                                    <input id="{{$heading}}" value="{{getSetting($heading)}}"  name="{{$heading}}" class="form-control" placeholder="{{__('global.'.$heading)}}">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="site_contact">{{ __('global.site_contact')}}</label>
-                                    <textarea id="site_contact"  name="site_contact" class="form-control summernote" placeholder="{{__('global.site_contact')}}">{{getSetting('site_contact')}}</textarea>
+                                    <label for="{{$content}}">{{ __('global.'.$content)}}</label>
+                                    <textarea id="{{$content}}"  name="{{$content}}" class="form-control summernote" placeholder="{{__('global.'.$content)}}">{{getSetting($content)}}</textarea>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="site_privacy">{{ __('global.site_privacy')}}</label>
-                                    <textarea id="site_privacy"  name="site_privacy" class="form-control summernote" placeholder="{{__('global.site_privacy')}}">{{getSetting('site_privacy')}}</textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="site_terms">{{ __('global.site_terms')}}</label>
-                                    <textarea id="site_terms"  name="site_terms" class="form-control summernote" placeholder="{{__('global.site_terms')}}">{{getSetting('site_terms')}}</textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="site_return_policy">{{ __('global.site_return_policy')}}</label>
-                                    <textarea id="site_return_policy"  name="site_return_policy" class="form-control summernote" placeholder="{{__('global.site_return_policy')}}">{{getSetting('site_return_policy')}}</textarea>
-                                </div>
-                            </div>
-
                         </div>
 
                         @can('page_setting_manage')

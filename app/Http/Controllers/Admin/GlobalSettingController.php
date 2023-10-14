@@ -16,9 +16,7 @@ class GlobalSettingController extends Controller
     public function code_setting(){
         return view('admin.settings.code');
     }
-    public function page_setting(){
-        return view('admin.settings.page');
-    }
+
     public function site_setting_update(Request $request){
 
         setSetting('site_name',trim($request->site_name));
@@ -72,12 +70,57 @@ class GlobalSettingController extends Controller
         toastr()->success(__('global.header_footer_code').__('global.updated'));
         return redirect()->back();
     }
+    public function page_setting($slug){
+        $data = array();
+        $data['slug'] = $slug;
+        if ($slug == 'about'){
+            $data['title'] = 'About Us';
+            $data['heading'] = 'site_about_title';
+            $data['content'] = 'site_about';
+        }
+        else if ($slug == 'contact'){
+            $data['title'] = 'Contact Us';
+            $data['heading'] = 'site_contact_title';
+            $data['content'] = 'site_contact';
+        }
+        else if ($slug == 'terms'){
+            $data['title'] = 'Terms and Conditions';
+            $data['heading'] = 'site_terms_title';
+            $data['content'] = 'site_terms';
+        }
+        else if ($slug == 'privacy'){
+            $data['title'] = 'Privacy Policy';
+            $data['heading'] = 'site_privacy_title';
+            $data['content'] = 'site_privacy';
+        }
+        else if ($slug == 'refund'){
+            $data['title'] = 'Refund Policy';
+            $data['heading'] = 'site_refund_title';
+            $data['content'] = 'site_refund';
+        }
+        return view('admin.settings.page',$data);
+    }
     public function page_setting_update(Request $request){
-        setSetting('site_about',trim($request->site_about));
-        setSetting('site_contact',trim($request->site_contact));
-        setSetting('site_privacy',trim($request->site_privacy));
-        setSetting('site_return_policy',trim($request->site_return_policy));
-        setSetting('site_terms',trim($request->site_terms));
+        if ($request->slug === 'about'){
+            setSetting('site_about_title',trim($request->site_about_title));
+            setSetting('site_about',trim($request->site_about));
+        }
+        else if ($request->slug === 'contact'){
+            setSetting('site_contact_title',trim($request->site_contact_title));
+            setSetting('site_contact',trim($request->site_contact));
+        }
+        else if ($request->slug === 'terms'){
+            setSetting('site_terms_title',trim($request->site_terms_title));
+            setSetting('site_terms',trim($request->site_terms));
+        }
+        else if ($request->slug === 'privacy'){
+            setSetting('site_privacy_title',trim($request->site_privacy_title));
+            setSetting('site_privacy',trim($request->site_privacy));
+        }
+        else if ($request->slug === 'refund'){
+            setSetting('site_refund_title',trim($request->site_refund_title));
+            setSetting('site_refund',trim($request->site_refund));
+        }
         toastr()->success(__('global.page_content').__('global.updated'));
         return redirect()->back();
     }
@@ -93,4 +136,6 @@ class GlobalSettingController extends Controller
         toastr()->success(__('global.checkout_setting').__('global.updated'));
         return redirect()->back();
     }
+
+
 }

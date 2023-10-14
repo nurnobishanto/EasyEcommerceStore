@@ -27,6 +27,10 @@ class Order extends Model
         'sent_from',
         'discount_percent',
         'max_discount',
+        'delivery_method',
+        'delivery_id',
+        'delivery_fee',
+        'delivery_status',
     ];
     protected static function boot()
     {

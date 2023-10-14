@@ -247,4 +247,5 @@ return [
     'payment_discount' => 'Payment Discount',
     'payment_max_discount' => 'Payment Max Discount',
     'dc_required' => 'Delivery Charge Required?',
+    'delivery_status' => 'Delivery Status',
 ];

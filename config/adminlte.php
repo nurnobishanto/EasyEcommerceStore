@@ -363,6 +363,16 @@ return [
             'can' => ['payment_method_manage'],
             'icon'    => 'fas fa-money-bill',
         ],
+        [
+            'text' => 'Courier',
+            'icon'    => 'fas fa-walking',
+            'submenu' => [
+                [
+                    'text' => 'Pathao',
+                    'url' => 'admin/pathao'
+                ],
+            ]
+        ],
 
         ['header' => 'settings'],
         [
@@ -388,7 +398,29 @@ return [
                 [
                     'text' => 'page_content',
                     'can' => 'page_setting_manage',
-                    'url' => 'admin/page-setting'
+                    'submenu' =>[
+                        [
+                            'text' =>'About us',
+                            'url' => 'admin/page/about',
+                        ],
+                        [
+                            'text' =>'Contact us',
+                            'url' => 'admin/page/contact',
+                        ],
+                        [
+                            'text' =>'Terms & Cond.',
+                            'url' => 'admin/page/terms',
+                        ],
+                        [
+                            'text' =>'Privacy',
+                            'url' => 'admin/page/privacy',
+                        ],
+                        [
+                            'text' =>'Refund Policy',
+                            'url' => 'admin/page/refund',
+                        ],
+
+                    ]
                 ],
                 [
                     'text' => 'menu',

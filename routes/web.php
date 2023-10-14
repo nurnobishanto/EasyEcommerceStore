@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//Pathao CallBack
+Route::post('pathao-status',[\App\Http\Controllers\PathaoController::class,'pathao_status']);
 //Cart Handle
 Route::post('/payment-method', [\App\Http\Controllers\Website\CartController::class,'payment_method'])->name('getPaymentMethod');
 Route::get('/cart/get', [\App\Http\Controllers\Website\CartController::class,'getCart'])->name('getCart');
@@ -23,6 +25,11 @@ Route::delete('/cart/minus', [\App\Http\Controllers\Website\CartController::clas
 Route::post('/cart/order-confirm', [\App\Http\Controllers\Website\CartController::class,'orderConfirm'])->name('orderConfirm');
 Route::get('/success/{id}', [\App\Http\Controllers\Website\CartController::class,'success'])->name('success');
 
+//Pathao API
+Route::get('pathao/city-lists',[\App\Http\Controllers\PathaoController::class,'city_lists'])->name('pathao_city_lists');
+Route::get('pathao/zone-lists/{id}',[\App\Http\Controllers\PathaoController::class,'zone_lists'])->name('pathao_zone_lists');
+Route::get('pathao/area-lists/{id}',[\App\Http\Controllers\PathaoController::class,'area_lists'])->name('pathao_area_lists');
+Route::post('pathao/price',[\App\Http\Controllers\PathaoController::class,'price'])->name('pathao_price');
 
 Route::get('/',[\App\Http\Controllers\Website\HomeController::class,'index'])->name('home');
 Route::get('/categories',[\App\Http\Controllers\Website\HomeController::class,'categories'])->name('categories');

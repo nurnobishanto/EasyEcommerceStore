@@ -89,31 +89,31 @@ class HomeController extends Controller
     }
     public function return_policy(){
         $data = array();
-        $data['title'] = 'Return Policy';
-        $data['content'] = getSetting('site_privacy');
+        $data['title'] = getSetting('site_refund_title');
+        $data['content'] = getSetting('site_refund');
         return view('front.pages.page',$data);
     }
     public function privacy(){
         $data = array();
-        $data['title'] = 'Privacy Policy';
-        $data['content'] = getSetting('site_return_policy');
+        $data['title'] = getSetting('site_privacy_title');
+        $data['content'] = getSetting('site_privacy');
         return view('front.pages.page',$data);
     }
     public function terms(){
         $data = array();
-        $data['title'] = 'Terms & Conditions';
+        $data['title'] = getSetting('site_terms_title');;
         $data['content'] = getSetting('site_terms');
         return view('front.pages.page',$data);
     }
     public function about(){
         $data = array();
-        $data['title'] = 'About Us';
+        $data['title'] = getSetting('site_about_title');
         $data['content'] = getSetting('site_about');
         return view('front.pages.page',$data);
     }
     public function contact(){
         $data = array();
-        $data['title'] = 'Contact Us';
+        $data['title'] = getSetting('site_contact_title');
         $data['content'] = getSetting('site_contact');
         return view('front.pages.page',$data);
     }

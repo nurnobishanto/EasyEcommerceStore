@@ -45,6 +45,18 @@
                                     <th>Order Status</th>
                                     <th class="text-uppercase">{{$order->status}}</th>
                                 </tr>
+                                @if($order->delivery_method)
+                                <tr>
+                                    <th>Delivery Status ({{$order->delivery_method}})</th>
+                                    <th class="text-uppercase">{{$order->delivery_status}} </th>
+                                </tr>
+                                @endif
+                                @if($order->delivery_id)
+                                <tr>
+                                    <th>Delivery ID</th>
+                                    <th class="text-uppercase">{{$order->delivery_id}} </th>
+                                </tr>
+                                @endif
                             </table>
 
                         </div>
