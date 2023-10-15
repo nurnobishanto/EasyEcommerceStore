@@ -30,8 +30,8 @@
             @can('order_list')
                 <div class="card">
                     <div class="card-header">
+                        <form action="{{route('admin.orders.index')}}" method="GET">
                         <div class="row">
-                            <form action="{{route('admin.orders.index')}}" method="GET">
                                 <div class="col-lg-2 col-md-3 col-sm-4 col-6">
                                     <div class="form-group">
                                         <select name="status" class="form-control">
@@ -50,9 +50,8 @@
                                         <input type="submit" class="form-control btn btn-info" value="Filter">
                                     </div>
                                 </div>
-                            </form>
-
                         </div>
+                    </form>
                     </div>
                     <div class="card-body table-responsive">
                         <table id="adminsList" class="table  dataTable table-bordered table-striped">
