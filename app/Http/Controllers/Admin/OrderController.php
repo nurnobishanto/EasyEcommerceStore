@@ -19,10 +19,13 @@ use Illuminate\Support\Str;
 class OrderController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         App::setLocale(session('locale'));
         $orders = Order::orderBy('id','DESC')->get();
+        if ($request->status){
+            $orders = $orders->where('status',$request->status);
+        }
         return view('admin.orders.index',compact('orders'));
     }
     public function trashed_list(){
