@@ -26,6 +26,7 @@ class OrderController extends Controller
         if ($request->status){
             $orders = $orders->where('status',$request->status);
         }
+     
         return view('admin.orders.index',compact('orders'));
     }
     public function trashed_list(){

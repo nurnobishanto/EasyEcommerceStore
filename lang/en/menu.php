@@ -36,5 +36,7 @@ return [
     'page_content' => 'Page Content',
     'payment_method' => 'Payment Method',
     'payment_methods' => 'Payment Methods',
-    'checkout_setting' => 'Checkout Setting'
+    'checkout_setting' => 'Checkout Setting',
+    'ip_blocking' => 'IP Blocking',
+    'seed' => 'Seed',
 ];

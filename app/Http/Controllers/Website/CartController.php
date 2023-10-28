@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('orderLimit')->only('orderConfirm');
+    }
     public function payment_method(Request $request){
         $id = $request->input('id');
         $pm =  PaymentMethod::find($id);
@@ -121,7 +125,7 @@ class CartController extends Controller
         $request->validate([
             'name' => 'required',
             'phone' => ['required', 'regex:/^(01|\+8801|8801)[3456789]\d{8}$/'],
-            'address' => 'required',
+            'address' => 'required|min:12',
             'delivery_zone_id' => 'required',
         ]);
 
@@ -149,6 +153,7 @@ class CartController extends Controller
             'delivery_zone_id' => $request->delivery_zone_id,
             'status' => 'pending',
             'subtotal' => 0,
+            'ip_address' => $request->ip(),
             'delivery_charge' => $delivery_zone->charge,
             'created_by' => $admin->id,
             'updated_by' => $admin->id,

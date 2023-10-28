@@ -4,9 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class PathaoController extends Controller
 {
+    public function pathao_setting(Request $request){
+        setSetting('pathao_access_token','null');
+        if ($request->pathao_grant_type){ setSetting('pathao_status',$request->pathao_grant_type); }
+        if ($request->pathao_status){ setSetting('pathao_status',$request->pathao_status); }
+        if ($request->pathao_base_url){ setSetting('pathao_base_url',$request->pathao_base_url); }
+        if ($request->pathao_client_id){ setSetting('pathao_client_id',$request->pathao_client_id); }
+        if ($request->pathao_client_secret){ setSetting('pathao_client_secret',$request->pathao_client_secret); }
+        if ($request->pathao_client_email){ setSetting('pathao_client_email',$request->pathao_client_email); }
+        if ($request->pathao_client_password){ setSetting('pathao_client_password',$request->pathao_client_password); }
+        if ($request->pathao_sender_name){ setSetting('pathao_sender_name',$request->pathao_sender_name); }
+        if ($request->pathao_sender_phone){ setSetting('pathao_sender_phone',$request->pathao_sender_phone); }
+        if ($request->pathao_webhook_secret){ setSetting('pathao_webhook_secret',$request->pathao_webhook_secret); }
+        issuePathaoToken();
+        toastr()->success('Setting Updated');
+        return redirect()->back();
+    }
     public function pathao_list(){
         return  view('admin.courier.pathao_list');
     }
@@ -18,7 +35,7 @@ class PathaoController extends Controller
         ];
         $ch = curl_init();
         // Set cURL options
-        curl_setopt($ch, CURLOPT_URL, env('PATHAO_BASE_URL') . '/aladdin/api/v1/countries/1/city-list');
+        curl_setopt($ch, CURLOPT_URL, getSetting('pathao_base_url') . '/aladdin/api/v1/countries/1/city-list');
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         // Execute the cURL request and get the response
@@ -60,7 +77,7 @@ class PathaoController extends Controller
         $ch = curl_init();
 
         // Set cURL options
-        curl_setopt($ch, CURLOPT_URL, env('PATHAO_BASE_URL') . '/aladdin/api/v1/cities/'.$id.'/zone-list');
+        curl_setopt($ch, CURLOPT_URL, getSetting('pathao_base_url') . '/aladdin/api/v1/cities/'.$id.'/zone-list');
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
@@ -102,7 +119,7 @@ class PathaoController extends Controller
         $ch = curl_init();
 
         // Set cURL options
-        curl_setopt($ch, CURLOPT_URL, env('PATHAO_BASE_URL') . '/aladdin/api/v1/zones/'.$id.'/area-list');
+        curl_setopt($ch, CURLOPT_URL, getSetting('pathao_base_url') . '/aladdin/api/v1/zones/'.$id.'/area-list');
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
@@ -140,7 +157,7 @@ class PathaoController extends Controller
             'recipient_zone' => $request->recipient_zone,
         ];
         issuePathaoToken();
-        $url = env('PATHAO_BASE_URL'). '/aladdin/api/v1/merchant/price-plan';
+        $url = getSetting('pathao_base_url'). '/aladdin/api/v1/merchant/price-plan';
         $options = [
             'http' => [
                 'method' => 'POST',
@@ -176,7 +193,7 @@ class PathaoController extends Controller
             'zone_id' => 'required|integer',
             'area_id' => 'required|integer',
         ]);
-        $baseUrl = env('PATHAO_BASE_URL');
+        $baseUrl = getSetting('pathao_base_url');
         $accessToken = getSetting('pathao_access_token');
         $requestUrl = $baseUrl . "/aladdin/api/v1/orders";
         $requestHeaders = [
@@ -197,8 +214,8 @@ class PathaoController extends Controller
         $requestData = [
             "store_id" => $request->store_id,
             "merchant_order_id" => $order->order_id,
-            "sender_name" => env('PATHAO_SENDER_NAME'),
-            "sender_phone" => env('PATHAO_SENDER_PHONE'),
+            "sender_name" => getSetting('pathao_sender_name'),
+            "sender_phone" => getSetting('pathao_sender_phone'),
             "recipient_name" => $order->name,
             "recipient_phone" => $order->phone,
             "recipient_address" => $order->address,
@@ -225,6 +242,7 @@ class PathaoController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $response = curl_exec($ch);
+
         if (curl_errno($ch)) {
             echo "cURL Error: " . curl_error($ch);
         } else {
@@ -255,7 +273,7 @@ class PathaoController extends Controller
     public function pathao_status(Request $request){
 
         // Verify the X-PATHAO-Signature header
-        $webhookSecret = '123456789abcdefg'; // Replace with your webhook secret
+        $webhookSecret = getSetting('pathao_webhook_secret'); // Replace with your webhook secret
         $signature = $request->header('X-PATHAO-Signature');
         $payload = $request->getContent();
         if ($signature !== $webhookSecret) {
@@ -303,5 +321,76 @@ class PathaoController extends Controller
 
         return response()->json(['message' => 'Webhook received']);
 
+    }
+    public function steadfast_setting(Request $request){
+        if ($request->steadfast_api_key){ setSetting('steadfast_api_key',$request->steadfast_api_key); }
+        if ($request->steadfast_secret_key){ setSetting('steadfast_secret_key',$request->steadfast_secret_key); }
+        toastr()->success('Setting Updated');
+        return redirect()->back();
+    }
+    public function steadfast(){
+        return view('admin.courier.steadfast');
+    }
+    public function steadfast_delivery_request($id){
+        $order = Order::find($id);
+
+        // Check if the order exists
+        if (!$order) {
+            toastr()->error('Order not found', 'Order Not Found');
+            return redirect()->back();
+        }
+
+        $apiUrl = 'https://portal.steadfast.com.bd/api/v1/create_order';
+        $apiKey = getSetting('steadfast_api_key');
+        $secretKey = getSetting('steadfast_secret_key');
+
+        $discount = ($order->discount_percent / 100) * $order->subtotal;
+        if ($discount > $order->max_discount) {
+            $discount = $order->max_discount;
+        }
+
+        $invoice = $order->order_id;
+        $recipientName = $order->name;
+        $recipientPhone = $order->phone;
+        $recipientAddress = $order->address;
+        $codAmount = ($order->delivery_charge + $order->subtotal) - ($discount - $order->paid_amount);
+        $note = $order->order_note;
+
+        $requestData = [
+            'invoice' => $invoice,
+            'recipient_name' => $recipientName,
+            'recipient_phone' => $recipientPhone,
+            'recipient_address' => $recipientAddress,
+            'cod_amount' => $codAmount,
+            'note' => $note,
+        ];
+
+        // Send the request to the Steadfast API using Laravel's HTTP client
+        $response = Http::withHeaders([
+            'Api-Key' => $apiKey,
+            'Secret-Key' => $secretKey,
+            'Content-Type' => 'application/json',
+        ])->post($apiUrl, $requestData);
+
+        // Handle the API response
+        if ($response->successful()) {
+            $responseData = $response->json();
+            if (isset($responseData['status']) && $responseData['status'] == 200) {
+                $trackingCode = $responseData['consignment']['tracking_code'];
+
+                $order->delivery_id = $trackingCode;
+                $order->delivery_method = 'steadfast';
+                $order->delivery_status = 'delivered';
+                $order->update();
+
+                toastr()->success('Order placement success', 'Request Success');
+            } else {
+                toastr()->error('Order placement failed', 'Request Failed');
+            }
+        } else {
+            toastr()->error('Failed to communicate with the API', 'Communicate Failed');
+        }
+
+        return redirect()->back();
     }
 }

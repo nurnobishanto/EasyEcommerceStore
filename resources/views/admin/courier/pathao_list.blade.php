@@ -22,6 +22,83 @@
         <div class="col-12">
             @can('category_list')
                 <div class="card">
+                    <div class="card-header">
+                        <form action="{{route('admin.pathao_setting')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                           <div class="row">
+                               <div class="col-md-4">
+                                   <div class="form-group">
+                                       <label for="pathao_status">Pathao Status</label>
+                                       <select id="pathao_status" disabled name="pathao_status" class="form-control">
+                                           <option value="on" @if(getSetting('pathao_status') == 'on') selected @endif >ON</option>
+                                           <option value="off" @if(getSetting('pathao_status') == 'off') selected @endif >OFF</option>
+                                       </select>
+                                   </div>
+                               </div>
+                               <div class="col-md-4">
+                                   <div class="form-group">
+                                       <label for="pathao_grant_type">Pathao Grant Type</label>
+                                       <select id="pathao_grant_type" name="pathao_grant_type" class="form-control">
+                                           <option value="password" @if(getSetting('pathao_grant_type') == 'password') selected @endif >PASSWORD</option>
+                                       </select>
+                                   </div>
+                               </div>
+                               <div class="col-md-4">
+                                   <div class="form-group">
+                                       <label for="pathao_base_url">Pathao Mode</label>
+                                       <select id="pathao_base_url" name="pathao_base_url" class="form-control">
+                                           <option value="https://courier-api-sandbox.pathao.com" @if(getSetting('pathao_base_url') == 'https://courier-api-sandbox.pathao.com') selected @endif >Sandbox</option>
+                                           <option value="https://courier-api.pathao.com" @if(getSetting('pathao_base_url') == 'https://courier-api.pathao.com') selected @endif >Production</option>
+                                       </select>
+                                   </div>
+                               </div>
+                               <div class="col-md-4">
+                                   <div class="form-group">
+                                       <label for="pathao_client_id">Pathao Client ID</label>
+                                       <input id="pathao_client_id"  value="{{getSetting('pathao_client_id')}}" name="pathao_client_id" class="form-control" placeholder="Enter Pathao Client ID">
+                                   </div>
+                               </div>
+                               <div class="col-md-4">
+                                   <div class="form-group">
+                                       <label for="pathao_client_secret">Pathao Client Secret</label>
+                                       <input id="pathao_client_secret"  value="{{getSetting('pathao_client_secret')}}" name="pathao_client_secret" class="form-control" placeholder="Enter Pathao Client Secret">
+                                   </div>
+                               </div>
+                               <div class="col-md-4">
+                                   <div class="form-group">
+                                       <label for="pathao_client_email">Pathao Client Email</label>
+                                       <input id="pathao_client_email" type="email" value="{{getSetting('pathao_client_email')}}" name="pathao_client_email" class="form-control" placeholder="Enter Pathao Client Email">
+                                   </div>
+                               </div>
+                               <div class="col-md-4">
+                                   <div class="form-group">
+                                       <label for="pathao_client_password">Pathao Client Password</label>
+                                       <input id="pathao_client_password" type="password" value="{{getSetting('pathao_client_password')}}" name="pathao_client_password" class="form-control" placeholder="Enter Pathao Client Password">
+                                   </div>
+                               </div>
+                               <div class="col-md-4">
+                                   <div class="form-group">
+                                       <label for="pathao_sender_name">Pathao Sender Name</label>
+                                       <input id="pathao_sender_name" type="text" value="{{getSetting('pathao_sender_name')}}" name="pathao_sender_name" class="form-control" placeholder="Enter Pathao Sender Name">
+                                   </div>
+                               </div>
+                               <div class="col-md-4">
+                                   <div class="form-group">
+                                       <label for="pathao_sender_phone">Pathao Sender Phone</label>
+                                       <input id="pathao_sender_phone" type="text" value="{{getSetting('pathao_sender_phone')}}" name="pathao_sender_phone" class="form-control" placeholder="Enter Pathao Sender Phone">
+                                   </div>
+                               </div>
+                               <div class="col-md-4">
+                                   <div class="form-group">
+                                       <label for="pathao_webhook_secret">Webhook Secret</label>
+                                       <input id="pathao_webhook_secret" type="text" value="{{getSetting('pathao_webhook_secret')}}" name="pathao_webhook_secret" class="form-control" placeholder="Enter Pathao Webhook Secret">
+                                   </div>
+                               </div>
+                               <input type="submit" value="Save Setting" class="btn btn-success form-control">
+                           </div>
+                        </form>
+                        <p>Webhook Integration Callback URL : {{route('pathao_status')}}</p>
+                    </div>
                     <div class="card-body table-responsive">
                         <table id="adminsList" class="table  dataTable table-bordered table-striped">
                             <thead>

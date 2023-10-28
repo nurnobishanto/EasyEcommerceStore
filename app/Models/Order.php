@@ -31,6 +31,7 @@ class Order extends Model
         'delivery_id',
         'delivery_fee',
         'delivery_status',
+        'ip_address',
     ];
     protected static function boot()
     {

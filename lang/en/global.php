@@ -248,4 +248,13 @@ return [
     'payment_max_discount' => 'Payment Max Discount',
     'dc_required' => 'Delivery Charge Required?',
     'delivery_status' => 'Delivery Status',
+    'ip_address' => 'IP Address',
+    'enter_ip_address' => 'Enter IP Address',
+    'ip_block' => 'IP Block',
+    'ip_blocks' => 'IP Block List',
+    'create_ip_block' => 'Create IP Block',
+    'edit_ip_block' => 'Edit IP Block',
+    'update_ip_block' => 'Update IP Block',
+    'delete_ip_block' => 'Delete IP Block',
+    'view_ip_block' => 'View IP Block',
 ];

@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DeliveryZoneController;
+use App\Http\Controllers\Admin\IpBlockController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\SliderController;
@@ -75,7 +76,13 @@ Route::get('/payment-methods/trashed/{payment_method}/restore',[PaymentMethodCon
 Route::get('/payment-methods/trashed/{payment_method}/delete',[PaymentMethodController::class,'force_delete'])->middleware('permission:payment_method_manage')->name('payment-methods.force_delete');
 Route::resource('/payment-methods',PaymentMethodController::class)->middleware('permission:payment_method_manage');
 
-
+//IP Block
+Route::get('/ip-blocks/trashed',[IpBlockController::class,'trashed_list'])->middleware('permission:ip_block_manage')->name('ip-blocks.trashed');
+Route::get('/ip-blocks/trashed/{ip_block}/restore',[IpBlockController::class,'restore'])->middleware('permission:ip_block_manage')->name('ip-blocks.restore');
+Route::get('/ip-blocks/trashed/{ip_block}/delete',[IpBlockController::class,'force_delete'])->middleware('permission:ip_block_manage')->name('ip-blocks.force_delete');
+Route::resource('/ip-blocks',IpBlockController::class)->middleware('permission:ip_block_manage');
+Route::get('/ip-blocks/{id}/unblock',[IpBlockController::class,'unblock'])->middleware('permission:ip_block_manage')->name('ip-blocks.unblock');
+Route::get('/ip-blocks/{id}/block',[IpBlockController::class,'block'])->middleware('permission:ip_block_manage')->name('ip-blocks.block');
 
 //Site Setting
 Route::get('site-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'site_setting']);
@@ -88,6 +95,10 @@ Route::post('code-setting',[\App\Http\Controllers\Admin\GlobalSettingController:
 Route::post('page-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'page_setting_update'])->name('page-setting');
 
 //Courier
+Route::post('steadfast-setting',[\App\Http\Controllers\PathaoController::class,'steadfast_setting'])->name('steadfast_setting');
+Route::post('pathao-setting',[\App\Http\Controllers\PathaoController::class,'pathao_setting'])->name('pathao_setting');
+Route::get('steadfast',[\App\Http\Controllers\PathaoController::class,'steadfast']);
 Route::get('pathao',[\App\Http\Controllers\PathaoController::class,'pathao_list']);
-Route::post('delivery-request/{id}',[\App\Http\Controllers\PathaoController::class,'delivery_request'])->name('delivery_request');
+Route::post('pathao-delivery-request/{id}',[\App\Http\Controllers\PathaoController::class,'delivery_request'])->name('delivery_request');
+Route::get('steadfast-delivery-request/{id}',[\App\Http\Controllers\PathaoController::class,'steadfast_delivery_request'])->name('steadfast_delivery_request');
 

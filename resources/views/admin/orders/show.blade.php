@@ -59,6 +59,18 @@
                                                 <td>{{$order->order_note}}</td>
                                             </tr>
                                             <tr>
+                                                <td>{{__('global.ip_address')}}</td>
+                                                <td>{{$order->ip_address}}
+                                                    @if($order->ip_address)
+                                                        @if(isIpBlock($order->ip_address))
+                                                            <a href="{{route('admin.ip-blocks.unblock',['id'=>$order->id])}}" class="btn btn-success btn-sm">Un BlocK</a>
+                                                        @else
+                                                            <a href="{{route('admin.ip-blocks.block',['id'=>$order->id])}}" class="btn btn-danger btn-sm">Block</a>
+                                                        @endif
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td>{{__('global.created_at')}} & {{__('global.created_by')}}</td>
                                                 <td>At {{date_format($order->created_at,'d M y h:i A')}} by {{$order->createdBy->name??'--'}}</td>
                                             </tr>
@@ -155,11 +167,16 @@
                             @can('order_delete')
                                 <button onclick="isDelete(this)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
                             @endcan
+                            @if(($order->status == 'pending' || $order->status =='received') && getSetting('steadfast_status'))
+                                <a href="{{route('admin.steadfast_delivery_request',['id'=>$order->id])}}" class="btn btn-info">Deliver with Steadfast</a>
+                            @endif
                         </form>
+
 
                 </div>
             </div>
-            @if($order->status != 'delivered' )
+
+            @if(($order->status == 'pending' || $order->status =='received') && getSetting('pathao_status')=='on' )
             <div class="card">
                 <div class="card-body">
                   <h2>Delivery with Pathao</h2>
@@ -251,6 +268,7 @@
                 </div>
             </div>
             @endif
+
         </div>
     </div>
 @stop

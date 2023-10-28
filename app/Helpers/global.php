@@ -3,7 +3,9 @@
 
 use App\Models\Category;
 use App\Models\GlobalSetting;
+use App\Models\IpBlock;
 use App\Models\Product;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 if (!function_exists('myCustomFunction')) {
@@ -14,12 +16,52 @@ if (!function_exists('myCustomFunction')) {
     }
 
 }
+if (!function_exists('getSteadfastBalance')) {
+
+    function getSteadfastBalance()
+    {
+        $apiUrl = 'https://portal.steadfast.com.bd/api/v1/get_balance';
+        $apiKey = getSetting('steadfast_api_key');
+        $secretKey = getSetting('steadfast_secret_key');
+
+        $response = Http::withHeaders([
+            'Api-Key' => $apiKey,
+            'Secret-Key' => $secretKey,
+            'Content-Type' => 'application/json',
+        ])->get($apiUrl);
+
+        // Handle the response as needed
+        if ($response->successful()) {
+            $responseData = $response->json();
+            if (isset($responseData['status']) && $responseData['status'] == 200) {
+                setSetting('steadfast_status',true);
+                return $responseData['current_balance'];
+            }
+        }
+        setSetting('steadfast_status',false);
+        return 'Failed to check the balance';
+    }
+
+
+}
+if (!function_exists('isIpBlock')) {
+
+    function isIpBlock($ip)
+    {
+        $ip = IpBlock::where('ip_address',$ip)->first();
+        if ($ip && $ip->status == 'active'){
+            return true;
+        }
+        return false;
+    }
+
+}
+
 
 if (!function_exists('pathaoStoreList')) {
     function pathaoStoreList() {
         issuePathaoToken();
-        $url = env('PATHAO_BASE_URL'). '/aladdin/api/v1/stores';
-
+        $url = getSetting('pathao_base_url'). '/aladdin/api/v1/stores';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -29,7 +71,7 @@ if (!function_exists('pathaoStoreList')) {
         ]);
         $response = curl_exec($ch);
         if (curl_errno($ch)) {
-            return false;
+            return [];
         }
         curl_close($ch);
 
@@ -58,12 +100,12 @@ if (!function_exists('apiRequest')) {
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         if ($httpCode !== 200) {
-            setSetting('pathao_status', false);
+            setSetting('pathao_status', 'off');
             return false;
         }
-        $responseData = json_decode($response, true);
+        $responseData = json_decode($response, 'on');
         if ($responseData) {
-            setSetting('pathao_status', true);
+            setSetting('pathao_status', 'on');
             if (isset($responseData['access_token'])) {
                 setSetting('pathao_access_token', $responseData['access_token']);
             }
@@ -72,19 +114,23 @@ if (!function_exists('apiRequest')) {
             }
             return true;
         } else {
-            setSetting('pathao_status', false);
+            setSetting('pathao_status', 'off');
             return false;
         }
     }
 }
 if (!function_exists('issuePathaoToken')) {
     function issuePathaoToken() {
-        $url = env('PATHAO_BASE_URL') . '/aladdin/api/v1/issue-token';
+        $accessToken = getSetting('pathao_access_token');
+        if ($accessToken) {
+           return refreshPathaoToken();
+        }
+        $url = getSetting('pathao_base_url') . '/aladdin/api/v1/issue-token';
         $data = [
-            'client_id' => env('PATHAO_CLIENT_ID'),
-            'client_secret' => env('PATHAO_CLIENT_SECRET'),
-            'username' => env('PATHAO_CLIENT_EMAIL'),
-            'password' => env('PATHAO_CLIENT_PASSWORD'),
+            'client_id' => getSetting('pathao_client_id'),
+            'client_secret' => getSetting('pathao_client_secret'),
+            'username' => getSetting('pathao_client_email'),
+            'password' => getSetting('pathao_client_password'),
             'grant_type' => 'password',
         ];
         return apiRequest($url, $data);
@@ -92,20 +138,17 @@ if (!function_exists('issuePathaoToken')) {
 }
 if (!function_exists('refreshPathaoToken')) {
     function refreshPathaoToken() {
-        $accessToken = getSetting('pathao_access_token');
-        if ($accessToken) {
-            return true;
-        }
-        $url = env('PATHAO_BASE_URL') . '/aladdin/api/v1/issue-token';
+        $url = getSetting('pathao_base_url') . '/aladdin/api/v1/issue-token';
         $data = [
-            'client_id' => env('PATHAO_CLIENT_ID'),
-            'client_secret' => env('PATHAO_CLIENT_SECRET'),
+            'client_id' => getSetting('pathao_client_id'),
+            'client_secret' => getSetting('pathao_client_secret'),
             'refresh_token' => getSetting('pathao_refresh_token'),
             'grant_type' => 'refresh_token',
         ];
         return apiRequest($url, $data);
     }
 }
+
 if (!function_exists('countCategoryProducts')) {
 
     function countCategoryProducts($slug)

@@ -371,6 +371,10 @@ return [
                     'text' => 'Pathao',
                     'url' => 'admin/pathao'
                 ],
+                [
+                    'text' => 'Steadfast',
+                    'url' => 'admin/steadfast'
+                ],
             ]
         ],
 
@@ -378,7 +382,7 @@ return [
         [
             'text'    => 'global_settings',
             'icon'    => 'fas fa-cogs',
-            'can' => ['site_setting_manage'],
+            'can' => ['site_setting_manage','ip_block_manage','checkout_setting','code_setting_manage','menu_manage','page_setting_manage','ip_block_manage'],
             'submenu' => [
                 [
                     'text' => 'site_setting',
@@ -427,6 +431,11 @@ return [
                     'url' => 'admin/menus',
                     'can' => ['menu_manage'],
                 ],
+                [
+                    'text' => 'ip_blocking',
+                    'url' => 'admin/ip-blocks',
+                    'can' => ['ip_block_manage'],
+                ],
             ]
         ],
         [
@@ -453,6 +462,11 @@ return [
                     'text' => 'optimize',
                     'can'  => 'command_optimize',
                     'url' => 'command/optimize'
+                ],
+                [
+                    'text' => 'Seed',
+                    'can'  => 'command_seed',
+                    'url' => 'command/seed'
                 ],
                 [
                     'text' => 'migrate',
