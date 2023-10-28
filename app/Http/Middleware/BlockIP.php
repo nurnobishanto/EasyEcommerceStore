@@ -20,18 +20,18 @@ class BlockIP
             return redirect()->route('home');;
         }
 
-//        if ($request->session()->has($key)) {
-//            // Check if the last order was placed today.
-//            $lastOrderTimestamp = $request->session()->get($key);
-//            $todayTimestamp = Carbon::now()->startOfDay()->timestamp;
-//
-//            if ($lastOrderTimestamp >= $todayTimestamp) {
-//                // You can block the IP by storing a flag in the session or another method.
-//                $request->session()->put('blocked_ip_' . $userIp, true);
-//                toastr()->error('আপনি এই মুহূর্তে অর্ডার করতে পারবেন না');
-//                return redirect()->route('home');
-//            }
-//        }
+        if ($request->session()->has($key)) {
+            // Check if the last order was placed today.
+            $lastOrderTimestamp = $request->session()->get($key);
+            $todayTimestamp = Carbon::now()->startOfDay()->timestamp;
+
+            if ($lastOrderTimestamp >= $todayTimestamp) {
+                // You can block the IP by storing a flag in the session or another method.
+                $request->session()->put('blocked_ip_' . $userIp, true);
+                toastr()->error('আপনি এই মুহূর্তে অর্ডার করতে পারবেন না');
+                return redirect()->route('home');
+            }
+        }
         // If the user hasn't placed an order today, store the current timestamp.
         $request->session()->put($key, time());
 

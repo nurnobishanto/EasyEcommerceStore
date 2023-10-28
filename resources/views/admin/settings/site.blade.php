@@ -175,6 +175,19 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="primary_color">Primary Color</label>
+                                    <input id="primary_color"  value="{{getSetting('primary_color')}}" type="color" name="primary_color" class="form-control" placeholder="Select Primary Color">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="hover_color">Hover Color</label>
+                                    <input id="hover_color"  value="{{getSetting('hover_color')}}" type="color" name="hover_color" class="form-control" placeholder="Select Hover Color">
+                                </div>
+                            </div>
+
 
                         </div>
 
@@ -221,6 +234,23 @@
                 if (site_logo) {
                     site_logoImage.src = URL.createObjectURL(site_logo);
                 }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Handle changes in the primary color input
+            $("#primary_color").on("input", function() {
+                const selectedColor = $(this).val();
+                // You can perform additional actions with the selected color here
+                console.log("Selected Primary Color: " + selectedColor);
+            });
+
+            // Handle changes in the hover color input
+            $("#hover_color").on("input", function() {
+                const selectedColor = $(this).val();
+                // You can perform additional actions with the selected color here
+                console.log("Selected Hover Color: " + selectedColor);
             });
         });
     </script>

@@ -39,6 +39,8 @@ class GlobalSettingController extends Controller
         setSetting('youtube',trim($request->youtube));
         setSetting('instagram',trim($request->instagram));
         setSetting('whatsapp',trim($request->whatsapp));
+        setSetting('primary_color',trim($request->primary_color));
+        setSetting('hover_color',trim($request->hover_color));
 
         if($request->file('site_favicon')){
             $imagePath = $request->file('site_favicon')->store('site-photo');
