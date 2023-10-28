@@ -45,7 +45,7 @@
                                             </line>
                                             <path d="M16 10a4 4 0 0 1-8 0"></path>
                                         </svg>
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success cart-count">0
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-{{getSetting('theme_color')}} cart-count">0
                                                 <span class="visually-hidden">unread messages</span>
                                             </span>
                                     </a>
@@ -57,7 +57,7 @@
                                     data-bs-target="#navbar-default" aria-controls="navbar-default"
                                     aria-label="Toggle navigation">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                     fill="currentColor" class="bi bi-text-indent-left text-primary"
+                                     fill="currentColor" class="bi bi-text-indent-left text-{{getSetting('theme_color')}}"
                                      viewBox="0 0 16 16">
                                     <path
                                         d="M2 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm.646 2.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L4.293 8 2.646 6.354a.5.5 0 0 1 0-.708zM7 6.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
@@ -73,7 +73,7 @@
                     <form action="{{route('products')}}" method="get">
                         <div class="input-group ">
                             <input class="form-control rounded" name="query" value="{{old('query')}}" type="search" placeholder="Search for products">
-                            <input class="btn btn-primary" type="submit" value="search">
+                            <input class="btn btn-{{getSetting('search_btn_color')}}" type="submit" value="search">
                         </div>
 
                     </form>
@@ -95,7 +95,7 @@
                                     <line x1="3" y1="6" x2="21" y2="6"></line>
                                     <path d="M16 10a4 4 0 0 1-8 0"></path>
                                 </svg>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success cart-count">
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-{{getSetting('theme_color')}} cart-count">
                                         0
                                         <span class="visually-hidden">unread messages</span>
                                     </span>
@@ -135,7 +135,7 @@
                             <div class="input-group ">
                                 <input class="form-control rounded" name="query" value="{{old('query')}}" type="search"
                                        placeholder="Search for products">
-                                <input class="btn btn-primary" type="submit" value="search">
+                                <input class="btn btn-{{getSetting('search_btn_color')}}" type="submit" value="search">
 
                             </div>
                         </form>

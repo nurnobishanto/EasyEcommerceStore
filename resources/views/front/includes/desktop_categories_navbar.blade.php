@@ -1,5 +1,5 @@
 <div class="dropdown me-3 d-none d-lg-block">
-    <button class="btn btn-primary px-6 " type="button" id="dropdownMenuButton1"
+    <button class="btn btn-{{getSetting('theme_color')}} px-6 " type="button" id="dropdownMenuButton1"
             data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="me-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

@@ -12,7 +12,7 @@
                             <form action="{{route('track_order')}}" method="get">
                                 <div class="form-group">
                                     <input name="query" class="form-control" placeholder="Enter your order id, phone number">
-                                    <input type="submit" value="Search" class="btn btn-primary mt-2">
+                                    <input type="submit" value="Search" class="btn btn-{{getSetting('theme_color')}} mt-2">
                                 </div>
                             </form>
                         </div>

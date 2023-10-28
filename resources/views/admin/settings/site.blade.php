@@ -187,7 +187,96 @@
                                     <input id="hover_color"  value="{{getSetting('hover_color')}}" type="color" name="hover_color" class="form-control" placeholder="Select Hover Color">
                                 </div>
                             </div>
-
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="theme_color">Theme</label>
+                                    <select id="theme_color"  name="theme_color" class="form-control">
+                                        <option value="primary" @if(getSetting('order_btn_color') == 'primary') selected @endif>Primary</option>
+                                        <option value="secondary" @if(getSetting('order_btn_color') == 'secondary') selected @endif>Secondary</option>
+                                        <option value="success" @if(getSetting('order_btn_color') == 'success') selected @endif>Success</option>
+                                        <option value="danger" @if(getSetting('order_btn_color') == 'danger') selected @endif>Danger</option>
+                                        <option value="warning" @if(getSetting('order_btn_color') == 'warning') selected @endif>Warning</option>
+                                        <option value="info" @if(getSetting('order_btn_color') == 'info') selected @endif>Info</option>
+                                        <option value="light" @if(getSetting('order_btn_color') == 'light') selected @endif>Light</option>
+                                        <option value="dark" @if(getSetting('order_btn_color') == 'dark') selected @endif>Dark</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="search_btn_color">Search Button</label>
+                                    <select id="search_btn_color"  name="search_btn_color" class="form-control">
+                                        <option value="primary" @if(getSetting('order_btn_color') == 'primary') selected @endif>Primary</option>
+                                        <option value="secondary" @if(getSetting('order_btn_color') == 'secondary') selected @endif>Secondary</option>
+                                        <option value="success" @if(getSetting('order_btn_color') == 'success') selected @endif>Success</option>
+                                        <option value="danger" @if(getSetting('order_btn_color') == 'danger') selected @endif>Danger</option>
+                                        <option value="warning" @if(getSetting('order_btn_color') == 'warning') selected @endif>Warning</option>
+                                        <option value="info" @if(getSetting('order_btn_color') == 'info') selected @endif>Info</option>
+                                        <option value="light" @if(getSetting('order_btn_color') == 'light') selected @endif>Light</option>
+                                        <option value="dark" @if(getSetting('order_btn_color') == 'dark') selected @endif>Dark</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="order_btn_color">Order Button</label>
+                                    <select id="order_btn_color"  name="order_btn_color" class="form-control">
+                                        <option value="primary" @if(getSetting('order_btn_color') == 'primary') selected @endif>Primary</option>
+                                        <option value="secondary" @if(getSetting('order_btn_color') == 'secondary') selected @endif>Secondary</option>
+                                        <option value="success" @if(getSetting('order_btn_color') == 'success') selected @endif>Success</option>
+                                        <option value="danger" @if(getSetting('order_btn_color') == 'danger') selected @endif>Danger</option>
+                                        <option value="warning" @if(getSetting('order_btn_color') == 'warning') selected @endif>Warning</option>
+                                        <option value="info" @if(getSetting('order_btn_color') == 'info') selected @endif>Info</option>
+                                        <option value="light" @if(getSetting('order_btn_color') == 'light') selected @endif>Light</option>
+                                        <option value="dark" @if(getSetting('order_btn_color') == 'dark') selected @endif>Dark</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="add_cart_btn_color">Add To Cart Button</label>
+                                    <select id="add_cart_btn_color"  name="add_cart_btn_color" class="form-control">
+                                        <option value="primary" @if(getSetting('order_btn_color') == 'primary') selected @endif>Primary</option>
+                                        <option value="secondary" @if(getSetting('order_btn_color') == 'secondary') selected @endif>Secondary</option>
+                                        <option value="success" @if(getSetting('order_btn_color') == 'success') selected @endif>Success</option>
+                                        <option value="danger" @if(getSetting('order_btn_color') == 'danger') selected @endif>Danger</option>
+                                        <option value="warning" @if(getSetting('order_btn_color') == 'warning') selected @endif>Warning</option>
+                                        <option value="info" @if(getSetting('order_btn_color') == 'info') selected @endif>Info</option>
+                                        <option value="light" @if(getSetting('order_btn_color') == 'light') selected @endif>Light</option>
+                                        <option value="dark" @if(getSetting('order_btn_color') == 'dark') selected @endif>Dark</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="product_badge_color">Product Badge</label>
+                                    <select id="product_badge_color"  name="product_badge_color" class="form-control">
+                                        <option value="primary" @if(getSetting('order_btn_color') == 'primary') selected @endif>Primary</option>
+                                        <option value="secondary" @if(getSetting('order_btn_color') == 'secondary') selected @endif>Secondary</option>
+                                        <option value="success" @if(getSetting('order_btn_color') == 'success') selected @endif>Success</option>
+                                        <option value="danger" @if(getSetting('order_btn_color') == 'danger') selected @endif>Danger</option>
+                                        <option value="warning" @if(getSetting('order_btn_color') == 'warning') selected @endif>Warning</option>
+                                        <option value="info" @if(getSetting('order_btn_color') == 'info') selected @endif>Info</option>
+                                        <option value="light" @if(getSetting('order_btn_color') == 'light') selected @endif>Light</option>
+                                        <option value="dark" @if(getSetting('order_btn_color') == 'dark') selected @endif>Dark</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="product_feature_badge_color">Product Feature Badge</label>
+                                    <select id="product_feature_badge_color" name="product_feature_badge_color" class="form-control">
+                                        <option value="primary" @if(getSetting('order_btn_color') == 'primary') selected @endif>Primary</option>
+                                        <option value="secondary" @if(getSetting('order_btn_color') == 'secondary') selected @endif>Secondary</option>
+                                        <option value="success" @if(getSetting('order_btn_color') == 'success') selected @endif>Success</option>
+                                        <option value="danger" @if(getSetting('order_btn_color') == 'danger') selected @endif>Danger</option>
+                                        <option value="warning" @if(getSetting('order_btn_color') == 'warning') selected @endif>Warning</option>
+                                        <option value="info" @if(getSetting('order_btn_color') == 'info') selected @endif>Info</option>
+                                        <option value="light" @if(getSetting('order_btn_color') == 'light') selected @endif>Light</option>
+                                        <option value="dark" @if(getSetting('order_btn_color') == 'dark') selected @endif>Dark</option>
+                                    </select>
+                                </div>
+                            </div>
 
                         </div>
 

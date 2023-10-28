@@ -1,5 +1,5 @@
 <div class="d-block d-lg-none mb-4">
-    <a class="btn btn-primary w-100 d-flex justify-content-center align-items-center"
+    <a class="btn btn-{{getSetting('theme_color')}} w-100 d-flex justify-content-center align-items-center"
        data-bs-toggle="collapse" href="#collapseExample" role="button"
        aria-expanded="false" aria-controls="collapseExample">
                                 <span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16"

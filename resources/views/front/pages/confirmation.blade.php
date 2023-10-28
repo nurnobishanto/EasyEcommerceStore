@@ -5,7 +5,7 @@
             <h1 class="mb-5 text-center">Order Confirmation</h1>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card card-primary">
+                    <div class="card card-{{getSetting('theme_color')}}">
                         <div class="card-header">
                             <h5 class="card-title">Customer Information</h5>
                         </div>

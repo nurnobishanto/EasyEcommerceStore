@@ -4,9 +4,9 @@
             <div class="text-center position-relative ">
                 <div class=" position-absolute top-0 start-0">
                     @if(calculateDiscountPercentage($product->regular_price, $product->price)>0)
-                        <span class="badge bg-success">{{calculateDiscountPercentage($product->regular_price, $product->price)}}% Off</span>
+                        <span class="badge bg-{{getSetting('product_badge_color')}}">{{calculateDiscountPercentage($product->regular_price, $product->price)}}% Off</span>
                     @elseif($product->is_featured == 'yes')
-                        <span class="badge bg-danger">Hot</span>
+                        <span class="badge bg-{{getSetting('product_feature_badge_color')}}">Hot</span>
                     @endif
 
                 </div>
@@ -36,10 +36,10 @@
             @if($product->quantity > 0)
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div>
-                    <button onclick="orderNow({{$product->id}})" class="btn btn-danger btn-sm">অর্ডার করুন</button>
+                    <button onclick="orderNow({{$product->id}})" class="btn btn-{{getSetting('order_btn_color')}} btn-sm">অর্ডার করুন</button>
                 </div>
                 <div>
-                    <button class="btn btn-primary btn-sm add-to-cart" data-product-id="{{ $product->id }}"><i class="feather-icon icon-shopping-cart me-2"></i>+</button>
+                    <button class="btn btn-{{getSetting('add_cart_btn_color')}} btn-sm add-to-cart" data-product-id="{{ $product->id }}"><i class="feather-icon icon-shopping-cart me-2"></i>+</button>
                 </div>
             </div>
             @else

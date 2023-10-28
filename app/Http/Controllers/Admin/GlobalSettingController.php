@@ -41,6 +41,12 @@ class GlobalSettingController extends Controller
         setSetting('whatsapp',trim($request->whatsapp));
         setSetting('primary_color',trim($request->primary_color));
         setSetting('hover_color',trim($request->hover_color));
+        setSetting('order_btn_color',trim($request->order_btn_color));
+        setSetting('theme_color',trim($request->theme_color));
+        setSetting('add_cart_btn_color',trim($request->add_cart_btn_color));
+        setSetting('product_badge_color',trim($request->product_badge_color));
+        setSetting('product_feature_badge_color',trim($request->product_feature_badge_color));
+        setSetting('search_btn_color',trim($request->search_btn_color));
 
         if($request->file('site_favicon')){
             $imagePath = $request->file('site_favicon')->store('site-photo');

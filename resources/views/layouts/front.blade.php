@@ -30,7 +30,44 @@
     <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.min.css " rel="stylesheet">
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('front') }}/css/theme.min.css">
+    <style>
+        .nav-lb-tab .nav-item .nav-link.active, .nav-lb-tab .nav-item .nav-link:hover{
+            color: {{getSetting('primary_color')}};
+            border-color: {{getSetting('primary_color')}};
+        }
+        .btn-primary {
+            background-color: {{getSetting('primary_color')}}; /* Change this to your desired primary color */
+            border-color: {{getSetting('primary_color')}}; /* Change the button border color if needed */
+        }
 
+        /* Change the hover color for buttons */
+        .btn-primary:hover {
+            background-color: {{getSetting('hover_color')}}; /* Change this to your desired hover color */
+            border-color: {{getSetting('hover_color')}}; /* Change the button border hover color if needed */
+        }
+
+        /* Change the primary color for links */
+        a {
+            color: {{getSetting('primary_color')}}; /* Change this to your desired primary color for links */
+        }
+
+        /* Change the hover color for links */
+        a:hover {
+            color: {{getSetting('hover_color')}}; /* Change this to your desired hover color for links */
+        }
+
+        :root {
+            --primary-color: {{getSetting('primary_color')}};
+            --hover-color: {{getSetting('hover_color')}};
+        }
+
+    .navbar {
+        --fc-navbar-hover-color: var(--primary-color);
+        --fc-navbar-active-color: var(--primary-color);
+        --fc-navbar-brand-color: var(--primary-color);
+        --fc-navbar-brand-hover-color: var(--primary-color);
+    }
+    </style>
     {!! getSetting('header_code') !!}
 </head>
 

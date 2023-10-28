@@ -74,7 +74,7 @@
         });
         $('.cart-list').append('<div class="text-end fw-bold mt-2 px-3">Sub Total : {{getSetting('currency')}}<span class="product_sub_total">'+subtotal+'</span></div>');
         $('.cart-button').append(' <div class="d-flex justify-content-between mt-4">' +
-            '<a href="{{route('products')}}" class="btn btn-primary">Continue Shopping</a>' +
+            '<a href="{{route('products')}}" class="btn btn-{{getSetting('theme_color')}}">Continue Shopping</a>' +
             '<a href="{{route('checkout')}}" class="btn btn-danger">Checkout</a>' +
             '</div>');
         updateTotalwithDeliveryCharge();
