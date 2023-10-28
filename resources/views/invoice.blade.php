@@ -67,7 +67,7 @@
     <div class="invoice-body">
 
         <table class="invoice-table">
-            <caption><strong>Order Date :</strong> {{$order->created_at}}</caption>
+            <caption><strong>Order Date :</strong> {{ date('d-M-Y',strtotime($order->created_at)) }}</caption>
             <tr>
                 <th>Bill to</th>
                 <th>Shop Information</th>
@@ -143,7 +143,7 @@
         </table>
     </div>
     <div class="invoice-footer">
-        <p>Thank you for your business! | Invoice Date:</strong> {{ $date }}</p>
+        <p>Thank you for your business! | Invoice Date:</strong> {{ date('d/M/Y',strtotime($date)) }}</p>
     </div>
 </div>
 </body>
