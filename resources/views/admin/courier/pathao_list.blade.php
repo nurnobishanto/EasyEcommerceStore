@@ -97,7 +97,7 @@
                                <input type="submit" value="Save Setting" class="btn btn-success form-control">
                            </div>
                         </form>
-                        <p>Webhook Integration Callback URL : {{route('pathao_status')}}</p>
+                        <p>Webhook Integration Callback URL : {{url('/pathao-status')}}</p>
                     </div>
                     <div class="card-body table-responsive">
                         <table id="adminsList" class="table  dataTable table-bordered table-striped">
