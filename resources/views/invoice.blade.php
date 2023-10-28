@@ -24,7 +24,7 @@
             color: #000000;
             padding: 10px;
         }
-        .invoice-header h1 {
+        .invoice-header h2 {
             margin: 0;
         }
         .invoice-body {
@@ -60,8 +60,8 @@
 <body>
 <div class="container">
     <div class="invoice-header">
-        <img src="{{asset('uploads/'.getSetting('site_logo'))}}" style="max-height: 20px;">
-        <h1>Invoice</h1>
+        <img src="{{asset('uploads/'.getSetting('site_logo'))}}" style="max-height: 60px;">
+        <h2>Invoice</h2>
         <div>Order ID:</strong> {{$order->order_id}}</div>
     </div>
     <div class="invoice-body">
