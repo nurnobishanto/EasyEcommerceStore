@@ -14,14 +14,14 @@
         }
         .container {
             width: 100%;
-            border:1px solid black;
+            border:1px solid #515151;
             max-width: 800px;
             margin: 0 auto;
         }
         .invoice-header {
             text-align: center;
-            background-color: #333;
-            color: #fff;
+            background-color: #ebebeb;
+            color: #000000;
             padding: 10px;
         }
         .invoice-header h1 {
@@ -60,6 +60,7 @@
 <body>
 <div class="container">
     <div class="invoice-header">
+        <img src="{{asset('uploads/'.getSetting('site_logo'))}}" style="max-height: 20px;">
         <h1>Invoice</h1>
         <div>Order ID:</strong> {{$order->order_id}}</div>
     </div>
