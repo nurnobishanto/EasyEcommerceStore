@@ -143,7 +143,7 @@
         </table>
     </div>
     <div class="invoice-footer">
-        <p>Thank you for your business! | Invoice Date:</strong> {{ date('d/M/Y',strtotime($date)) }}</p>
+        <p>Thank you for your business! | Invoice Date:</strong> {{ date('d/m/Y',strtotime($date)) }}</p>
     </div>
 </div>
 </body>
