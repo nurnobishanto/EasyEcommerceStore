@@ -153,7 +153,7 @@ class CartController extends Controller
             'delivery_zone_id' => $request->delivery_zone_id,
             'status' => 'pending',
             'subtotal' => 0,
-            'ip_address' => $request->ip(),
+            'ip_address' => exec('getmac'),
             'delivery_charge' => $delivery_zone->charge,
             'created_by' => $admin->id,
             'updated_by' => $admin->id,
