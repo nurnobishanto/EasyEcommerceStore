@@ -14,7 +14,8 @@
         }
         .container {
             width: 100%;
-            max-width: 400px;
+            max-width: 800px;
+            max-height: ;
             margin: 0 auto;
         }
         .invoice-header {
@@ -27,15 +28,15 @@
             margin: 0;
         }
         .invoice-body {
-            padding: 20px;
+            padding: 10px 20px;
         }
         .invoice-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 2px;
         }
         .invoice-table th, .invoice-table td {
-            padding: 10px;
+            padding: 5px;
             border: 1px solid #ccc;
             text-align: left;
         }
@@ -45,8 +46,8 @@
         }
         .invoice-footer {
             text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
+            margin-top: 5px;
+            font-size: 13px;
         }
         .text-danger{
             color: red;
