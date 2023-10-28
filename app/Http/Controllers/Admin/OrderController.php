@@ -26,7 +26,7 @@ class OrderController extends Controller
         if ($request->status){
             $orders = $orders->where('status',$request->status);
         }
-     
+
         return view('admin.orders.index',compact('orders'));
     }
     public function trashed_list(){
@@ -302,6 +302,7 @@ class OrderController extends Controller
         ];
 
         $html = view('invoice', $data);
+        return $html;
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
