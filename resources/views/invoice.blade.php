@@ -14,8 +14,7 @@
         }
         .container {
             width: 100%;
-            border:1px solid #515151;
-            max-width: 800px;
+            max-width: 400px;
             margin: 0 auto;
         }
         .invoice-header {
