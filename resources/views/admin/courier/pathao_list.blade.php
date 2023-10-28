@@ -99,7 +99,7 @@
                                        <input type="submit" value="Save Setting" class="btn btn-success form-control mt-3">
                                    </div>
                                </div>
-                               <input type="submit" value="Save Setting" class="btn btn-success form-control">
+                             
                            </div>
                         </form>
                         <p>Webhook Integration Callback URL : {{url('/pathao-status')}}</p>
