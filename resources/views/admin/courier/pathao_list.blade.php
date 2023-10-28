@@ -48,7 +48,7 @@
                                        <label for="pathao_base_url">Pathao Mode</label>
                                        <select id="pathao_base_url" name="pathao_base_url" class="form-control">
                                            <option value="https://courier-api-sandbox.pathao.com" @if(getSetting('pathao_base_url') == 'https://courier-api-sandbox.pathao.com') selected @endif >Sandbox</option>
-                                           <option value="https://courier-api.pathao.com" @if(getSetting('pathao_base_url') == 'https://courier-api.pathao.com') selected @endif >Production</option>
+                                           <option value="https://api-hermes.pathao.com" @if(getSetting('pathao_base_url') == 'https://api-hermes.pathao.com') selected @endif >Production</option>
                                        </select>
                                    </div>
                                </div>
@@ -92,6 +92,11 @@
                                    <div class="form-group">
                                        <label for="pathao_webhook_secret">Webhook Secret</label>
                                        <input id="pathao_webhook_secret" type="text" value="{{getSetting('pathao_webhook_secret')}}" name="pathao_webhook_secret" class="form-control" placeholder="Enter Pathao Webhook Secret">
+                                   </div>
+                               </div>
+                               <div class="col-md-4">
+                                   <div class="form-group">
+                                       <input type="submit" value="Save Setting" class="btn btn-success form-control mt-3">
                                    </div>
                                </div>
                                <input type="submit" value="Save Setting" class="btn btn-success form-control">
