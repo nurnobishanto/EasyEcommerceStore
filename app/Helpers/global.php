@@ -122,7 +122,7 @@ if (!function_exists('apiRequest')) {
 if (!function_exists('issuePathaoToken')) {
     function issuePathaoToken() {
         $accessToken = getSetting('pathao_access_token');
-        if ($accessToken) {
+        if ($accessToken != 'null') {
            return refreshPathaoToken();
         }
         $url = getSetting('pathao_base_url') . '/aladdin/api/v1/issue-token';
