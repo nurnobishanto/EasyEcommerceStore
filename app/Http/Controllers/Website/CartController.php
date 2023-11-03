@@ -189,6 +189,8 @@ class CartController extends Controller
         DB::table('order_product')->insert($productsWithPivot);
         $order->subtotal = $subtotal;
         $order->update();
+        $userIp = $request->ip();
+        $request->session()->put('blocked_ip_' . $userIp, true);
 
         Session()->put('cart',[]);
         toastr()->success($order->name.__('global.created_success'),__('global.order').__('global.created'));
