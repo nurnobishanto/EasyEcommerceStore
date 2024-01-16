@@ -29,7 +29,9 @@
     <link href="{{ asset('front') }}/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
     <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.min.css " rel="stylesheet">
     <!-- Theme CSS -->
+
     <link rel="stylesheet" href="{{ asset('front') }}/css/theme.min.css">
+
     <style>
         .nav-lb-tab .nav-item .nav-link.active, .nav-lb-tab .nav-item .nav-link:hover{
             color: {{getSetting('primary_color')}};
@@ -67,6 +69,32 @@
         --fc-navbar-brand-color: var(--primary-color);
         --fc-navbar-brand-hover-color: var(--primary-color);
     }
+        .bottom-mobile-nav {
+            background: #ffffff;
+            position: fixed;
+            bottom: 0;
+            box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
+            height: 45px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .bloc-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .bloc-icon i {
+            font-size: 30px;
+            color: {{getSetting('primary_color')}};
+        }
+
+        @media screen and (min-width: 600px) {
+            .bottom-mobile-nav {
+                display: none;
+            }
+        }
+
     </style>
     {!! getSetting('header_code') !!}
 </head>
@@ -84,6 +112,7 @@
 
     <!-- footer -->
   @include('front.includes.footer')
+  @include('front.includes.bottom_nav')
 
     <!-- Javascript-->
 
@@ -103,6 +132,7 @@
     <script src="{{ asset('front') }}/js/vendors/zoom.js"></script>
     <script src="{{ asset('front') }}/js/vendors/increment-value.js"></script>
    <script src=" https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js "></script>
+
 @include('front.includes.scripts')
 
 

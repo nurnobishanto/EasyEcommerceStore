@@ -1,19 +1,20 @@
 <div class="col">
     <div class="card card-product">
-        <div class="card-body">
-            <div class="text-center position-relative ">
-                <div class=" position-absolute top-0 start-0">
-                    @if(calculateDiscountPercentage($product->regular_price, $product->price)>0)
-                        <span class="badge bg-{{getSetting('product_badge_color')}}">{{calculateDiscountPercentage($product->regular_price, $product->price)}}% Off</span>
-                    @elseif($product->is_featured == 'yes')
-                        <span class="badge bg-{{getSetting('product_feature_badge_color')}}">Hot</span>
-                    @endif
+        <div class="text-center position-relative ">
+            <div class=" position-absolute top-0 start-0">
+                @if(calculateDiscountPercentage($product->regular_price, $product->price)>0)
+                    <span class="badge bg-{{getSetting('product_badge_color')}}">{{calculateDiscountPercentage($product->regular_price, $product->price)}}% Off</span>
+                @elseif($product->is_featured == 'yes')
+                    <span class="badge bg-{{getSetting('product_feature_badge_color')}}">Hot</span>
+                @endif
 
-                </div>
-                <a href="{{route('product',['slug'=>$product->slug])}}">
-                    <img src="{{ asset('uploads/'.$product->thumbnail) }}" alt="{{$product->title}}" class="mb-3 img-fluid">
-                </a>
             </div>
+            <a href="{{route('product',['slug'=>$product->slug])}}">
+                <img src="{{ asset('uploads/'.$product->thumbnail) }}" alt="{{$product->title}}" class=" img-fluid">
+            </a>
+        </div>
+        <div class="card-body">
+
             <div class="text-small mb-1">
                 @if($product->categories->first())
                 <a href="{{route('category',['slug'=>$product->categories->first()->slug])}}" class="text-decoration-none text-muted"><small>{{$product->categories->first()->name}}</small></a></div>

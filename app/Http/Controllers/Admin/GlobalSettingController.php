@@ -26,8 +26,7 @@ class GlobalSettingController extends Controller
         setSetting('home_slider',trim($request->home_slider));
         setSetting('home_slider_text',trim($request->home_slider_text));
         setSetting('site_description',trim($request->site_description));
-
-
+        setSetting('product_per_page',trim($request->product_per_page??20));
         setSetting('top_left_text',trim($request->top_left_text));
         setSetting('top_right_text',trim($request->top_right_text));
         setSetting('mobile_category_menu',trim($request->mobile_category_menu));

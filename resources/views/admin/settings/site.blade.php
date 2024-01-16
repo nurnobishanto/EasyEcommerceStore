@@ -74,6 +74,13 @@
                                     <img src="{{asset('uploads/'.getSetting('site_logo'))}}" class="img-thumbnail"  id="selected-site_logo" style="max-height: 70px">
                                 </div>
                             </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="product_per_page">Per Page Products</label>
+                                    <input id="product_per_page" value="{{getSetting('product_per_page')}}" name="product_per_page" class="form-control" placeholder="Enter Quantity">
+                                </div>
+                            </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="top_left_text">{{ __('global.top_left_text')}}</label>
@@ -99,8 +106,8 @@
                                 <div class="form-group">
                                     <label for="home_slider_text">{{ __('global.home_slider_text')}}</label>
                                     <select id="home_slider_text"  name="home_slider_text" class="form-control">
-                                        <option value="show" @if(getSetting('home_slider') == 'show') selected @endif>Show</option>
-                                        <option value="hide" @if(getSetting('home_slider') == 'hide') selected @endif>Hide</option>
+                                        <option value="show" @if(getSetting('home_slider_text') == 'show') selected @endif>Show</option>
+                                        <option value="hide" @if(getSetting('home_slider_text') == 'hide') selected @endif>Hide</option>
                                     </select>
                                 </div>
                             </div>

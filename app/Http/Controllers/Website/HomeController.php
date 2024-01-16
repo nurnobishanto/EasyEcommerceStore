@@ -45,13 +45,13 @@ class HomeController extends Controller
     }
     public function products(Request $request){
         $searchQuery = $request->input('query');
-        $products = Product::where('status','active')->where('title', 'like', '%' . $searchQuery . '%')->paginate(20);
+        $products = Product::where('status','active')->where('title', 'like', '%' . $searchQuery . '%')->paginate(getSetting('product_per_page')??20);
         return view('front.pages.products',compact('products'));
     }
     public function new_products(){
         $products = Product::where('status', 'active')->defaultOrder()
            // ->orderBy('created_at', 'desc')
-            ->paginate(20);
+            ->paginate(getSetting('product_per_page')??20);
         return view('front.pages.products',compact('products'));
 
     }

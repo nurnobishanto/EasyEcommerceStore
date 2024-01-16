@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
+
                 <div class="slider slider-for">
                     <div>
                         <div class="zoom" onmousemove="zoom(event)" style="background-image: url({{asset('uploads/'.$product->thumbnail)}})">
@@ -126,10 +127,17 @@
                 <ul class="nav nav-pills nav-lb-tab" id="myTab" role="tablist">
                     <!-- nav item -->
                     <li class="nav-item" role="presentation">
-                        <!-- btn --> <button class="nav-link active" id="product-tab" data-bs-toggle="tab"
+                        <button class="nav-link active" id="product-tab" data-bs-toggle="tab"
                                              data-bs-target="#product-tab-pane" type="button" role="tab" aria-controls="product-tab-pane"
                                              aria-selected="true">Product Details</button>
                     </li>
+                    @if($product->video_url)
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link " id="product-tab-vi" data-bs-toggle="tab"
+                                             data-bs-target="#product-tab-video" type="button" role="tab" aria-controls="product-tab-video"
+                                             aria-selected="true">Product Videos</button>
+                    </li>
+                    @endif
                 </ul>
                 <!-- tab content -->
                 <div class="tab-content" id="myTabContent">
@@ -140,6 +148,17 @@
                             {!! $product->description !!}
                         </div>
                     </div>
+                    @if($product->video_url)
+                    <div class="tab-pane fade show " id="product-tab-video" role="tabpanel" aria-labelledby="product-tab-vi"
+                         tabindex="0">
+                        <div class="my-8">
+                            <div class="embed-responsive">
+                                <iframe width="100%" style="max-width: 500px" height="345" class="embed-responsive-item" src="{{$product->video_url}}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    @endif
                 </div>
             </div>
         </div>
@@ -165,3 +184,4 @@
     </div>
 </section>
 @endsection
+

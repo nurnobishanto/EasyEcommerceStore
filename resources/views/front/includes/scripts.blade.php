@@ -1,4 +1,5 @@
 <script>
+
     function getCartInfo() {
         $.ajax({
             type: 'GET',
@@ -252,3 +253,4 @@
 
 
 </script>
+

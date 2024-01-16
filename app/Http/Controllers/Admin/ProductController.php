@@ -69,6 +69,8 @@ class ProductController extends Controller
             'thumbnail' => $imagePath,
             'gallery' => $galleryPaths,
             'brand_id' => $request->input('brand_id'),
+            'video_type' => $request->input('video_type'),
+            'video_url' => $request->input('video_url'),
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id,
 
@@ -151,6 +153,8 @@ class ProductController extends Controller
         $product->brand_id = $request->brand_id;
         $product->status = $request->status;
         $product->is_featured = $request->is_featured;
+        $product->video_type = $request->video_type;
+        $product->video_url = $request->video_url;
         $product->updated_by = auth()->user()->id;
         $product->thumbnail = $imagePath;
         $product->update();

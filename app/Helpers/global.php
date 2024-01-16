@@ -286,7 +286,7 @@ if (!function_exists('popularProducts')) {
 
     function popularProducts()
     {
-        return \App\Models\Product::where('status','active')->paginate(20);
+        return \App\Models\Product::where('status','active')->paginate(getSetting('product_per_page')??20);
     }
 
 }

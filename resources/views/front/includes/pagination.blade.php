@@ -1,4 +1,7 @@
 <!-- Custom pagination links -->
+
+@if($products->hasPages())
+
 <div class="row mt-8">
     <div class="col">
         <!-- nav -->
@@ -41,3 +44,4 @@
         </nav>
     </div>
 </div>
+@endif

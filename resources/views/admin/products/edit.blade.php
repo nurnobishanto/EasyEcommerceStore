@@ -96,6 +96,21 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="video_type">Select Video Type</label>
+                                    <select name="video_type" class=" form-control" id="video_type" >
+                                        <option value="youtube" @if($product->video_type == "youtube") selected @endif>Youtube</option>
+                                        <option value="vimeo" @if($product->video_type == "vimeo") selected @endif>Vimeo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="video_url">Video URL</label>
+                                    <input id="video_url" name="video_url" type="url" value="{{$product->video_url}}" class="form-control" placeholder="Enter video url">
+                                </div>
+                            </div>
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="description">{{ __('global.description')}}</label>
