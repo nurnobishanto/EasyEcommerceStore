@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "734d8e46af8d76fb58411b79cf75f569",
+    "content-hash": "5b9470c9ecd9202a7c67048380df1d3f",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1151,6 +1151,53 @@
                 }
             ],
             "time": "2023-08-27T10:19:19+00:00"
+        },
+        {
+            "name": "jd-dotlogics/laravel-grapesjs",
+            "version": "3.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dl-u/laravel-grapesjs.git",
+                "reference": "2c4136621454b368c30464636701ef85a04d990f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dl-u/laravel-grapesjs/zipball/2c4136621454b368c30464636701ef85a04d990f",
+                "reference": "2c4136621454b368c30464636701ef85a04d990f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.6.0",
+                "php": "^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dotlogics\\Grapesjs\\GrapesjsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dotlogics\\Grapesjs\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dotlogics",
+                    "email": "hello@dotlogics.com"
+                }
+            ],
+            "description": "A package to easily integrate GrapesJS into your laravel proejct.",
+            "support": {
+                "source": "https://github.com/dl-u/laravel-grapesjs/tree/3.4.1"
+            },
+            "time": "2023-05-26T06:27:19+00:00"
         },
         {
             "name": "jeroennoten/laravel-adminlte",
@@ -9285,7 +9332,7 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^8.1",
-        "ext-cassandra": "*"
+        "ext-curl": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"

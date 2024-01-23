@@ -76,6 +76,7 @@
                                                 <a href="{{route('admin.products.show',['product'=>$product->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
                                             @endcan
                                             @can('product_update')
+                                                <a class="btn btn-primary px-1 py-0 btn-sm" href="{{route('admin.products.editor',['product'=>$product->id])}}"><i class="fa fa-cogs"></i></a>
                                                 <a href="{{route('admin.products.edit',['product'=>$product->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
                                             @endcan
                                             @can('product_delete')

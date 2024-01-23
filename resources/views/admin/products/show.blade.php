@@ -22,6 +22,10 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="card-header">
+                    <a class="btn-warning btn" href="{{route('admin.products.editor',['product'=>$product->id])}}">Edit Landing Page</a>
+                    <a class="btn-info btn" target="_blank" href="{{route('landing.product',['slug'=>$product->slug])}}">View Landing Page</a>
+                </div>
                 <div class="card-body">
                         @if (count($errors) > 0)
                             <div class = "alert alert-danger">

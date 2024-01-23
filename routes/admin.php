@@ -40,6 +40,7 @@ Route::resource('/categories',CategoryController::class)->middleware('permission
 
 //Product
 Route::get('/products/trashed',[ProductController::class,'trashed_list'])->middleware('permission:product_manage')->name('products.trashed');
+Route::get('/products/{product}/landing-editor',[ProductController::class,'editor'])->middleware('permission:product_manage')->name('products.editor');
 Route::get('/products/trashed/{product}/restore',[ProductController::class,'restore'])->middleware('permission:product_manage')->name('products.restore');
 Route::get('/products/trashed/{product}/delete',[ProductController::class,'force_delete'])->middleware('permission:product_manage')->name('products.force_delete');
 Route::resource('/products',ProductController::class)->middleware('permission:product_manage');

@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '9c965ba8162d839c329e85c312c73d28800e87e1',
+        'reference' => '2cbd85e57268137a0db57b8ad49deb0328f7c159',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -382,6 +382,15 @@
                 0 => 'v10.23.1',
             ),
         ),
+        'jd-dotlogics/laravel-grapesjs' => array(
+            'pretty_version' => '3.4.1',
+            'version' => '3.4.1.0',
+            'reference' => '2c4136621454b368c30464636701ef85a04d990f',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../jd-dotlogics/laravel-grapesjs',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'jeroennoten/laravel-adminlte' => array(
             'pretty_version' => 'v3.9.2',
             'version' => '3.9.2.0',
@@ -409,7 +418,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '9c965ba8162d839c329e85c312c73d28800e87e1',
+            'reference' => '2cbd85e57268137a0db57b8ad49deb0328f7c159',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

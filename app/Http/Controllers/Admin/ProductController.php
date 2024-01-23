@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use Dotlogics\Grapesjs\App\Traits\EditorTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
 class ProductController extends Controller
 {
 
+    use EditorTrait;
     public function index()
     {
         App::setLocale(session('locale'));
@@ -189,5 +191,9 @@ class ProductController extends Controller
         $product->forceDelete();
         toastr()->success(__('global.menu').__('global.deleted_success'),__('global.deleted'));
         return redirect()->route('admin.products.trashed');
+    }
+    public function editor(Request $request, Product $product)
+    {
+        return $this->show_gjs_editor($request, $product);
     }
 }

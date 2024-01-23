@@ -55,6 +55,15 @@ class HomeController extends Controller
         return view('front.pages.products',compact('products'));
 
     }
+    public function landing($slug){
+        $product = Product::where('slug',$slug)->first();
+        if ($product){
+            return view('front.pages.landing',compact('product'));
+        }else{
+            abort(404);
+        }
+
+    }
     public function product($slug){
         $product = Product::where('slug',$slug)->first();
         if ($product){

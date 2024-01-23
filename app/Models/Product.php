@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Dotlogics\Grapesjs\App\Contracts\Editable;
+use Dotlogics\Grapesjs\App\Traits\EditableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Product extends Model  implements Editable
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory,SoftDeletes,EditableTrait;
     protected $fillable = [
         'title',
         'description',
@@ -26,6 +28,7 @@ class Product extends Model
         'video_url',
         'gallery',
         'brand_id',
+        'gjs_data',
     ];
     protected $casts = [
         'gallery' => 'array',

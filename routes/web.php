@@ -23,6 +23,7 @@ Route::delete('/cart/remove', [\App\Http\Controllers\Website\CartController::cla
 Route::delete('/cart/minus', [\App\Http\Controllers\Website\CartController::class,'minusFromCart'])->name('minusFromCart');
 
 Route::post('/cart/order-confirm', [\App\Http\Controllers\Website\CartController::class,'orderConfirm'])->name('orderConfirm');
+Route::post('/landing/order-confirm', [\App\Http\Controllers\Website\CartController::class,'landingOrderConfirm'])->name('landingOrderConfirm');
 Route::get('/success/{id}', [\App\Http\Controllers\Website\CartController::class,'success'])->name('success');
 
 //Pathao API
@@ -43,6 +44,7 @@ Route::get('/contact',[\App\Http\Controllers\Website\HomeController::class,'cont
 Route::get('/terms',[\App\Http\Controllers\Website\HomeController::class,'terms'])->name('terms');
 Route::get('/privacy',[\App\Http\Controllers\Website\HomeController::class,'privacy'])->name('privacy');
 Route::get('/return-policy',[\App\Http\Controllers\Website\HomeController::class,'return_policy'])->name('return_policy');
+Route::get('landing/{slug}',[\App\Http\Controllers\Website\HomeController::class,'landing'])->name('landing.product');
 Route::get('/{slug}',[\App\Http\Controllers\Website\HomeController::class,'product'])->name('product');
 
 

@@ -1391,6 +1391,56 @@
             "install-path": "../hamcrest/hamcrest-php"
         },
         {
+            "name": "jd-dotlogics/laravel-grapesjs",
+            "version": "3.4.1",
+            "version_normalized": "3.4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dl-u/laravel-grapesjs.git",
+                "reference": "2c4136621454b368c30464636701ef85a04d990f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dl-u/laravel-grapesjs/zipball/2c4136621454b368c30464636701ef85a04d990f",
+                "reference": "2c4136621454b368c30464636701ef85a04d990f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.6.0",
+                "php": "^7.4|^8.0"
+            },
+            "time": "2023-05-26T06:27:19+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dotlogics\\Grapesjs\\GrapesjsServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Dotlogics\\Grapesjs\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dotlogics",
+                    "email": "hello@dotlogics.com"
+                }
+            ],
+            "description": "A package to easily integrate GrapesJS into your laravel proejct.",
+            "support": {
+                "source": "https://github.com/dl-u/laravel-grapesjs/tree/3.4.1"
+            },
+            "install-path": "../jd-dotlogics/laravel-grapesjs"
+        },
+        {
             "name": "jeroennoten/laravel-adminlte",
             "version": "v3.9.2",
             "version_normalized": "3.9.2.0",
