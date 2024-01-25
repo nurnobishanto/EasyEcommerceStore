@@ -59,6 +59,7 @@
                             <tr>
                                 <th>{{__('global.sl')}}</th>
                                 <th>{{__('global.order_id')}}</th>
+                                <th>{{__('global.products')}}</th>
                                 <th>{{__('global.order_by')}}</th>
                                 <th width="125px">{{__('global.price')}}</th>
                                 <th width="150px">{{__('global.delivery_zone')}}</th>
@@ -73,6 +74,11 @@
 
                                     <td>{{$sl++}}</td>
                                     <td>{{$order->order_id}}</td>
+                                    <td>
+                                    @foreach($order->products as $product)
+                                     {{$product->title}} X {{$product['pivot']['quantity']}}<br>
+                                    @endforeach
+                                    </td>
                                     <td>{{$order->name}},<br>{{$order->phone}},<br>{{$order->address}}</td>
                                     @php
                                         $discount  = ($order->discount_percent/100)*$order->subtotal;
@@ -80,7 +86,12 @@
                                             $discount = $order->max_discount;
                                         }
                                     @endphp
-                                    <td>Subtotal : {{$order->subtotal}}<br>D. Charge : {{$order->delivery_charge}}<br>Discount : {{$discount}}<br>Total : {{$order->subtotal+$order->delivery_charge-$discount}}</td>
+                                    <td>
+                                        Subtotal : {{$order->subtotal}}<br>
+                                        D. Charge : {{$order->delivery_charge}}<br>
+                                        Discount : {{$discount}}<br>
+                                        Total : {{$order->subtotal+$order->delivery_charge-$discount}}
+                                    </td>
                                     <td>
                                         D. Zone: {{$order->delivery_zone->name}}<br>
                                         Pay. M: {{$order->payment_method->name??'Cash on Delivery'}}<br>
@@ -132,6 +143,7 @@
                             <tr>
                                 <th>{{__('global.sl')}}</th>
                                 <th>{{__('global.order_id')}}</th>
+                                <th>{{__('global.products')}}</th>
                                 <th>{{__('global.order_by')}}</th>
                                 <th>{{__('global.price')}}</th>
                                 <th>{{__('global.delivery_zone')}}</th>
