@@ -136,8 +136,10 @@
                                                     <label for="delivery_zone_id" class="form-label">ডেলিভারি জোন <span class="text-danger"> *</span></label>
                                                     <select id="delivery_zone_id" class="form-control" name="delivery_zone_id" >
                                                         <option value="" data-charge="80">Select Delivery Zone</option>
+                                                        @php $dzSelect   = true; @endphp
                                                         @foreach(deliveryZones() as $zone)
-                                                            <option @if(old('delivery_zone_id') === $zone->id) selected @endif onclick="updateTotalwithDeliveryCharge()" value="{{$zone->id}}" data-charge="{{$zone->charge}}">{{$zone->name}} - {{getSetting('currency')}}{{$zone->charge}}</option>
+                                                            <option @if(old('delivery_zone_id') == $zone->id || $dzSelect) selected @endif  value="{{$zone->id}}" data-charge="{{$zone->charge}}">{{$zone->name}} - {{getSetting('currency')}}{{$zone->charge}}</option>
+                                                            @php $dzSelect   = false; @endphp
                                                         @endforeach
                                                     </select>
                                                     @error('delivery_zone_id')
